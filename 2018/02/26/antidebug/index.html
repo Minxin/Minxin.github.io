@@ -88,19 +88,19 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="一个native层反调试例子动态调试apktools反编译，浏览smali代码，找原生函数。用ida打开so，找一下相关函数。 ###调试准备  将ida下gdbsrv目录下的android_server上传到手机上   adb push ./android_server /data/local/tmp   提升一下文件的权限后运行 转发到本地端口   adb forward tcp:23946">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15196557781372.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15196564062163.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15196564861618.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199980730634.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199854519199.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199856415959.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199856177757.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15200005028948.jpg">
-<meta property="og:updated_time" content="2018-03-02T14:36:15.977Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15196557781372.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15196564062163.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15196564861618.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15199980730634.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15199854519199.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15199856415959.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15199856177757.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15200005028948.jpg">
+<meta property="og:updated_time" content="2018-12-03T06:41:22.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个native层反调试例子">
 <meta name="twitter:description" content="一个native层反调试例子动态调试apktools反编译，浏览smali代码，找原生函数。用ida打开so，找一下相关函数。 ###调试准备  将ida下gdbsrv目录下的android_server上传到手机上   adb push ./android_server /data/local/tmp   提升一下文件的权限后运行 转发到本地端口   adb forward tcp:23946">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/15196557781372.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/02/26/antidebug/media/15196557781372.jpg">
 
 
 
@@ -382,10 +382,10 @@
 <p><code>adb forward tcp:23946 tcp:23946</code></p>
 </blockquote>
 <p>打开ida的debugger里的attach，选择remote ARMLinux/android debugger，填写本地地址及端口即可附加，选择对应进程包名。</p>
-<h3 id="函数查找"><a href="#函数查找" class="headerlink" title="函数查找"></a>函数查找</h3><p>ida成功附加后，会自动断下来，打开Program Stegmentation窗口，找到目标so<img src="http://p1ju8xds4.bkt.clouddn.com/15196557781372.jpg" alt=""><br>带有X可执行权限且最低地址的段，为基地址，之前so静态分析时获得的函数地址为偏移，基地址+偏移=目标地址，在目标地址处下断，如果是未定义数据，按c将其转为code。</p>
+<h3 id="函数查找"><a href="#函数查找" class="headerlink" title="函数查找"></a>函数查找</h3><p>ida成功附加后，会自动断下来，打开Program Stegmentation窗口，找到目标so<img src="media/15196557781372.jpg" alt=""><br>带有X可执行权限且最低地址的段，为基地址，之前so静态分析时获得的函数地址为偏移，基地址+偏移=目标地址，在目标地址处下断，如果是未定义数据，按c将其转为code。</p>
 <p>下完断点后，运行发现ida报错，调试停止，手机上程序也退出，重复也是如此。这里是因为程序检查到了被调试后自退出。</p>
 <p>了解到，程序利用了<a href="http://blog.csdn.net/u012417380/article/details/60468697" target="_blank" rel="noopener">ptrace</a>。linux下一般调试器都会使用ptrace使进程被调试。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15196564062163.jpg" alt=""><br>可看到，tracerPid值为3559，被pid为3559的进程调试，那么我们看看我们调试服务的pid：<br><img src="http://p1ju8xds4.bkt.clouddn.com/15196564861618.jpg" alt=""><br>果然，刚刚打开的ida的调试服务pid就是3559。<br>那么程序就是检查到了tracepid不为0而认为程序被调试。</p>
+<p><img src="media/15196564062163.jpg" alt=""><br>可看到，tracerPid值为3559，被pid为3559的进程调试，那么我们看看我们调试服务的pid：<br><img src="media/15196564861618.jpg" alt=""><br>果然，刚刚打开的ida的调试服务pid就是3559。<br>那么程序就是检查到了tracepid不为0而认为程序被调试。</p>
 <p>在函数中无法下断，我们需要寻找另一个位置下断，如何寻找，我们先来看一下so文件加载过程。</p>
 <h2 id="so文件加载"><a href="#so文件加载" class="headerlink" title="so文件加载"></a>so文件加载</h2><p><a href="http://www.blogfshare.com/linker-load-so.html" target="_blank" rel="noopener">http://www.blogfshare.com/linker-load-so.html</a><br>系统加载so，在完成装载、映射和重定向以后，就首先执行.init和.init_array段的代码，之后如果存在JNI_OnLoad就调用该函数.我们要对一个so进行分析，需要先看看有没有.init_array section和.init section，so加壳一般会在初始化函数进行脱壳操作。</p>
 <h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><h3 id="令其可调试"><a href="#令其可调试" class="headerlink" title="令其可调试"></a>令其可调试</h3><p>打开ddms，发现列表中没有进程，程序不可调试，首先要将其可调试，之前讲过方法。</p>
@@ -422,15 +422,15 @@
 <p><a href="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/">这里</a>解决不生效的问题，以后还是用hook插件吧。。。</p>
 <h3 id="寻找反调试点"><a href="#寻找反调试点" class="headerlink" title="寻找反调试点"></a>寻找反调试点</h3><p>为了能让程序断在JNI_OnLoad上，我们不能直接运行app，再attach，时机太晚。<br>我们需要以debug的方式启动app来等待被调试。</p>
 <p><code>adb shell am start -D -n com.yaotong.crackme/.MainActivity</code></p>
-<p>以debug方式启动后，ida再attach上，之后还需要更改一下debug option：<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199980730634.jpg" alt="a-w400"></p>
+<p>以debug方式启动后，ida再attach上，之后还需要更改一下debug option：<br><img src="media/15199980730634.jpg" alt="a-w400"></p>
 <p>这时候需要java调试器附加上去，程序才能运行起来，程序要求可调试，之前已经修改了，端口要打开devices monitor才会打开：</p>
 <p><code>jdb -connect com.sun.jdi.SocketAttach:hostname=127.0.0.1,port=8700</code></p>
-<p>ida中F9运行后发现等待调试对话框消失了，而且断下来了，根据JNI_OnLoad的偏移寻找地址，下断，再运行后就断在JNI_OnLoad上了。<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199854519199.jpg" alt="a-w600"></p>
-<p>运行到这里，要跳转到R7的地址处<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199856415959.jpg" alt="a-w600"></p>
-<p>发现R7里是pthread_create的地址<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199856177757.jpg" alt="a-w400"></p>
+<p>ida中F9运行后发现等待调试对话框消失了，而且断下来了，根据JNI_OnLoad的偏移寻找地址，下断，再运行后就断在JNI_OnLoad上了。<br><img src="media/15199854519199.jpg" alt="a-w600"></p>
+<p>运行到这里，要跳转到R7的地址处<br><img src="media/15199856415959.jpg" alt="a-w600"></p>
+<p>发现R7里是pthread_create的地址<br><img src="media/15199856177757.jpg" alt="a-w400"></p>
 <p>果然运行之后就退出了，程序在这里开启一个线程来检测是否被调试。</p>
 <p>简单方法就是把现线程创建函数nop掉。</p>
-<p>发现是可以断在Java_com_yaotong_crackme_MainActivity_securityCheck函数里的：<br><img src="http://p1ju8xds4.bkt.clouddn.com/15200005028948.jpg" alt="a-w600"></p>
+<p>发现是可以断在Java_com_yaotong_crackme_MainActivity_securityCheck函数里的：<br><img src="media/15200005028948.jpg" alt="a-w600"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于利用ptrace实现反调试，这里是利用了创建线程来检测进程的tracepid，另一种思路是父子进程相互监控来实现，可以看一下这篇<a href="http://blog.csdn.net/tianxuhong/article/details/78415864" target="_blank" rel="noopener">文章</a>。</p>
 
       

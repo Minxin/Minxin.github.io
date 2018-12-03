@@ -88,16 +88,16 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="腾讯游戏安全技术竞赛决赛第一题writeup题目描述题目是用OpenGL ES 3.0编写的一个程序，用textures/container.jpg作为贴图，去渲染。目的是去寻找绘制出的flag，由于绘制区域限制，移动不到绘制区域。 做题过程之前没有接触过openGL，相关函数一个个找，浏览了《opengl es 3.0 编程指南》。 贴图绑定： 123456789101112131415161">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15254223943601.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15262860614297.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15262922120545.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15262922381037.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/05/04/mtp2/media/15254223943601.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/05/04/mtp2/media/15262860614297.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/05/04/mtp2/media/15262922120545.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/05/04/mtp2/media/15262922381037.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-1e286dd517c717e3f1c48792275f7e87_hd.jpg">
-<meta property="og:updated_time" content="2018-05-14T10:55:52.872Z">
+<meta property="og:updated_time" content="2018-12-03T06:38:20.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="腾讯游戏安全技术竞赛决赛第一题writeup">
 <meta name="twitter:description" content="腾讯游戏安全技术竞赛决赛第一题writeup题目描述题目是用OpenGL ES 3.0编写的一个程序，用textures/container.jpg作为贴图，去渲染。目的是去寻找绘制出的flag，由于绘制区域限制，移动不到绘制区域。 做题过程之前没有接触过openGL，相关函数一个个找，浏览了《opengl es 3.0 编程指南》。 贴图绑定： 123456789101112131415161">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/15254223943601.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/05/04/mtp2/media/15254223943601.jpg">
 
 
 
@@ -374,16 +374,16 @@
 <p>一番搜索，glDrawElements和glDrawArrays是绘制函数，在绘制前，调用<code>glUniformMatrix4fv</code>,通过uniform上传至GPU,来绘制最终的图像。调试中发现传入的指针指向的是空数组。不清楚为什么。从代码来看就是将，dword_AA0FC传入的数据，每个循环处理x和y坐标。刚刚那个座标是一个三维坐标。</p>
 <p>没仔细研究一大段的浮点运算具体是干什么的，猜测是三维到二维的映射计算。</p>
 <p>把dword_9E8D8数据抠出来。用matplotlib绘制出来。哇！惊喜，这个坐标数组就是绘制图像的坐标数组。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15254223943601.jpg" alt=""></p>
+<p><img src="media/15254223943601.jpg" alt=""></p>
 <p>由于旧的题里出现了flag的图片，还是给了不少启示的，所以这题做的还是有点侥幸的。</p>
 <h2 id="OpenGL相关"><a href="#OpenGL相关" class="headerlink" title="OpenGL相关"></a>OpenGL相关</h2><p>有关OpenGL的知识，需要了解一下几个概念。<br>这个系列文章写的不错：<a href="http://www.cnblogs.com/lijihong/p/5365677.html" target="_blank" rel="noopener">http://www.cnblogs.com/lijihong/p/5365677.html</a></p>
 <h3 id="vertex-顶点"><a href="#vertex-顶点" class="headerlink" title="vertex(顶点)"></a>vertex(顶点)</h3><p>在设置贴图映射和绘制对象时会用到顶点。</p>
-<p>例如在贴图映射中，会指定贴图所需要映射方式的一个顶点数组。如下是一个浮点数组。<br><img src="http://p1ju8xds4.bkt.clouddn.com/15262860614297.jpg" alt=""></p>
+<p>例如在贴图映射中，会指定贴图所需要映射方式的一个顶点数组。如下是一个浮点数组。<br><img src="media/15262860614297.jpg" alt=""></p>
 <h3 id="VBO-顶点缓冲对象"><a href="#VBO-顶点缓冲对象" class="headerlink" title="VBO(顶点缓冲对象)"></a>VBO(顶点缓冲对象)</h3><p>顶点缓冲对象VBO是在显卡存储空间中开辟出的一块内存缓存区，用于存储顶点的各类属性信息，如顶点坐标，顶点法向量，顶点颜色数据等。在渲染时，可以直接从VBO中取出顶点的各类属性数据，由于VBO在显存而不是在内存中，不需要从CPU传输数据，处理效率更高。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static void CreateVertexBuffer()</span><br><span class="line">&#123;</span><br><span class="line">    // 创建含有一个顶点的顶点数组</span><br><span class="line">    Vector3f Vertices[1];</span><br><span class="line">    // 将点置于屏幕中央</span><br><span class="line">    Vertices[0] = Vector3f(0.0f, 0.0f, 0.0f);</span><br><span class="line"></span><br><span class="line">    // 创建缓冲器</span><br><span class="line">    glGenBuffers(1, &amp;VBO);</span><br><span class="line">    // 绑定GL_ARRAY_BUFFER缓冲器</span><br><span class="line">    glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">    // 绑定顶点数据</span><br><span class="line">    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Shader-着色器"><a href="#Shader-着色器" class="headerlink" title="Shader(着色器)"></a>Shader(着色器)</h3><p>图形渲染管线接受一组3D坐标，然后把它们转变为你屏幕上的有色2D像素输出。图形渲染管线可以被划分为几个阶段，每个阶段将会把前一个阶段的输出作为输入。所有这些阶段都是高度专门化的（它们都有一个特定的函数），并且很容易并行执行。正是由于它们具有并行执行的特性，当今大多数显卡都有成千上万的小处理核心，它们在GPU上为每一个（渲染管线）阶段运行各自的小程序，从而在图形渲染管线中快速处理你的数据。这些小程序叫做着色器(Shader)。</p>
-<p>在so中的init区段初始化了着色器代码。<br><img src="http://p1ju8xds4.bkt.clouddn.com/15262922120545.jpg" alt="0-w500"></p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15262922381037.jpg" alt="1-w500"></p>
+<p>在so中的init区段初始化了着色器代码。<br><img src="media/15262922120545.jpg" alt="0-w500"></p>
+<p><img src="media/15262922381037.jpg" alt="1-w500"></p>
 <p><code>sub_30604(v23);</code>函数中完成了对着色器的创建和编译绑定。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GLuint ShaderProgram = glCreateProgram(); </span><br><span class="line">GLuint ShaderObj = glCreateShader(ShaderType); </span><br><span class="line">glShaderSource(ShaderObj, 1, p, Lengths); </span><br><span class="line">glCompileShader(ShaderObj); </span><br><span class="line">glAttachShader(ShaderProgram, ShaderObj); </span><br><span class="line">glUseProgram(ShaderProgram);</span><br></pre></td></tr></table></figure>
 <p>详细解释参考：<a href="https://blog.csdn.net/cordova/article/details/52495077" target="_blank" rel="noopener">https://blog.csdn.net/cordova/article/details/52495077</a></p>

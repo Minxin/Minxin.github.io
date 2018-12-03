@@ -88,18 +88,18 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="编译原理笔记一想学习一下程序运行模拟引擎，开坑编译原理结合哈工大编译原理课程和《图解编译原理》来学习。参考一位学长的总结 总览： 讲解几个概念： 编译：将源语言翻译为目标语言的过程。  即我们学习编译器如何自动地将源语言翻译为目标语言。  编译器（以c语言为例）：将源程序翻译为汇编语言程序。  中间语言：不受源语言限制，可抽象地表达语义的形式，能方便地转化为其它形式。 词法分析：将源语言中各个元">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/compilerall.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/compilerpos.png">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/ENtranslate.png">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/ENLexical-1.png">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/ENgrammar.png">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/ENSemantic.png">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/compilerstruc.png">
-<meta property="og:updated_time" content="2018-02-21T10:58:36.301Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/compilerall.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/compilerpos.png">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/ENtranslate.png">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/ENLexical-1.png">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/ENgrammar.png">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/ENSemantic.png">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/compilerstruc.png">
+<meta property="og:updated_time" content="2018-12-03T06:41:34.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理笔记一">
 <meta name="twitter:description" content="编译原理笔记一想学习一下程序运行模拟引擎，开坑编译原理结合哈工大编译原理课程和《图解编译原理》来学习。参考一位学长的总结 总览： 讲解几个概念： 编译：将源语言翻译为目标语言的过程。  即我们学习编译器如何自动地将源语言翻译为目标语言。  编译器（以c语言为例）：将源程序翻译为汇编语言程序。  中间语言：不受源语言限制，可抽象地表达语义的形式，能方便地转化为其它形式。 词法分析：将源语言中各个元">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/compilerall.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/02/19/compiler1/media/compilerall.jpg">
 
 
 
@@ -366,27 +366,27 @@
 
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="编译原理笔记一"><a href="#编译原理笔记一" class="headerlink" title="编译原理笔记一"></a>编译原理笔记一</h1><p>想学习一下程序运行模拟引擎，开坑编译原理<br>结合<a href="https://www.bilibili.com/video/av17649289/?from=search&amp;seid=14395884438042552772#page=1" target="_blank" rel="noopener">哈工大编译原理课程</a>和《图解编译原理》来学习。<br>参考一位学长的<a href="https://o0xmuhe.github.io/2018/01/20/compiler学习/#2-项目结构" target="_blank" rel="noopener">总结</a></p>
-<p>总览：<br><img src="http://p1ju8xds4.bkt.clouddn.com/compilerall.jpg" alt="compileral-c500"></p>
+<p>总览：<br><img src="media/compilerall.jpg" alt="compileral-c500"></p>
 <p>讲解几个概念：</p>
 <p>编译：将源语言翻译为目标语言的过程。</p>
 <blockquote>
 <p>即我们学习编译器如何自动地将源语言翻译为目标语言。</p>
 </blockquote>
 <p>编译器（以c语言为例）：将源程序翻译为汇编语言程序。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/compilerpos.png" alt="compilerpos-w300"></p>
-<p>中间语言：不受源语言限制，可抽象地表达语义的形式，能方便地转化为其它形式。<br><img src="http://p1ju8xds4.bkt.clouddn.com/ENtranslate.png" alt="ENtranslate-w400"></p>
+<p><img src="media/compilerpos.png" alt="compilerpos-w300"></p>
+<p>中间语言：不受源语言限制，可抽象地表达语义的形式，能方便地转化为其它形式。<br><img src="media/ENtranslate.png" alt="ENtranslate-w400"></p>
 <p>词法分析：将源语言中各个元素进行词性归类。</p>
 <blockquote>
 <p>词法分析器将源语言字符串中识别一个个符号（token），并按序保存。</p>
 </blockquote>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/ENLexical-1.png" alt="ENLexica-w436"></p>
+<p><img src="media/ENLexical-1.png" alt="ENLexica-w436"></p>
 <p>语法分析：根据源语言语法，将已归类的元素进行组合，组合成一个个语法基本结构。</p>
 <blockquote>
 <p>从词法分析识别出的符号流中识别出符合源语言语法的语句。</p>
 </blockquote>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/ENgrammar.png" alt="ENgramma-w435"></p>
-<p>语义分析：将语法分析得到的语法结构进行语义检查和处理，产生相应的中间代码。<br><img src="http://p1ju8xds4.bkt.clouddn.com/ENSemantic.png" alt="ENSemanti-w457"></p>
-<p>编译器结构：<br><img src="http://p1ju8xds4.bkt.clouddn.com/compilerstruc.png" alt="compilerstru-w425"></p>
+<p><img src="media/ENgrammar.png" alt="ENgramma-w435"></p>
+<p>语义分析：将语法分析得到的语法结构进行语义检查和处理，产生相应的中间代码。<br><img src="media/ENSemantic.png" alt="ENSemanti-w457"></p>
+<p>编译器结构：<br><img src="media/compilerstruc.png" alt="compilerstru-w425"></p>
 <p>抽象语法树（<a href="http://blog.csdn.net/philosophyatmath/article/details/38170131" target="_blank" rel="noopener">AST</a>）：抽象语法树是源代码的抽象语法结构的树状表示。</p>
 <blockquote>
 <p>语法树是一个二维结构，中间代码是准一维结构，语法树到中间代码的转换过程，本质上是将二维结构转换为一维结构的过程。（中间代码是具有逻辑属性的，所以这个降维过程是将结构化的二维结构转化为线性逻辑的一维结构）</p>
