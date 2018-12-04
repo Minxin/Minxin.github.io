@@ -81,21 +81,17 @@
 
 
 
-<meta name="description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
+<meta name="description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="aapt部分源码分析">
-<meta property="og:url" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/index.html">
+<meta property="og:title" content="LLVM源代码指南">
+<meta property="og:url" content="http://fancy-blogs.com/2018/12/04/llvmguide/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
+<meta property="og:description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg">
-<meta property="og:updated_time" content="2018-03-01T19:19:58.266Z">
+<meta property="og:updated_time" content="2018-12-04T10:00:08.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="aapt部分源码分析">
-<meta name="twitter:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
+<meta name="twitter:title" content="LLVM源代码指南">
+<meta name="twitter:description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
 
 
 
@@ -125,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/2018/12/04/llvmguide/"/>
 
 
 
 
 
-  <title>aapt部分源码分析 | fancy's blog</title>
+  <title>LLVM源代码指南 | fancy's blog</title>
   
 
 
@@ -278,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/">
+    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2018/12/04/llvmguide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fancy">
@@ -295,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">aapt部分源码分析</h1>
+          <h1 class="post-title" itemprop="name headline">LLVM源代码指南</h1>
         
 
         <div class="post-meta">
@@ -307,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-01T23:57:44+08:00">
-                2018-03-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T09:36:39+08:00">
+                2018-12-04
               </time>
             
 
@@ -326,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/01/aaptpartanalysis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/01/aaptpartanalysis/" itemprop="commentsCount"></span>
+                <a href="/2018/12/04/llvmguide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/04/llvmguide/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -361,42 +357,52 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="aapt部分源码分析"><a href="#aapt部分源码分析" class="headerlink" title="aapt部分源码分析"></a>aapt部分源码分析</h1><p>之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。</p>
-<p>之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的<code>debuggable=&quot;true&quot;</code>就是无法生效。了解到可以<code>aapt list</code>打印相应属性。</p>
-<p><code>aapt list -v -a |grep debuggable</code></p>
-<p>成功的xml：<br><code>A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</code></p>
-<p>失败的xml：<br><code>A: android:debuggable=(type 0x12)0xffffffff</code></p>
-<p>发现是缺少资源id，即使在<code>XmlResourceMapType</code>中插入资源id，还是无法识别。<br>所以尝试在aapt源码中看一下，是怎么查找到资源id的。</p>
-<p>list打印AndroidManifest.xml部分：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;N; i++) &#123;</span><br><span class="line">                <span class="keyword">uint32_t</span> res = block-&gt;getAttributeNameResID(i);</span><br><span class="line">                ns16 = block-&gt;getAttributeNamespace(i, &amp;len);</span><br><span class="line">                String8 ns = build_namespace(namespaces, ns16);</span><br><span class="line">                String8 name(block-&gt;getAttributeName(i, &amp;len));</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%sA: "</span>, prefix.<span class="built_in">string</span>());</span><br><span class="line">                <span class="keyword">if</span> (res) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s%s(0x%08x)"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>(), res);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s%s"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>());</span><br><span class="line">                &#125;</span><br><span class="line">                Res_value value;</span><br><span class="line">                block-&gt;getAttributeValue(i, &amp;value);</span><br><span class="line">                <span class="keyword">if</span> (value.dataType == Res_value::TYPE_NULL) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=(null)"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_REFERENCE) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=@0x%x"</span>, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_ATTRIBUTE) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=?0x%x"</span>, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_STRING) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=\"%s\""</span>,</span><br><span class="line">                            ResTable::normalizeForOutput(String8(block-&gt;getAttributeStringValue(i,</span><br><span class="line">                                        &amp;len)).<span class="built_in">string</span>()).<span class="built_in">string</span>());</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=(type 0x%x)0x%x"</span>, (<span class="keyword">int</span>)value.dataType, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">const</span> <span class="keyword">char16_t</span>* val = block-&gt;getAttributeStringValue(i, &amp;len);</span><br><span class="line">                <span class="keyword">if</span> (val != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">" (Raw: \"%s\")"</span>, ResTable::normalizeForOutput(String8(val).<span class="built_in">string</span>()).</span><br><span class="line">                            <span class="built_in">string</span>());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-<p>这个部分关键：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%sA: "</span>, prefix.<span class="built_in">string</span>());</span><br><span class="line"><span class="keyword">if</span> (res) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s%s(0x%08x)"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>(), res);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s%s"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Resid初始化：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (type == RES_STRING_POOL_TYPE) &#123;</span><br><span class="line">    mStrings.setTo(chunk, size);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == RES_XML_RESOURCE_MAP_TYPE) &#123;</span><br><span class="line">    mResIds = (<span class="keyword">const</span> <span class="keyword">uint32_t</span>*)</span><br><span class="line">    (((<span class="keyword">const</span> <span class="keyword">uint8_t</span>*)chunk)+dtohs(chunk-&gt;headerSize));</span><br><span class="line">    mNumResIds = (dtohl(chunk-&gt;size)-dtohs(chunk-&gt;headerSize))/ <span class="keyword">sizeof</span>(<span class="keyword">uint32_t</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type &gt;= RES_XML_FIRST_CHUNK_TYPE</span><br><span class="line">       &amp;&amp; type &lt;= RES_XML_LAST_CHUNK_TYPE) &#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>mResIds指向<code>RES_XML_RESOURCE_MAP_TYPE</code>开头<br>mNumResIds为资源id数目</p>
-<p>因为mResIds是顺序的，问题不在这儿，那么是由标签属性名来查找对应资源id的.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> ResXMLParser::getElementNamespaceID() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == START_TAG) &#123;</span><br><span class="line">        <span class="keyword">return</span> dtohl(((<span class="keyword">const</span> ResXMLTree_attrExt*)mCurExt)-&gt;ns.index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == END_TAG) &#123;</span><br><span class="line">        <span class="keyword">return</span> dtohl(((<span class="keyword">const</span> ResXMLTree_endElementExt*)mCurExt)-&gt;ns.index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> ResXMLParser::getAttributeNameID(<span class="keyword">size_t</span> idx) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == START_TAG) &#123;</span><br><span class="line">        <span class="keyword">const</span> ResXMLTree_attrExt* tag = (<span class="keyword">const</span> ResXMLTree_attrExt*)mCurExt;</span><br><span class="line">        <span class="keyword">if</span> (idx &lt; dtohs(tag-&gt;attributeCount)) &#123;</span><br><span class="line">            <span class="keyword">const</span> ResXMLTree_attribute* attr = (<span class="keyword">const</span> ResXMLTree_attribute*)</span><br><span class="line">                (((<span class="keyword">const</span> <span class="keyword">uint8_t</span>*)tag)</span><br><span class="line">                 + dtohs(tag-&gt;attributeStart)</span><br><span class="line">                 + (dtohs(tag-&gt;attributeSize)*idx));</span><br><span class="line">            <span class="keyword">return</span> dtohl(attr-&gt;name.index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由这两个函数可以看出，是根据index来确定标签属性名字符或命名空间名字符。</p>
-<p>所以像<code>A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</code>格式的输出流程如下：</p>
-<ul>
-<li>顺序存储XmlResourceMapType中资源id</li>
-<li>顺序遍历tag，获取tag属性的index（在string pool的索引）</li>
-<li>如果在string pool中的index正好是Resid中的索引，即该tag属性的资源id为对应index的值。</li>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="LLVM源代码指南"><a href="#LLVM源代码指南" class="headerlink" title="LLVM源代码指南"></a>LLVM源代码指南</h1><ul>
+<li>LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。</li>
+<li>核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PASS，最后调用后端来生成汇编或机器代码。当LLVM代码被存储在磁盘上时（在使用Clang正常编译C/C++时甚至都不会存在这种情况），是以“bitcode”形式存放，是一种紧凑的二进程表示。</li>
+<li>主要的LLVM API文档由doxygen生成，可以在<a href="http://llvm.org/doxygen/index.html" target="_blank" rel="noopener">这里</a>找到。除非您已经知道自己在做什么以及在寻找什么（带有目的性的找和看），否侧这些信息很难被利用。以下链接是开始学习LLVM API的教程。</li>
 </ul>
-<p>所以我们插入的属性字符在string pool尾部，而Resid中值太少，无法将0x0101000f的index和string pool 中的字符<code>debuggable</code>的index匹配，所以输出时并不输出资源值。</p>
-<p>我们可以在XmlResourceMapType中填充一些资源值，把debuggable的资源值撑到和string pool中字符<code>debuggable</code>的index值一致。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg" alt="a-w500"></p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg" alt="a-w500"></p>
-<p>我插入一些相同的资源值，撑到二者index一致，当然Resid header里的size要改，chunk header里size也要改。</p>
-<p>修改完后，放入apk中，在输出就可以看到了<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg" alt=""></p>
-<p>修改虽然成功，但是发现debuggable还是无法生效。</p>
-<p>最后意外的发现，修改debuggable属性的位置就可以了</p>
-<p>debuggable不生效：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: android:label(0x01010001)=@0x7f070000</span><br><span class="line">A: android:icon(0x01010002)=@0x7f020001</span><br><span class="line">A: android:allowBackup(0x01010280)=(type 0x12)0xffffffff</span><br><span class="line">A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</span><br></pre></td></tr></table></figure>
-<p>debuggable生效：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: android:label(0x01010001)=@0x7f070000</span><br><span class="line">A: android:icon(0x01010002)=@0x7f020001</span><br><span class="line">A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</span><br><span class="line">A: android:allowBackup(0x01010280)=(type 0x12)0xffffffff</span><br></pre></td></tr></table></figure>
-<p>不清楚为什么标签属性位置也会影响？太坑了。。。</p>
+<p>代码<a href="https://github.com/llvm-mirror/llvm/tree/release_39" target="_blank" rel="noopener">根目录</a>，包含以下：</p>
+<ol>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/bindings" target="_blank" rel="noopener">bindings</a>允许从C++以外的编程语言使用LLVM API。存在比这更多的bindings，包括C（我们将稍后介绍）和Haskell（<a href="https://hackage.haskell.org/package/llvm-general" target="_blank" rel="noopener">目录之外</a>）。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/cmake" target="_blank" rel="noopener">cmake</a>:LLVM现在使用CMake而不是autoconf。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/docs" target="_blank" rel="noopener">docs</a>ReStructuredText格式。请参阅<a href="https://github.com/llvm-mirror/llvm/blob/release_39/docs/LangRef.rst" target="_blank" rel="noopener">语言参考手册</a>，它定义了每个LLVM指令的含义。<a href="https://github.com/llvm-mirror/llvm/tree/release_39/docs/tutorial" target="_blank" rel="noopener">tutorial</a>子目录中的素材特别有趣，但不要在那里看，而是去<a href="http://llvm.org/docs/tutorial/" target="_blank" rel="noopener">这里</a>。这是学习LLVM最好的方式。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/examples" target="_blank" rel="noopener">examples</a>:这是教程配套的源代码。作为LLVM hacker，应该尽可能地从这里抠代码、CMakeLists.txt等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/include" target="_blank" rel="noopener">include</a>:第一个子目录<a href="https://github.com/llvm-mirror/llvm/tree/release_39/include/llvm-c" target="_blank" rel="noopener">llvm-c</a>包含了C的binding（作者曰：我从没使用过，但是看起来十分可靠）。重要的是，LLVM试图保持这些binding不变，而C++ API在不同版本中发生较大变化，尽管过去几年中变化的步伐已经放缓。第二个子目录<a href="https://github.com/llvm-mirror/llvm/tree/release_39/include/llvm" target="_blank" rel="noopener">llvm</a>是个大头：它包含878个头文件，用于定义所有LLVM API。一般来说，使用这些文件的doxygen版本而不是直接读取他们会更容易，但我经常最后使用这些文件来查找某些功能。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib" target="_blank" rel="noopener">lib</a>包含了真正的好东西，我们之后会单独看一下。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/projects" target="_blank" rel="noopener">projects</a>默认是不包含任何内容，但是可以在其中查看LLVM组件，例如compiler-rt（清理程序之类的运行时库），OpenMP support，以及位于单独repo中的LLVM C++库。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/resources" target="_blank" rel="noopener">resources</a>一些Visual C++的东西，并不关心（用于Windows二进制文件的版本资源定义）。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/runtimes" target="_blank" rel="noopener">runtimes</a>:外部项目的另一个占位符，在不久前加入。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/test" target="_blank" rel="noopener">test</a>:它也是一个大头，它包含了数以千计的LLVM单元测试，它们在构建检查目标时运行。其中大多数是包含LLVM IR文本版本的.ll文件。会测试比如说，一个优化pass是否能得到预期结果。我将在即将发布的博客中详细介绍LLVM的测试。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/tools" target="_blank" rel="noopener">tools</a>:LLVM本身只是一个库的集合，没有任何特定的主要功能。tools目录的大多数子目录都包含一个链接LLVM库的可执行工具。例如，llvm-dis是从bitcode到文本汇编格式的反汇编程序。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/unittests" target="_blank" rel="noopener">unittests</a>:更多单元测试，也是在检查构建目标时运行。这些是使用Google Test框架直接调用API的C++文件，而不像“test”目录里的部分，通过运行汇编程序，反汇编程序或优化程序等内容来间接调用LLVM功能。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/utils" target="_blank" rel="noopener">utils</a>:用于LLVM编码约定的emacs和vim模式；一个Valgrind suppression文件，以Valgrind监视所有子进程的方式在运行make check时消除误报；支持单元测试的lit和FileCheck工具；还有很多其他随机的东西。</li>
+</ol>
+<p>以下是跳过的“lib”目录，它包含了所有的重要内容，现在看一下它的子目录：</p>
+<ol>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Analysis" target="_blank" rel="noopener">Analysis</a>包含许多静态Analysis，可以在编译器教科书中阅读这些Analysis，例如别名分析和全局值编号。某些Analysis是基于LLVM pass，必须由pass manager运行。其他的是基于library，能够直接调用。Analysis中一个奇怪的成员是InstructionSimplify.cpp，这是一个转换器，而不是分析器；我相信有人可以发表评论来解释它在这里做了什么（见<a href="#comment-19005">评论</a>）。我将在后续帖子中深入研究这个目录。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/AsmParser" target="_blank" rel="noopener">AsmParser</a>:将文本IR解析道内存中。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Bitcode" target="_blank" rel="noopener">Bitcode</a>:将IR序列化为紧凑格式并将其读回RAM。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/CodeGen" target="_blank" rel="noopener">CodeGen</a>:LLVM目标无关的代码生成器，基本上是LLVM后端适配的一个框架，也是后端可以使用的一堆库函数。这里有太多太多东西了（&gt;100 KLOC）不幸作者也不完全了解。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/DebugInfo" target="_blank" rel="noopener">DebugInfo</a>是一个用户维护LLVM指令和源代码位置之间映射的库。在2014年LLVM开发者大会的演讲中，这些<a href="http://llvm.org/devmtg/2014-10/Slides/Christopher-DebugInfoTutorial.pdf" target="_blank" rel="noopener">slides</a>中有很多有用的信息。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ExecutionEngine" target="_blank" rel="noopener">ExecutionEngine</a>:虽然LLVM通常被转换为汇编代码或机器码，但它可以使用解释器直接执行。作者最后一次使用它时，non-jitting解释器并不是十分有效，但是无论如何它比运行jitted代码慢地多。最新的<a href="http://llvm.org/devmtg/2016-11/#talk1" target="_blank" rel="noopener">JIT API</a>。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Fuzzer" target="_blank" rel="noopener">Fuzzer</a>:这是一个类似于<a href="http://lcamtuf.coredump.cx/afl/" target="_blank" rel="noopener">AFL</a>的coverage-guided fuzzer。它不是fuzz LLVM组件，而是作为LLVM功能对由LLVM编译得到的程序进行模糊测试。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/IR" target="_blank" rel="noopener">IR</a>:一些与IR相关代码，没有其他明显的统一主题。有用于将IR转换为文本格式的代码，有用于升级由早期版本的LLVM创建的bitcode文件，有用于在创建IR节点时折叠常量等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/IRReader" target="_blank" rel="noopener">IRReader</a>, <a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LibDriver" target="_blank" rel="noopener">LibDriver</a>, <a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LineEditor" target="_blank" rel="noopener">LineEditor</a>:nobody care about these.</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Linker" target="_blank" rel="noopener">Linker</a>:一个LLVM模块（就像C/C++的编译单元），包含函数和变量。LLVM Linker将多个模块组合到一个更大的模块中。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LTO" target="_blank" rel="noopener">LTO</a>:链接时优化（许多博客文章和博士论文的主题）允许汇编优化联系独立编译所创建的边界。LLVM可以无花销地进行链接时优化，链接器创建一个大模块，然后使用常规优化PASS来优化。这曾经是首选的方法，但它不能扩展到大型项目。目前采用的方法是<a href="http://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html" target="_blank" rel="noopener">ThinLTO</a>，它以很小的代价获得很大的效益。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/MC" target="_blank" rel="noopener">MC</a>:编译器通常发出汇编代码，让汇编程序处理创建机器代码。LLVM中的<a href="http://blog.llvm.org/2010/04/intro-to-llvm-mc-project.html" target="_blank" rel="noopener">MC子系统</a>切断了中间过程并直接生成机器代码。这可以加快编译速度，在LLVM用作JIT编译器时尤其有用。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Object" target="_blank" rel="noopener">Object</a>:处理目标文件格式的详细信息，例如ELF。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ObjectYAML" target="_blank" rel="noopener">ObjectYAML</a>:ObjectYAML似乎支持将对象文件编码为<a href="http://llvm.org/docs/YamlIO.html" target="_blank" rel="noopener">YAML</a>。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Option" target="_blank" rel="noopener">Option</a>:命令行解析。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Passes" target="_blank" rel="noopener">Passes</a>:PASS管理器的一部分，它调度和排序LLVM PASS，将其依赖关系和无效性考虑在内。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ProfileData" target="_blank" rel="noopener">ProfileData</a>:读取和写入配置文件数据以支持配置文件引导的优化。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Support" target="_blank" rel="noopener">Support</a>:其他支持代码包括APInts（在LLVM中普遍使用的任意精度整数）等等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/TableGen" target="_blank" rel="noopener">TableGen</a>:一种<a href="http://llvm.org/docs/TableGen/" target="_blank" rel="noopener">工具</a>（作者称其为古怪的瑞士军刀），它输入.td文件（其中LLVM中有200多个）包含结构化数据，并使用特定于域的后端发出由LLVM编译的C++代码。例如，TableGen被用来提取一些实现汇编器和反汇编器中单调的东西。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Target" target="_blank" rel="noopener">Target</a>:这里有后端中指定特定处理器的部分。有很多TableGen文件。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Transforms" target="_blank" rel="noopener">Transforms</a>:这是我最喜欢的目录，它是中端优化器所在的地方。IPO包含跨越函数边界的过程间优化，它们通常不会过于激进，因为它们必须查看大量代码。InstCombine是LLVM的窥视优化器的野兽。Instrumentation支持sanitizers。ObjCARC支持这一点。Scalar包含一堆教科书式的编译器各种优化器，我会尝试在某个时候写一篇关于这个目录内容的更详细的帖子。Utils是帮助代码。Vectorize是LLVM的自动矢量化器，近年来已成为许多工作的主题。</li>
+</ol>
+<p><span id="comment-19005">它不会改变IR本身。llvm::SumplifyInstruction的规则是它只能返回程序中的常量或现有值，这符合Analysis的要求。在每条指令上调用SimplifyInstruction的PASS是lib/Transforms/Utils/SimplifyInstructions.cpp里的转换器PASS。</span></p>
 
       
     </div>
@@ -421,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/26/antidebug/" rel="next" title="一个native层反调试例子">
-                <i class="fa fa-chevron-left"></i> 一个native层反调试例子
+              <a href="/2018/09/01/EasyHook/" rel="next" title="FileMonitorHook例子(translate)">
+                <i class="fa fa-chevron-left"></i> FileMonitorHook例子(translate)
               </a>
             
           </div>
@@ -430,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/06/ptrace/" rel="prev" title="ptrace解读">
-                ptrace解读 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -589,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#aapt部分源码分析"><span class="nav-number">1.</span> <span class="nav-text">aapt部分源码分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LLVM源代码指南"><span class="nav-number">1.</span> <span class="nav-text">LLVM源代码指南</span></a></li></ol></div>
             
 
           </div>

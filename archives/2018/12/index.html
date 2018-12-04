@@ -81,21 +81,13 @@
 
 
 
-<meta name="description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
-<meta property="og:type" content="article">
-<meta property="og:title" content="aapt部分源码分析">
-<meta property="og:url" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:url" content="http://fancy-blogs.com/archives/2018/12/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg">
-<meta property="og:updated_time" content="2018-03-01T19:19:58.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="aapt部分源码分析">
-<meta name="twitter:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
+<meta name="twitter:title" content="fancy&#39;s blog">
 
 
 
@@ -125,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/archives/2018/12/"/>
 
 
 
 
 
-  <title>aapt部分源码分析 | fancy's blog</title>
+  <title>Archive | fancy's blog</title>
   
 
 
@@ -150,7 +142,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,196 +256,76 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
+      
+      <!--
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Um..! 28 posts in total. Keep on posting.
+      </span>
+      -->
 
-  
+      
 
-  
-  
-  
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fancy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx1.sinaimg.cn/mw690/0067EDX9gy1fmp142mp99j30fe0fyti0.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fancy's blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">aapt部分源码分析</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2018/12/04/llvmguide/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">LLVM源代码指南</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-01T23:57:44+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/01/aaptpartanalysis/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/01/aaptpartanalysis/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-
-          
-
+            </a>
         
-        </div>
-      </header>
-    
+      </h2>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-12-04T09:36:39+08:00"
+              content="2018-12-04" >
+          12-04
+        </time>
+      </div>
 
-      
-      
-
-      
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="aapt部分源码分析"><a href="#aapt部分源码分析" class="headerlink" title="aapt部分源码分析"></a>aapt部分源码分析</h1><p>之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。</p>
-<p>之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的<code>debuggable=&quot;true&quot;</code>就是无法生效。了解到可以<code>aapt list</code>打印相应属性。</p>
-<p><code>aapt list -v -a |grep debuggable</code></p>
-<p>成功的xml：<br><code>A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</code></p>
-<p>失败的xml：<br><code>A: android:debuggable=(type 0x12)0xffffffff</code></p>
-<p>发现是缺少资源id，即使在<code>XmlResourceMapType</code>中插入资源id，还是无法识别。<br>所以尝试在aapt源码中看一下，是怎么查找到资源id的。</p>
-<p>list打印AndroidManifest.xml部分：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;N; i++) &#123;</span><br><span class="line">                <span class="keyword">uint32_t</span> res = block-&gt;getAttributeNameResID(i);</span><br><span class="line">                ns16 = block-&gt;getAttributeNamespace(i, &amp;len);</span><br><span class="line">                String8 ns = build_namespace(namespaces, ns16);</span><br><span class="line">                String8 name(block-&gt;getAttributeName(i, &amp;len));</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%sA: "</span>, prefix.<span class="built_in">string</span>());</span><br><span class="line">                <span class="keyword">if</span> (res) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s%s(0x%08x)"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>(), res);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"%s%s"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>());</span><br><span class="line">                &#125;</span><br><span class="line">                Res_value value;</span><br><span class="line">                block-&gt;getAttributeValue(i, &amp;value);</span><br><span class="line">                <span class="keyword">if</span> (value.dataType == Res_value::TYPE_NULL) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=(null)"</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_REFERENCE) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=@0x%x"</span>, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_ATTRIBUTE) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=?0x%x"</span>, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value.dataType == Res_value::TYPE_STRING) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=\"%s\""</span>,</span><br><span class="line">                            ResTable::normalizeForOutput(String8(block-&gt;getAttributeStringValue(i,</span><br><span class="line">                                        &amp;len)).<span class="built_in">string</span>()).<span class="built_in">string</span>());</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">"=(type 0x%x)0x%x"</span>, (<span class="keyword">int</span>)value.dataType, (<span class="keyword">int</span>)value.data);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">const</span> <span class="keyword">char16_t</span>* val = block-&gt;getAttributeStringValue(i, &amp;len);</span><br><span class="line">                <span class="keyword">if</span> (val != <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">" (Raw: \"%s\")"</span>, ResTable::normalizeForOutput(String8(val).<span class="built_in">string</span>()).</span><br><span class="line">                            <span class="built_in">string</span>());</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-<p>这个部分关键：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%sA: "</span>, prefix.<span class="built_in">string</span>());</span><br><span class="line"><span class="keyword">if</span> (res) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s%s(0x%08x)"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>(), res);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%s%s"</span>, ns.<span class="built_in">string</span>(), name.<span class="built_in">string</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Resid初始化：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (type == RES_STRING_POOL_TYPE) &#123;</span><br><span class="line">    mStrings.setTo(chunk, size);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == RES_XML_RESOURCE_MAP_TYPE) &#123;</span><br><span class="line">    mResIds = (<span class="keyword">const</span> <span class="keyword">uint32_t</span>*)</span><br><span class="line">    (((<span class="keyword">const</span> <span class="keyword">uint8_t</span>*)chunk)+dtohs(chunk-&gt;headerSize));</span><br><span class="line">    mNumResIds = (dtohl(chunk-&gt;size)-dtohs(chunk-&gt;headerSize))/ <span class="keyword">sizeof</span>(<span class="keyword">uint32_t</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (type &gt;= RES_XML_FIRST_CHUNK_TYPE</span><br><span class="line">       &amp;&amp; type &lt;= RES_XML_LAST_CHUNK_TYPE) &#123;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>mResIds指向<code>RES_XML_RESOURCE_MAP_TYPE</code>开头<br>mNumResIds为资源id数目</p>
-<p>因为mResIds是顺序的，问题不在这儿，那么是由标签属性名来查找对应资源id的.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> ResXMLParser::getElementNamespaceID() <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == START_TAG) &#123;</span><br><span class="line">        <span class="keyword">return</span> dtohl(((<span class="keyword">const</span> ResXMLTree_attrExt*)mCurExt)-&gt;ns.index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == END_TAG) &#123;</span><br><span class="line">        <span class="keyword">return</span> dtohl(((<span class="keyword">const</span> ResXMLTree_endElementExt*)mCurExt)-&gt;ns.index);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int32_t</span> ResXMLParser::getAttributeNameID(<span class="keyword">size_t</span> idx) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (mEventCode == START_TAG) &#123;</span><br><span class="line">        <span class="keyword">const</span> ResXMLTree_attrExt* tag = (<span class="keyword">const</span> ResXMLTree_attrExt*)mCurExt;</span><br><span class="line">        <span class="keyword">if</span> (idx &lt; dtohs(tag-&gt;attributeCount)) &#123;</span><br><span class="line">            <span class="keyword">const</span> ResXMLTree_attribute* attr = (<span class="keyword">const</span> ResXMLTree_attribute*)</span><br><span class="line">                (((<span class="keyword">const</span> <span class="keyword">uint8_t</span>*)tag)</span><br><span class="line">                 + dtohs(tag-&gt;attributeStart)</span><br><span class="line">                 + (dtohs(tag-&gt;attributeSize)*idx));</span><br><span class="line">            <span class="keyword">return</span> dtohl(attr-&gt;name.index);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由这两个函数可以看出，是根据index来确定标签属性名字符或命名空间名字符。</p>
-<p>所以像<code>A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</code>格式的输出流程如下：</p>
-<ul>
-<li>顺序存储XmlResourceMapType中资源id</li>
-<li>顺序遍历tag，获取tag属性的index（在string pool的索引）</li>
-<li>如果在string pool中的index正好是Resid中的索引，即该tag属性的资源id为对应index的值。</li>
-</ul>
-<p>所以我们插入的属性字符在string pool尾部，而Resid中值太少，无法将0x0101000f的index和string pool 中的字符<code>debuggable</code>的index匹配，所以输出时并不输出资源值。</p>
-<p>我们可以在XmlResourceMapType中填充一些资源值，把debuggable的资源值撑到和string pool中字符<code>debuggable</code>的index值一致。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg" alt="a-w500"></p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg" alt="a-w500"></p>
-<p>我插入一些相同的资源值，撑到二者index一致，当然Resid header里的size要改，chunk header里size也要改。</p>
-<p>修改完后，放入apk中，在输出就可以看到了<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg" alt=""></p>
-<p>修改虽然成功，但是发现debuggable还是无法生效。</p>
-<p>最后意外的发现，修改debuggable属性的位置就可以了</p>
-<p>debuggable不生效：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: android:label(0x01010001)=@0x7f070000</span><br><span class="line">A: android:icon(0x01010002)=@0x7f020001</span><br><span class="line">A: android:allowBackup(0x01010280)=(type 0x12)0xffffffff</span><br><span class="line">A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</span><br></pre></td></tr></table></figure>
-<p>debuggable生效：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: android:label(0x01010001)=@0x7f070000</span><br><span class="line">A: android:icon(0x01010002)=@0x7f020001</span><br><span class="line">A: android:debuggable(0x0101000f)=(type 0x12)0xffffffff</span><br><span class="line">A: android:allowBackup(0x01010280)=(type 0x12)0xffffffff</span><br></pre></td></tr></table></figure>
-<p>不清楚为什么标签属性位置也会影响？太坑了。。。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/02/26/antidebug/" rel="next" title="一个native层反调试例子">
-                <i class="fa fa-chevron-left"></i> 一个native层反调试例子
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/06/ptrace/" rel="prev" title="ptrace解读">
-                ptrace解读 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -461,17 +333,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
 
         </div>
         
@@ -492,17 +353,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -579,22 +431,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#aapt部分源码分析"><span class="nav-number">1.</span> <span class="nav-text">aapt部分源码分析</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -739,10 +575,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 
@@ -789,30 +621,6 @@
 
     
 
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'Minxin',
-            repo: 'Minxin.github.io',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
-            
-                client_id: '039da8b1b27bc4e10d7f'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
     
 
 
