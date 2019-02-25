@@ -88,13 +88,13 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="NDK gdb插件——peda-armgdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？最近发现一款支持arm的插件，是peda改的，peda-arm. 安装流程从github上拉下来后，直接把文件夹复制过去。gdb的目录(MACOS)是：/Users/username/">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/media/15323283415621.jpg">
-<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/media/15323286476307.jpg">
-<meta property="og:updated_time" content="2019-02-25T03:34:35.584Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323283415621.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323286476307.jpg">
+<meta property="og:updated_time" content="2019-02-25T03:37:25.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NDK gdb插件——peda-arm">
 <meta name="twitter:description" content="NDK gdb插件——peda-armgdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？最近发现一款支持arm的插件，是peda改的，peda-arm. 安装流程从github上拉下来后，直接把文件夹复制过去。gdb的目录(MACOS)是：/Users/username/">
-<meta name="twitter:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/media/15323283415621.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323283415621.jpg">
 
 
 
@@ -361,12 +361,12 @@
 
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="NDK-gdb插件——peda-arm"><a href="#NDK-gdb插件——peda-arm" class="headerlink" title="NDK gdb插件——peda-arm"></a>NDK gdb插件——peda-arm</h1><p>gdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？<br>最近发现一款支持arm的插件，是peda改的，<a href="https://github.com/alset0326/peda-arm" target="_blank" rel="noopener">peda-arm</a>.</p>
-<h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><p>从github上拉下来后，直接把文件夹复制过去。<br>gdb的目录(MACOS)是：<br><code>/Users/username/Library/Android/sdk/ndk-bundle/prebuilt/darwin-x86_64/bin</code><br>反正在ndk的目录下。<br>把clone下来的文件夹复制进去。<br><img src="/2018/07/23/androidgdbplus/media/15323283415621.jpg" alt="w100"></p>
+<h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><p>从github上拉下来后，直接把文件夹复制过去。<br>gdb的目录(MACOS)是：<br><code>/Users/username/Library/Android/sdk/ndk-bundle/prebuilt/darwin-x86_64/bin</code><br>反正在ndk的目录下。<br>把clone下来的文件夹复制进去。<br><img src="/2018/07/23/androidgdbplus/15323283415621.jpg" alt="w100"></p>
 <p>修改初始化配置文件:<br><code>echo “source ./peda-arm/peda-arm.py” &gt;&gt; ./.gdbinit</code></p>
 <h2 id="启动调试"><a href="#启动调试" class="headerlink" title="启动调试"></a>启动调试</h2><p>把gdbserver上传到手机后：<br><code>gdbserver remote:port --attach targetpid</code></p>
 <p>本地端口转发<br><code>adb forward tcp:port tcp:port</code></p>
 <p>gdb调试<br><code>./gdb</code><br><code>target remote:port</code></p>
-<p><img src="/2018/07/23/androidgdbplus/media/15323286476307.jpg" alt="w100"></p>
+<p><img src="/2018/07/23/androidgdbplus/15323286476307.jpg" alt="w100"></p>
 <p>这用就OK啦。</p>
 <p>Debug for fun～</p>
 
