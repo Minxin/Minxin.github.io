@@ -81,13 +81,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="fancy&#39;s blog">
-<meta property="og:url" content="http://fancy-blogs.com/archives/page/3/index.html">
+<meta name="description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLVM源代码指南">
+<meta property="og:url" content="http://fancy-blogs.com/2018/12/04/llvmguide-1/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
+<meta property="og:description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-12-04T10:00:08.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fancy&#39;s blog">
+<meta name="twitter:title" content="LLVM源代码指南">
+<meta name="twitter:description" content="LLVM源代码指南 LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。 核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PA">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/archives/page/3/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/2018/12/04/llvmguide-1/"/>
 
 
 
 
 
-  <title>Archive | fancy's blog</title>
+  <title>LLVM源代码指南 | fancy's blog</title>
   
 
 
@@ -142,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,344 +260,202 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-      
-      <!--
-      <span class="archive-page-counter">
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2018/12/04/llvmguide-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fancy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx1.sinaimg.cn/mw690/0067EDX9gy1fmp142mp99j30fe0fyti0.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fancy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">LLVM源代码指南</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T09:36:39+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 28 posts in total. Keep on posting.
-      </span>
-      -->
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/07/app1/" itemprop="url">
-              
-                <span itemprop="name">应用开发（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-07T20:00:49+08:00"
-              content="2018-02-07" >
-          02-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/17/fordebugger/" itemprop="url">
-              
-                <span itemprop="name">令App可调试的几种方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-17T18:54:23+08:00"
-              content="2018-01-17" >
-          01-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/08/XposedTry/" itemprop="url">
-              
-                <span itemprop="name">Xposed尝试</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-08T15:19:56+08:00"
-              content="2018-01-08" >
-          01-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/04/llvmguide-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/04/llvmguide-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
 
         
+        </div>
+      </header>
+    
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/AndroidManifest/" itemprop="url">
-              
-                <span itemprop="name">AndroidManifest.xml文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T00:39:41+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/28/JNI-introduce/" itemprop="url">
-              
-                <span itemprop="name">JNI 简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-28T02:35:48+08:00"
-              content="2017-12-28" >
-          12-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/25/PYCfileformat/" itemprop="url">
-              
-                <span itemprop="name">PYC文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-25T16:48:19+08:00"
-              content="2017-12-25" >
-          12-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="LLVM源代码指南"><a href="#LLVM源代码指南" class="headerlink" title="LLVM源代码指南"></a>LLVM源代码指南</h1><ul>
+<li>LLVM内核不包括前端，只是“中端”优化器，一堆后端，文档，还有大量辅助代码。像Clang这样的前端被放在单独的项目中。</li>
+<li>核心的LLVM表现在RAM中，并使用大量C++ API进行操作。这种表现方式是可以转储到可读文本并解析回内存，但这只是为了方便调试：在使用LLVM的正常编译期间，永远不会生成文本形式的IR。通常，前端通过调用LLVM API来构建IR，然后运行一些优化PASS，最后调用后端来生成汇编或机器代码。当LLVM代码被存储在磁盘上时（在使用Clang正常编译C/C++时甚至都不会存在这种情况），是以“bitcode”形式存放，是一种紧凑的二进程表示。</li>
+<li>主要的LLVM API文档由doxygen生成，可以在<a href="http://llvm.org/doxygen/index.html" target="_blank" rel="noopener">这里</a>找到。除非您已经知道自己在做什么以及在寻找什么（带有目的性的找和看），否侧这些信息很难被利用。以下链接是开始学习LLVM API的教程。</li>
+</ul>
+<p>代码<a href="https://github.com/llvm-mirror/llvm/tree/release_39" target="_blank" rel="noopener">根目录</a>，包含以下：</p>
+<ol>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/bindings" target="_blank" rel="noopener">bindings</a>允许从C++以外的编程语言使用LLVM API。存在比这更多的bindings，包括C（我们将稍后介绍）和Haskell（<a href="https://hackage.haskell.org/package/llvm-general" target="_blank" rel="noopener">目录之外</a>）。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/cmake" target="_blank" rel="noopener">cmake</a>:LLVM现在使用CMake而不是autoconf。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/docs" target="_blank" rel="noopener">docs</a>ReStructuredText格式。请参阅<a href="https://github.com/llvm-mirror/llvm/blob/release_39/docs/LangRef.rst" target="_blank" rel="noopener">语言参考手册</a>，它定义了每个LLVM指令的含义。<a href="https://github.com/llvm-mirror/llvm/tree/release_39/docs/tutorial" target="_blank" rel="noopener">tutorial</a>子目录中的素材特别有趣，但不要在那里看，而是去<a href="http://llvm.org/docs/tutorial/" target="_blank" rel="noopener">这里</a>。这是学习LLVM最好的方式。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/examples" target="_blank" rel="noopener">examples</a>:这是教程配套的源代码。作为LLVM hacker，应该尽可能地从这里抠代码、CMakeLists.txt等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/include" target="_blank" rel="noopener">include</a>:第一个子目录<a href="https://github.com/llvm-mirror/llvm/tree/release_39/include/llvm-c" target="_blank" rel="noopener">llvm-c</a>包含了C的binding（作者曰：我从没使用过，但是看起来十分可靠）。重要的是，LLVM试图保持这些binding不变，而C++ API在不同版本中发生较大变化，尽管过去几年中变化的步伐已经放缓。第二个子目录<a href="https://github.com/llvm-mirror/llvm/tree/release_39/include/llvm" target="_blank" rel="noopener">llvm</a>是个大头：它包含878个头文件，用于定义所有LLVM API。一般来说，使用这些文件的doxygen版本而不是直接读取他们会更容易，但我经常最后使用这些文件来查找某些功能。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib" target="_blank" rel="noopener">lib</a>包含了真正的好东西，我们之后会单独看一下。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/projects" target="_blank" rel="noopener">projects</a>默认是不包含任何内容，但是可以在其中查看LLVM组件，例如compiler-rt（清理程序之类的运行时库），OpenMP support，以及位于单独repo中的LLVM C++库。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/resources" target="_blank" rel="noopener">resources</a>一些Visual C++的东西，并不关心（用于Windows二进制文件的版本资源定义）。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/runtimes" target="_blank" rel="noopener">runtimes</a>:外部项目的另一个占位符，在不久前加入。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/test" target="_blank" rel="noopener">test</a>:它也是一个大头，它包含了数以千计的LLVM单元测试，它们在构建检查目标时运行。其中大多数是包含LLVM IR文本版本的.ll文件。会测试比如说，一个优化pass是否能得到预期结果。我将在即将发布的博客中详细介绍LLVM的测试。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/tools" target="_blank" rel="noopener">tools</a>:LLVM本身只是一个库的集合，没有任何特定的主要功能。tools目录的大多数子目录都包含一个链接LLVM库的可执行工具。例如，llvm-dis是从bitcode到文本汇编格式的反汇编程序。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/unittests" target="_blank" rel="noopener">unittests</a>:更多单元测试，也是在检查构建目标时运行。这些是使用Google Test框架直接调用API的C++文件，而不像“test”目录里的部分，通过运行汇编程序，反汇编程序或优化程序等内容来间接调用LLVM功能。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/utils" target="_blank" rel="noopener">utils</a>:用于LLVM编码约定的emacs和vim模式；一个Valgrind suppression文件，以Valgrind监视所有子进程的方式在运行make check时消除误报；支持单元测试的lit和FileCheck工具；还有很多其他随机的东西。</li>
+</ol>
+<p>以下是跳过的“lib”目录，它包含了所有的重要内容，现在看一下它的子目录：</p>
+<ol>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Analysis" target="_blank" rel="noopener">Analysis</a>包含许多静态Analysis，可以在编译器教科书中阅读这些Analysis，例如别名分析和全局值编号。某些Analysis是基于LLVM pass，必须由pass manager运行。其他的是基于library，能够直接调用。Analysis中一个奇怪的成员是InstructionSimplify.cpp，这是一个转换器，而不是分析器；我相信有人可以发表评论来解释它在这里做了什么（见<a href="#comment-19005">评论</a>）。我将在后续帖子中深入研究这个目录。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/AsmParser" target="_blank" rel="noopener">AsmParser</a>:将文本IR解析道内存中。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Bitcode" target="_blank" rel="noopener">Bitcode</a>:将IR序列化为紧凑格式并将其读回RAM。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/CodeGen" target="_blank" rel="noopener">CodeGen</a>:LLVM目标无关的代码生成器，基本上是LLVM后端适配的一个框架，也是后端可以使用的一堆库函数。这里有太多太多东西了（&gt;100 KLOC）不幸作者也不完全了解。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/DebugInfo" target="_blank" rel="noopener">DebugInfo</a>是一个用户维护LLVM指令和源代码位置之间映射的库。在2014年LLVM开发者大会的演讲中，这些<a href="http://llvm.org/devmtg/2014-10/Slides/Christopher-DebugInfoTutorial.pdf" target="_blank" rel="noopener">slides</a>中有很多有用的信息。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ExecutionEngine" target="_blank" rel="noopener">ExecutionEngine</a>:虽然LLVM通常被转换为汇编代码或机器码，但它可以使用解释器直接执行。作者最后一次使用它时，non-jitting解释器并不是十分有效，但是无论如何它比运行jitted代码慢地多。最新的<a href="http://llvm.org/devmtg/2016-11/#talk1" target="_blank" rel="noopener">JIT API</a>。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Fuzzer" target="_blank" rel="noopener">Fuzzer</a>:这是一个类似于<a href="http://lcamtuf.coredump.cx/afl/" target="_blank" rel="noopener">AFL</a>的coverage-guided fuzzer。它不是fuzz LLVM组件，而是作为LLVM功能对由LLVM编译得到的程序进行模糊测试。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/IR" target="_blank" rel="noopener">IR</a>:一些与IR相关代码，没有其他明显的统一主题。有用于将IR转换为文本格式的代码，有用于升级由早期版本的LLVM创建的bitcode文件，有用于在创建IR节点时折叠常量等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/IRReader" target="_blank" rel="noopener">IRReader</a>, <a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LibDriver" target="_blank" rel="noopener">LibDriver</a>, <a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LineEditor" target="_blank" rel="noopener">LineEditor</a>:nobody care about these.</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Linker" target="_blank" rel="noopener">Linker</a>:一个LLVM模块（就像C/C++的编译单元），包含函数和变量。LLVM Linker将多个模块组合到一个更大的模块中。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/LTO" target="_blank" rel="noopener">LTO</a>:链接时优化（许多博客文章和博士论文的主题）允许汇编优化联系独立编译所创建的边界。LLVM可以无花销地进行链接时优化，链接器创建一个大模块，然后使用常规优化PASS来优化。这曾经是首选的方法，但它不能扩展到大型项目。目前采用的方法是<a href="http://blog.llvm.org/2016/06/thinlto-scalable-and-incremental-lto.html" target="_blank" rel="noopener">ThinLTO</a>，它以很小的代价获得很大的效益。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/MC" target="_blank" rel="noopener">MC</a>:编译器通常发出汇编代码，让汇编程序处理创建机器代码。LLVM中的<a href="http://blog.llvm.org/2010/04/intro-to-llvm-mc-project.html" target="_blank" rel="noopener">MC子系统</a>切断了中间过程并直接生成机器代码。这可以加快编译速度，在LLVM用作JIT编译器时尤其有用。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Object" target="_blank" rel="noopener">Object</a>:处理目标文件格式的详细信息，例如ELF。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ObjectYAML" target="_blank" rel="noopener">ObjectYAML</a>:ObjectYAML似乎支持将对象文件编码为<a href="http://llvm.org/docs/YamlIO.html" target="_blank" rel="noopener">YAML</a>。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Option" target="_blank" rel="noopener">Option</a>:命令行解析。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Passes" target="_blank" rel="noopener">Passes</a>:PASS管理器的一部分，它调度和排序LLVM PASS，将其依赖关系和无效性考虑在内。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/ProfileData" target="_blank" rel="noopener">ProfileData</a>:读取和写入配置文件数据以支持配置文件引导的优化。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Support" target="_blank" rel="noopener">Support</a>:其他支持代码包括APInts（在LLVM中普遍使用的任意精度整数）等等。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/TableGen" target="_blank" rel="noopener">TableGen</a>:一种<a href="http://llvm.org/docs/TableGen/" target="_blank" rel="noopener">工具</a>（作者称其为古怪的瑞士军刀），它输入.td文件（其中LLVM中有200多个）包含结构化数据，并使用特定于域的后端发出由LLVM编译的C++代码。例如，TableGen被用来提取一些实现汇编器和反汇编器中单调的东西。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Target" target="_blank" rel="noopener">Target</a>:这里有后端中指定特定处理器的部分。有很多TableGen文件。</li>
+<li><a href="https://github.com/llvm-mirror/llvm/tree/release_39/lib/Transforms" target="_blank" rel="noopener">Transforms</a>:这是我最喜欢的目录，它是中端优化器所在的地方。IPO包含跨越函数边界的过程间优化，它们通常不会过于激进，因为它们必须查看大量代码。InstCombine是LLVM的窥视优化器的野兽。Instrumentation支持sanitizers。ObjCARC支持这一点。Scalar包含一堆教科书式的编译器各种优化器，我会尝试在某个时候写一篇关于这个目录内容的更详细的帖子。Utils是帮助代码。Vectorize是LLVM的自动矢量化器，近年来已成为许多工作的主题。</li>
+</ol>
+<p><span id="comment-19005">它不会改变IR本身。llvm::SumplifyInstruction的规则是它只能返回程序中的常量或现有值，这符合Analysis的要求。在每条指令上调用SimplifyInstruction的PASS是lib/Transforms/Utils/SimplifyInstructions.cpp里的转换器PASS。</span></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/23/android shell/" itemprop="url">
-              
-                <span itemprop="name">android加壳思路</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-23T03:02:38+08:00"
-              content="2017-12-23" >
-          12-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/22/dexformat/" itemprop="url">
-              
-                <span itemprop="name">dex文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-22T13:53:38+08:00"
-              content="2017-12-22" >
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/01/EasyHook/" rel="next" title="FileMonitorHook例子(translate)">
+                <i class="fa fa-chevron-left"></i> FileMonitorHook例子(translate)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -601,6 +463,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -621,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -699,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LLVM源代码指南"><span class="nav-number">1.</span> <span class="nav-text">LLVM源代码指南</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -843,6 +741,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -889,6 +791,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Minxin',
+            repo: 'Minxin.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
+            
+                client_id: '039da8b1b27bc4e10d7f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 

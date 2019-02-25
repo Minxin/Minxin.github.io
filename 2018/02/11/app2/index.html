@@ -378,7 +378,7 @@
 <p><code>menuParams.setMenuObjects(getMenuObjects());</code><br>设置菜单内容，我们将MenuObject设置图标后放入List\<menuobject\>即可。</menuobject\></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> private List&lt;MenuObject&gt; getMenuObjects() &#123;</span><br><span class="line"></span><br><span class="line">        List&lt;MenuObject&gt; menuObjects = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        MenuObject close = new MenuObject();</span><br><span class="line">        close.setResource(R.drawable.ic_action_close);</span><br><span class="line"></span><br><span class="line">        MenuObject addFav = new MenuObject(&quot;Add to favorites&quot;);</span><br><span class="line">        addFav.setResource(R.drawable.ic_action_like);</span><br><span class="line"></span><br><span class="line">        MenuObject block = new MenuObject(&quot;Block user&quot;);</span><br><span class="line">        block.setResource(R.drawable.ic_action_up);</span><br><span class="line"></span><br><span class="line">        menuObjects.add(close);</span><br><span class="line">        menuObjects.add(addFav);</span><br><span class="line">        menuObjects.add(block);</span><br><span class="line">        return menuObjects;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果展示：</p>
-<p><img src="media/toolbar.png" alt="toolbar-c500"></p>
+<p><img src="/2018/02/11/app2/media/toolbar.png" alt="toolbar-c500"></p>
 
       
     </div>
@@ -594,7 +594,7 @@
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

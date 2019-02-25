@@ -428,7 +428,7 @@
 <p>###总结</p>
 <p>&emsp;&emsp;Launcher会响应图标点击，开始开启Activity，应用图标的shortcutinfo的intent获得应用信息，通知ActivityManagerServer来启动Activity，首先需要获取Activity的信息，并存放Activity信息，为启动作准备（对应ActivityRecord和Activity栈）。信息有了之后就要为应用准备一个进程，zygotefork出一个进程后，执行ActivityThread的main方法，在该方法里会先准备好Looper和消息队列，再调用attach将这个进程绑定到ActivityManagerServer，之后就要准备启动Activity了，ActivityManagerServer这时候会保存一个应用进程的代理对象，这样ActivityManagerServer就可以对Activity进行管理了，ActivityManagerServer获取Activity栈中的Activity信息，来通知应用进程创建入口Activity的实例。</p>
 <h2 id="动态加载类"><a href="#动态加载类" class="headerlink" title="动态加载类"></a>动态加载类</h2><p>类加载器：<br><a href="http://blog.csdn.net/jiangwei0910410003/article/details/41384667" target="_blank" rel="noopener">http://blog.csdn.net/jiangwei0910410003/article/details/41384667</a></p>
-<p>ClassLoader:<br><img src="media/15206937280365.jpg" alt=""></p>
+<p>ClassLoader:<br><img src="/2018/03/09/dexprotect/media/15206937280365.jpg" alt=""></p>
 <p>代码动态加载：</p>
 <ol>
 <li>接管系统加载，比源程序优先获取执行权利</li>
@@ -499,10 +499,10 @@ try {
 <li>利用hook框架实现对libdvm.so的dvmDefineClass</li>
 <li>实现还原对应方法的字节码</li>
 </ol>
-<h3 id="dex文件格式"><a href="#dex文件格式" class="headerlink" title="dex文件格式"></a>dex文件格式</h3><p><img src="media/15211199989900.jpg" alt=""></p>
-<p>结构图：<br><img src="media/dex.png" alt="a-c"></p>
+<h3 id="dex文件格式"><a href="#dex文件格式" class="headerlink" title="dex文件格式"></a>dex文件格式</h3><p><img src="/2018/03/09/dexprotect/media/15211199989900.jpg" alt=""></p>
+<p>结构图：<br><img src="/2018/03/09/dexprotect/media/dex.png" alt="a-c"></p>
 <p>字符串池索引过程：<br>header.string_ids_off -&gt; string_id_list[0].string_data_off -&gt; string_item[0]|(string_item_size+byte[size])</p>
-<p>方法字节码索引过程：<br><img src="media/AB135E84-4557-4F37-BE37-250B72DA71A4.png" alt="AB135E84-4557-4F37-BE37-250B72DA71A4"></p>
+<p>方法字节码索引过程：<br><img src="/2018/03/09/dexprotect/media/AB135E84-4557-4F37-BE37-250B72DA71A4.png" alt="AB135E84-4557-4F37-BE37-250B72DA71A4"></p>
 
       
     </div>
@@ -718,7 +718,7 @@ try {
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

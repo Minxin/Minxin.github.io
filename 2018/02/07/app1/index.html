@@ -366,7 +366,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;StartTheme&quot; parent=&quot;AppTheme&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowBackground&quot;&gt; @drawable/welc&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowFullscreen&quot;&gt;true&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <p>定时器设置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Timer timer = new Timer();</span><br><span class="line">       TimerTask timerTask = new TimerTask() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               Intent intent = new Intent(WelcomeActivity.this, HomeActivity.class);</span><br><span class="line">               startActivity(intent);</span><br><span class="line">               finish();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       timer.schedule(timerTask, 3000);</span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="media/app_welcome.png" alt="welc"></p>
+<p>效果：<br><img src="/2018/02/07/app1/media/app_welcome.png" alt="welc"></p>
 <blockquote>
 <p>1、冷启动：当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用，这个启动方式就是冷启动。</p>
 <p>特点：冷启动因为系统会重新创建一个新的进程分配给它，所以会先创建和初始化application类，再创建和初始化MainActivity类（包括一系列的测量、布局、绘制），最后显示在界面上。</p>
@@ -589,7 +589,7 @@
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
