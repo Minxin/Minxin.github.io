@@ -88,16 +88,16 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="GOT表hook&amp;emsp;&amp;emsp;ELF文件中，GOT表和PLT表，不同映像间的函数和数据引用都是通过它们实现的。GOT（全局偏移表）给出了映像中所有被引用符号（函数或变量）的值。每个普通PLT表项相当于一个函数的桩函数（stub），支持懒绑定的情况下，当发生对外部函数的调用时，程序会通过PLT表将控制交给动态连接器，后者解析出函数的绝对地址，修改GOT中相应的值，之后的调用将不再需要连接">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/media/15232059915351.jpg">
-<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/media/15232067018523.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/15232059915351.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/15232067018523.jpg">
 <meta property="og:image" content="http://gslab.qq.com/data/attachment/portal/201604/27/153304u2qgl1wax4ntlrzs.png">
-<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/media/15232917260881.jpg">
-<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/media/15232917491072.jpg">
-<meta property="og:updated_time" content="2018-12-03T06:38:53.683Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/15232917260881.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/15232917491072.jpg">
+<meta property="og:updated_time" content="2019-02-25T05:06:53.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GOT表hook">
 <meta name="twitter:description" content="GOT表hook&amp;emsp;&amp;emsp;ELF文件中，GOT表和PLT表，不同映像间的函数和数据引用都是通过它们实现的。GOT（全局偏移表）给出了映像中所有被引用符号（函数或变量）的值。每个普通PLT表项相当于一个函数的桩函数（stub），支持懒绑定的情况下，当发生对外部函数的调用时，程序会通过PLT表将控制交给动态连接器，后者解析出函数的绝对地址，修改GOT中相应的值，之后的调用将不再需要连接">
-<meta name="twitter:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/media/15232059915351.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/04/08/GOTHOOK/15232059915351.jpg">
 
 
 
@@ -374,9 +374,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">typedef struct elf32_shdr &#123;</span><br><span class="line">  Elf32_Word sh_name;</span><br><span class="line">  Elf32_Word sh_type;</span><br><span class="line">  Elf32_Word sh_flags;</span><br><span class="line">  Elf32_Addr sh_addr;</span><br><span class="line">  Elf32_Off sh_offset;</span><br><span class="line">  Elf32_Word sh_size;</span><br><span class="line">  Elf32_Word sh_link;</span><br><span class="line">  Elf32_Word sh_info;</span><br><span class="line">  Elf32_Word sh_addralign;</span><br><span class="line">  Elf32_Word sh_entsize;</span><br><span class="line">&#125; Elf32_Shdr;</span><br></pre></td></tr></table></figure>
 <p>sh_name:节区名称在字符串表中的偏移<br>sh_type:节区类型</p>
 <p>通过判断类型值和节区名称来确定GOT表节区</p>
-<p>最后获取到模块加载地址后作为基址，加上偏移即是GOT表地址，GOT表就是一个地址表，通过遍历挨个地址匹配，找到后修改即可，注意修改内存页权限。（不知道为什么GOT在内存中是没有可写权限的）<br><img src="/2018/04/08/GOTHOOK/media/15232059915351.jpg" alt=""><br>在地址0xb6f2af54处</p>
+<p>最后获取到模块加载地址后作为基址，加上偏移即是GOT表地址，GOT表就是一个地址表，通过遍历挨个地址匹配，找到后修改即可，注意修改内存页权限。（不知道为什么GOT在内存中是没有可写权限的）<br><img src="/2018/04/08/GOTHOOK/15232059915351.jpg" alt=""><br>在地址0xb6f2af54处</p>
 <p>代码地址：<a href="https://github.com/Minxin/gothooklocal" target="_blank" rel="noopener">https://github.com/Minxin/gothooklocal</a></p>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>&emsp;&emsp;在测试中发现一些问题，程序在调用函数时，特别在多次调用时，会将函数指针存放在寄存器中，供下一次调用使用，这个时候无论修改何处，寄存器中的值是不变的，每次调用形式为：<code>BLX  R4</code>.所以这样hook是没有任何效果的。<br>&emsp;&emsp;写在其他函数中，调用就会正常，间接跳转的形式，GOT修改后生效。<br><img src="/2018/04/08/GOTHOOK/media/15232067018523.jpg" alt="result-w500"></p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>&emsp;&emsp;在测试中发现一些问题，程序在调用函数时，特别在多次调用时，会将函数指针存放在寄存器中，供下一次调用使用，这个时候无论修改何处，寄存器中的值是不变的，每次调用形式为：<code>BLX  R4</code>.所以这样hook是没有任何效果的。<br>&emsp;&emsp;写在其他函数中，调用就会正常，间接跳转的形式，GOT修改后生效。<br><img src="/2018/04/08/GOTHOOK/15232067018523.jpg" alt="result-w500"></p>
 <p>可以看到GOT修改之后，<code>just 2</code>和<code>just 3</code>是通过寄存器跳转的，没有效果；<code>for test</code>是通过间接跳转的，生效。</p>
 <h2 id="远程hook"><a href="#远程hook" class="headerlink" title="远程hook"></a>远程hook</h2><p>相比较的话，多了一步注入操作。 </p>
 <p>注入程序参照：<a href="https://blog.csdn.net/qq1084283172/article/details/46859931" target="_blank" rel="noopener">https://blog.csdn.net/qq1084283172/article/details/46859931</a><br><strong>注入流程：</strong><br><img src="http://gslab.qq.com/data/attachment/portal/201604/27/153304u2qgl1wax4ntlrzs.png" alt="injectflow-c"></p>
@@ -395,8 +395,8 @@
 <p>dlsym的返回值就是hook函数的地址，也需要获取。</p>
 <p>最后再调用hook函数即可。</p>
 <p>其实hook函数的获取可以使用计算偏移的方式，注入程序自己也装载动态库，获取hook函数地址后，加上基址差值，也可以得到hook函数在目标进程中的地址。可以不用让目标程序调用dlsym。</p>
-<h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><p>注入程序：<br><img src="/2018/04/08/GOTHOOK/media/15232917260881.jpg" alt="inject-w500"></p>
-<p>被注入程序：<br><img src="/2018/04/08/GOTHOOK/media/15232917491072.jpg" alt="tobehook-w500"></p>
+<h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><p>注入程序：<br><img src="/2018/04/08/GOTHOOK/15232917260881.jpg" alt="inject-w500"></p>
+<p>被注入程序：<br><img src="/2018/04/08/GOTHOOK/15232917491072.jpg" alt="tobehook-w500"></p>
 <p>被注入程序首先在被hook前调用puts，进入sleep，启动注入进程，完成注入和hook后，输出的信息和之前本地hook的输出差不多，最后继续执行，再次调用puts时，已经被myputs代替，输入信息前有前缀”FAKE:”。</p>
 <p>代码地址：<a href="https://github.com/Minxin/gothookremote" target="_blank" rel="noopener">https://github.com/Minxin/gothookremote</a></p>
 

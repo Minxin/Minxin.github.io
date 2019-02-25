@@ -88,12 +88,12 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="dex中方法指令隐藏&amp;emsp;&amp;emsp;通过了解dex文件格式，获取到指定方法的指令码的偏移，将指令码清空，达到对指定方法实现的隐藏效果。 原理&amp;emsp;&amp;emsp;dex文件格式这里就不详讲了，可以通过010editor直观得看到dex文件中各个区域信息。&amp;emsp;&amp;emsp;关键是我们怎么获取到对应方法的指令码。  &amp;emsp;&amp;emsp;我们看到，首先获取到class_defs_i">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://fancy-blogs.com/2018/03/23/extractdexins/media/AB135E84-4557-4F37-BE37-250B72DA71A4.png">
-<meta property="og:updated_time" content="2018-12-03T06:40:28.245Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/03/23/extractdexins/AB135E84-4557-4F37-BE37-250B72DA71A4.png">
+<meta property="og:updated_time" content="2019-02-25T05:08:50.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dex中方法指令隐藏">
 <meta name="twitter:description" content="dex中方法指令隐藏&amp;emsp;&amp;emsp;通过了解dex文件格式，获取到指定方法的指令码的偏移，将指令码清空，达到对指定方法实现的隐藏效果。 原理&amp;emsp;&amp;emsp;dex文件格式这里就不详讲了，可以通过010editor直观得看到dex文件中各个区域信息。&amp;emsp;&amp;emsp;关键是我们怎么获取到对应方法的指令码。  &amp;emsp;&amp;emsp;我们看到，首先获取到class_defs_i">
-<meta name="twitter:image" content="http://fancy-blogs.com/2018/03/23/extractdexins/media/AB135E84-4557-4F37-BE37-250B72DA71A4.png">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/03/23/extractdexins/AB135E84-4557-4F37-BE37-250B72DA71A4.png">
 
 
 
@@ -361,7 +361,7 @@
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="dex中方法指令隐藏"><a href="#dex中方法指令隐藏" class="headerlink" title="dex中方法指令隐藏"></a>dex中方法指令隐藏</h1><p>&emsp;&emsp;通过了解dex文件格式，获取到指定方法的指令码的偏移，将指令码清空，达到对指定方法实现的隐藏效果。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>&emsp;&emsp;dex文件格式这里就不详讲了，可以通过010editor直观得看到dex文件中各个区域信息。<br>&emsp;&emsp;关键是我们怎么获取到对应方法的指令码。</p>
-<p><img src="/2018/03/23/extractdexins/media/AB135E84-4557-4F37-BE37-250B72DA71A4.png" alt="AB135E84-4557-4F37-BE37-250B72DA71A4"></p>
+<p><img src="/2018/03/23/extractdexins/AB135E84-4557-4F37-BE37-250B72DA71A4.png" alt="AB135E84-4557-4F37-BE37-250B72DA71A4"></p>
 <p>&emsp;&emsp;我们看到，首先获取到class_defs_item，找到类信息的偏移（class_data_off），得到class_data_item，里面有direct方法列表和virtual方法列表，每一项记录了对应方法的code_item的偏移，由该偏移我们就能找到存放指令码的区域。</p>
 <p>&emsp;&emsp;即然要实现指定方法的查找，就需要解析dex，解析出所有方法并存放起来，再由我们指定取出，来将其指令置空。</p>
 <p><a href="http://www.wjdiankong.cn/archives/1118" target="_blank" rel="noopener">解析dex文件代码</a></p>

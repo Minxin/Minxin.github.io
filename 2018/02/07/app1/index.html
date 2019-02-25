@@ -88,12 +88,12 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="应用开发（一）欢迎界面设计为全屏显示一张图片，显示3秒后跳转到主界面。 想法为通过设置欢迎界面活动布局文件，添加背景来显示。 遇到问题，由于图片太大导致启动崩溃，报错显示报错Binary XML file line #0 : Error inflating class一直找不到问题所在。之前遇到过资源加载太大时会崩溃，把图片截取再压缩，大小在100kb左右，不再报错。 另外，layout里设置背">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://fancy-blogs.com/2018/02/07/app1/media/app_welcome.png">
-<meta property="og:updated_time" content="2018-12-03T06:42:13.681Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/02/07/app1/app_welcome.png">
+<meta property="og:updated_time" content="2019-02-25T05:19:08.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="应用开发（一）">
 <meta name="twitter:description" content="应用开发（一）欢迎界面设计为全屏显示一张图片，显示3秒后跳转到主界面。 想法为通过设置欢迎界面活动布局文件，添加背景来显示。 遇到问题，由于图片太大导致启动崩溃，报错显示报错Binary XML file line #0 : Error inflating class一直找不到问题所在。之前遇到过资源加载太大时会崩溃，把图片截取再压缩，大小在100kb左右，不再报错。 另外，layout里设置背">
-<meta name="twitter:image" content="http://fancy-blogs.com/2018/02/07/app1/media/app_welcome.png">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/02/07/app1/app_welcome.png">
 
 
 
@@ -366,7 +366,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style name=&quot;StartTheme&quot; parent=&quot;AppTheme&quot;&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowBackground&quot;&gt; @drawable/welc&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowNoTitle&quot;&gt;true&lt;/item&gt;</span><br><span class="line">        &lt;item name=&quot;android:windowFullscreen&quot;&gt;true&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <p>定时器设置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Timer timer = new Timer();</span><br><span class="line">       TimerTask timerTask = new TimerTask() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               Intent intent = new Intent(WelcomeActivity.this, HomeActivity.class);</span><br><span class="line">               startActivity(intent);</span><br><span class="line">               finish();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line"></span><br><span class="line">       timer.schedule(timerTask, 3000);</span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="/2018/02/07/app1/media/app_welcome.png" alt="welc"></p>
+<p>效果：<br><img src="/2018/02/07/app1/app_welcome.png" alt="welc"></p>
 <blockquote>
 <p>1、冷启动：当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用，这个启动方式就是冷启动。</p>
 <p>特点：冷启动因为系统会重新创建一个新的进程分配给它，所以会先创建和初始化application类，再创建和初始化MainActivity类（包括一系列的测量、布局、绘制），最后显示在界面上。</p>

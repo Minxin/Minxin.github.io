@@ -88,14 +88,14 @@
 <meta property="og:site_name" content="fancy&#39;s blog">
 <meta property="og:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg">
-<meta property="og:updated_time" content="2018-03-01T19:19:58.266Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/15199311507372.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/15199312134737.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/15199314200100.jpg">
+<meta property="og:updated_time" content="2019-02-25T05:04:00.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="aapt部分源码分析">
 <meta name="twitter:description" content="aapt部分源码分析之前由于二进制修改AndroidManifest.xml失败，一开始只插入属性的字符和标签node发现失败，比较后发现要插入资源id，但是还是无法生效。 之前修改的方法都可以正常安装应用，正常启动，而且xml解析都没问题，插入的debuggable=&amp;quot;true&amp;quot;就是无法生效。了解到可以aapt list打印相应属性。 aapt list -v -a |gr">
-<meta name="twitter:image" content="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg">
+<meta name="twitter:image" content="http://fancy-blogs.com/2018/03/01/aaptpartanalysis/15199311507372.jpg">
 
 
 
@@ -386,10 +386,10 @@
 </ul>
 <p>所以我们插入的属性字符在string pool尾部，而Resid中值太少，无法将0x0101000f的index和string pool 中的字符<code>debuggable</code>的index匹配，所以输出时并不输出资源值。</p>
 <p>我们可以在XmlResourceMapType中填充一些资源值，把debuggable的资源值撑到和string pool中字符<code>debuggable</code>的index值一致。</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199311507372.jpg" alt="a-w500"></p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15199312134737.jpg" alt="a-w500"></p>
+<p><img src="/2018/03/01/aaptpartanalysis/15199311507372.jpg" alt="a-w500"></p>
+<p><img src="/2018/03/01/aaptpartanalysis/15199312134737.jpg" alt="a-w500"></p>
 <p>我插入一些相同的资源值，撑到二者index一致，当然Resid header里的size要改，chunk header里size也要改。</p>
-<p>修改完后，放入apk中，在输出就可以看到了<br><img src="http://p1ju8xds4.bkt.clouddn.com/15199314200100.jpg" alt=""></p>
+<p>修改完后，放入apk中，在输出就可以看到了<br><img src="/2018/03/01/aaptpartanalysis/15199314200100.jpg" alt=""></p>
 <p>修改虽然成功，但是发现debuggable还是无法生效。</p>
 <p>最后意外的发现，修改debuggable属性的位置就可以了</p>
 <p>debuggable不生效：</p>

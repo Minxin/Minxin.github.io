@@ -90,8 +90,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://img.blog.csdn.net/20130506004759886">
 <meta property="og:image" content="http://img.blog.csdn.net/20130512232649003">
-<meta property="og:image" content="http://p1ju8xds4.bkt.clouddn.com/15226886044319.jpg">
-<meta property="og:updated_time" content="2018-04-02T17:04:26.642Z">
+<meta property="og:image" content="http://fancy-blogs.com/2018/03/29/androidVM1/15226886044319.jpg">
+<meta property="og:updated_time" content="2019-02-25T05:08:10.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android虚拟机（一）">
 <meta name="twitter:description" content="android虚拟机（一）Dalvik虚拟机Dalvik虚拟机的启动过程https://blog.csdn.net/luoshengyang/article/details/8885792 Zygote进程在启动时会创建一个Dalvik实例，在它孵化app的进程时会复制一份到app的进程中，使每一个app进程都有一个独立的Dalvik虚拟机实例。  Dalvik虚拟机在Zygote进程中的启动过">
@@ -419,7 +419,7 @@
 <p>oat文件本质上就是一个ELF文件</p>
 <p>启动<br>Runtime create<br>Runtime init<br>&emsp;&emsp;Android 5.0中将option的解析放在了init中<br>&emsp;&emsp;&emsp;&emsp;1⃣️ ART启动<br>&emsp;&emsp;&emsp;&emsp;2⃣️ interpret DEX<br>&emsp;&emsp;ParsedOptions::Create<br>&emsp;&emsp;&emsp;&emsp;解析启动参数<br>&emsp;&emsp;Heap<br>&emsp;&emsp;&emsp;&emsp;space::ImageSpace::Create<br>&emsp;&emsp;JavaVMExt<br>&emsp;&emsp;Thread::Attach<br>&emsp;&emsp;GetHeap</p>
 <p>运行<br>OatFile::Open<br>&emsp;&emsp;1⃣️portable&amp;&amp;executable：OpenDlopen<br>&emsp;&emsp;new OatFile<br>&emsp;&emsp;Dlopen<br>&emsp;&emsp;&emsp;&emsp;dlopne、dlsym -&gt; get begin/end (得到内存中oatdata段的内存区域)<br>&emsp;&emsp;2⃣️OpenElfFile<br>&emsp;&emsp;ElfFileOpen<br>&emsp;&emsp;&emsp;&emsp;FindDynamicSymbolAddress-&gt;get begin/end (得到内存中oatdata段的内存区域)<br>&emsp;&emsp;&emsp;&emsp;Setup<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GetOatHeader<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GetOatHeader().GetKeyValueStoreSize()<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GetOatHeader().GetDexFileCount()</p>
-<p><img src="http://p1ju8xds4.bkt.clouddn.com/15226886044319.jpg" alt="oatdata-c500"></p>
+<p><img src="/2018/03/29/androidVM1/15226886044319.jpg" alt="oatdata-c500"></p>
 <p>获取到Dex文件的过程：先获取到OAT文件中的oatdata段起始地址，找到oatheader，跃过header，找到oat_dex_file，由偏移dex_file_offset（与oatdata起始的偏移）定位到dexfile。</p>
 <p>获取方法的过程：同样以上方式找到oat_dex_file，在dex_file_offset后是一个数组，元素是指向oat_class的指针，每个oat_class与dex中的class一一对应。<br>oat_class:</p>
 <table>
