@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://fancy-blogs.com/"/>
-  <updated>2019-02-25T06:07:26.658Z</updated>
+  <updated>2019-02-27T02:45:38.425Z</updated>
   <id>http://fancy-blogs.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>京东“盗图”事件分析</title>
+    <link href="http://fancy-blogs.com/2019/02/27/jdanalysis/"/>
+    <id>http://fancy-blogs.com/2019/02/27/jdanalysis/</id>
+    <published>2019-02-27T02:41:40.000Z</published>
+    <updated>2019-02-27T02:45:38.425Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="京东“盗图”事件分析"><a href="#京东“盗图”事件分析" class="headerlink" title="京东“盗图”事件分析"></a>京东“盗图”事件分析</h1><p>这里还是利用上次讲的trace来宏观分析函数调用流。</p><p>利用ddms的trace功能，记录用户截图时，“京东金融app”在后台执行的函数流：<br><img src="/2019/02/27/jdanalysis/15512338044303.jpg" alt="w500"></p><p>涉及函数和截图有关，尝试搜索“screenshot”：<br><img src="/2019/02/27/jdanalysis/15512338738873.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512338842904.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512338942294.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512339034349.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512339165953.jpg" alt="w500"></p><p>这里省略了一些方法，主要涉及两个类：GlobalShotListener和ScreenShotListenManager</p><p>先看ScreenShotListenManager：<br><img src="/2019/02/27/jdanalysis/15512339408059.jpg" alt="w600"><br>注册全局的媒体内容观察者。响应函数：</p><p><img src="/2019/02/27/jdanalysis/15512339976224.jpg" alt="w400"><br>打印了一些截图信息，交给监听类处理:</p><p><img src="/2019/02/27/jdanalysis/15512340746782.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512341339635.jpg" alt="w500"><br>设置的监听响应对象是GlobalShotListener的实例。</p><p>看一下GlobalShotListener：</p><p><img src="/2019/02/27/jdanalysis/15512341701005.jpg" alt="w400"><br>响应函数调用gainShotBusinessItemGet</p><p><img src="/2019/02/27/jdanalysis/15512341886179.jpg" alt="w500"></p><p><img src="/2019/02/27/jdanalysis/15512342068041.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512342154699.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512342219927.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512342390445.jpg" alt="w600"></p><p><img src="/2019/02/27/jdanalysis/15512342910972.jpg" alt="w500"><br>generateKey是由图片信息组成的类似文件名的特征字符串。<br>根据特征字符串在缓存文件中检索指定文件。</p><p><img src="/2019/02/27/jdanalysis/15512342982748.jpg" alt="w500"><br><img src="/2019/02/27/jdanalysis/15512343179085.jpg" alt="w600"><br><img src="/2019/02/27/jdanalysis/15512343262746.jpg" alt="w500"><br>这里就能看到缓存文件夹的创建和使用，即涉事文件夹“uil-image”。</p><p>以上是事件涉及的函数。总结一下流程：<br>应用全局监听媒体内容变化（截图事件），出现截图后，根据uri信息获取图片信息，拿到图片路径后，生成特征字符串再本地缓存图片，供其他功能调用，这里只看到图片预览功能，未发现任何网络相关操作。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;京东“盗图”事件分析&quot;&gt;&lt;a href=&quot;#京东“盗图”事件分析&quot; class=&quot;headerlink&quot; title=&quot;京东“盗图”事件分析&quot;&gt;&lt;/a&gt;京东“盗图”
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>纯黑盒（不脱壳）app测试</title>
@@ -416,27 +437,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;编译原理笔记一&quot;&gt;&lt;a href=&quot;#编译原理笔记一&quot; class=&quot;headerlink&quot; title=&quot;编译原理笔记一&quot;&gt;&lt;/a&gt;编译原理笔记一&lt;/h1&gt;&lt;p&gt;
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>python实现CSDN博客标题收集</title>
-    <link href="http://fancy-blogs.com/2018/02/13/pythonforblogtitle/"/>
-    <id>http://fancy-blogs.com/2018/02/13/pythonforblogtitle/</id>
-    <published>2018-02-13T14:24:00.673Z</published>
-    <updated>2018-02-13T14:27:09.325Z</updated>
-    
-    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><h1 id="python实现CSDN博客标题收集"><a href="#python实现CSDN博客标题收集" class="headerlink" title="python实现CSDN博客标题收集"></a>python实现CSDN博客标题收集</h1><p>使用BeautifulSoup对网页解析，再根据布局使用Tag层层搜索，找到我们所需要的元素，代码很简单。</p><p>BeautifulSoup是Python的一个库，最主要的功能就是从网页爬取我们需要的数据。BeautifulSoup将html解析为对象进行处理，全部页面转变为字典或者数组，相对于正则表达式的方式，可以大大简化处理过程。</p><p>例子中是把老罗的博客文章标题收集，由于tag嵌套导致循环重复，去重会导致效率偏低。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> bs4</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line">url_list = []</span><br><span class="line">title_list=[]</span><br><span class="line">blog_urls = []</span><br><span class="line">collected=<span class="number">0</span></span><br><span class="line">headers = &#123;<span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_url</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">        url_list.append(<span class="string">"http://blog.csdn.net/Luoshengyang/article/list/"</span>+str(i))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">collect</span><span class="params">()</span>:</span> </span><br><span class="line">    <span class="keyword">global</span> collected</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> url_list:</span><br><span class="line">        html = requests.get(url, headers=headers)</span><br><span class="line">        html.encoding = html.apparent_encoding</span><br><span class="line">        soup = BeautifulSoup(html.text, <span class="string">'html.parser'</span>)</span><br><span class="line">        <span class="keyword">for</span> tagmain <span class="keyword">in</span> soup.find_all(<span class="string">'main'</span>):</span><br><span class="line">            <span class="keyword">for</span> ul <span class="keyword">in</span> tagmain.find_all(<span class="string">'ul'</span>):</span><br><span class="line">                <span class="keyword">for</span> li <span class="keyword">in</span> ul.find_all(<span class="string">'li'</span>):        </span><br><span class="line">                    <span class="keyword">for</span> taga <span class="keyword">in</span> li.find_all(<span class="string">'a'</span>):</span><br><span class="line">                        <span class="keyword">for</span>  h3 <span class="keyword">in</span> taga.find_all(<span class="string">'h3'</span>):</span><br><span class="line">                            <span class="keyword">if</span> (taga[<span class="string">'href'</span>][<span class="number">0</span>:<span class="number">4</span>]==<span class="string">"http"</span>):</span><br><span class="line">                                <span class="keyword">if</span> taga[<span class="string">'href'</span>] <span class="keyword">in</span> blog_urls:</span><br><span class="line">                                    <span class="keyword">break</span></span><br><span class="line">                                blog_urls.append(taga[<span class="string">'href'</span>])</span><br><span class="line">                                title_list.append(h3.text.replace(<span class="string">' '</span>,<span class="string">""</span>).replace(<span class="string">'\n'</span>,<span class="string">""</span>).replace(<span class="string">'\t'</span>,<span class="string">""</span>)) </span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_url()</span><br><span class="line">collect()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(title_list)):</span><br><span class="line">    print(title_list[i],blog_urls[i])</span><br></pre></td></tr></table></figure><p><a href="http://blog.csdn.net/kikaylee/article/details/56841789" target="_blank" rel="noopener">http://blog.csdn.net/kikaylee/article/details/56841789</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;python实现CSDN博客标题收集&quot;&gt;&lt;a href=&quot;#python实现CSDN博客标题收集&quot; class=&quot;headerlink&quot; title=&quot;python
       
     
     </summary>
