@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta name="description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JNI 简介">
-<meta property="og:url" content="http://fancy-blogs.com/2017/12/28/JNI-introduce/index.html">
+<meta property="og:title" content="如何读写LLVM bitcode">
+<meta property="og:url" content="http://fancy-blogs.com/2019/02/27/RWBitcode/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta property="og:description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-27T19:10:46.561Z">
+<meta property="og:updated_time" content="2019-02-28T10:35:27.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JNI 简介">
-<meta name="twitter:description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta name="twitter:title" content="如何读写LLVM bitcode">
+<meta name="twitter:description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
 
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/2017/12/28/JNI-introduce/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/2019/02/27/RWBitcode/"/>
 
 
 
 
 
-  <title>JNI 简介 | fancy's blog</title>
+  <title>如何读写LLVM bitcode | fancy's blog</title>
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2017/12/28/JNI-introduce/">
+    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2019/02/27/RWBitcode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fancy">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JNI 简介</h1>
+          <h1 class="post-title" itemprop="name headline">如何读写LLVM bitcode</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-28T02:35:48+08:00">
-                2017-12-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T16:00:00+08:00">
+                2019-02-27
               </time>
             
 
@@ -322,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/28/JNI-introduce/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/12/28/JNI-introduce/" itemprop="commentsCount"></span>
+                <a href="/2019/02/27/RWBitcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/02/27/RWBitcode/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,53 +357,35 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="JNI简介"><a href="#JNI简介" class="headerlink" title="JNI简介"></a>JNI简介</h1><p><a href="http://www.jianshu.com/p/aba734d5b5cd" target="_blank" rel="noopener">http://www.jianshu.com/p/aba734d5b5cd</a></p>
-<h2 id="函数注册"><a href="#函数注册" class="headerlink" title="函数注册"></a>函数注册</h2><p>实例<br>java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class AndroidJni &#123;</span><br><span class="line">     static&#123;</span><br><span class="line">          System.loadLibrary(&quot;main&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     public native void dynamicLog();</span><br><span class="line">     public native void staticLog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>C++</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;jni.h&gt;</span><br><span class="line">#define LOG_TAG &quot;main.cpp&quot;</span><br><span class="line">#include &quot;mylog.h&quot;</span><br><span class="line">static void nativeDynamicLog(JNIEnv *evn, jobject obj)&#123;</span><br><span class="line">    LOGE(&quot;hell main&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JNIEXPORT void JNICALL Java_com_github_songnick_jni_AndroidJni_staticLog (JNIEnv *env, jobject obj)</span><br><span class="line">&#123;</span><br><span class="line">    LOGE(&quot;static register log &quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JNINativeMethod nativeMethod[] = &#123;&#123;&quot;dynamicLog&quot;, &quot;()V&quot;, (void*)nativeDynamicLog&#125;,&#125;;</span><br><span class="line"></span><br><span class="line">JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) &#123;</span><br><span class="line">    JNIEnv *env;</span><br><span class="line">    if (jvm-&gt;GetEnv((void**) &amp;env, JNI_VERSION_1_4) != JNI_OK) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    LOGE(&quot;JNI_OnLoad comming&quot;);</span><br><span class="line">    jclass clz = env-&gt;FindClass(&quot;com/github/songnick/jni/AndroidJni&quot;);</span><br><span class="line"></span><br><span class="line">    env-&gt;RegisterNatives(clz, nativeMethod, sizeof(nativeMethod)/sizeof(nativeMethod[0]));</span><br><span class="line"></span><br><span class="line">    return JNI_VERSION_1_4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>要完成的任务是将java中声明的函数和C++中定义的函数链接起来。</p>
-<h3 id="静态注册native函数"><a href="#静态注册native函数" class="headerlink" title="静态注册native函数"></a>静态注册native函数</h3><p>模版：<br>JINEXPORT+返回类型+JNICALL+以_连接的java类作为函数名（JNIEnv* evn, jobject obj）{}</p>
-<p>JNIEXPORT和JNICALL关键字，这两个关键字是两个宏定义，他主要的作用就是说明该函数为JNI函数。java虚拟机加载so时会将检查到的带宏定义的函数，根据函数名链接到对应类的对应native函数。</p>
-<p><code>javah -d jni (package)</code></p>
-<h3 id="动态注册native函数"><a href="#动态注册native函数" class="headerlink" title="动态注册native函数"></a>动态注册native函数</h3><p>当我们使用System.loadLibarary()方法加载so库的时候，Java虚拟机就会找到这个函数并调用该函数，因此可以在该函数中做一些初始化的动作，其实这个函数就是相当于Activity中的onCreate()方法。该函数前面有三个关键字，分别是JNIEXPORT、JNICALL和jint，其中JNIEXPORT和JNICALL是两个宏定义，用于指定该函数是JNI函数。jint是JNI定义的数据类型，因为Java层和C/C++的数据类型或者对象不能直接相互的引用或者使用，JNI层定义了自己的数据类型，用于衔接Java层和JNI层，至于这些数据类型我们在后面介绍。这里的jint对应Java的int数据类型，该函数返回的int表示当前使用的JNI的版本，其实类似于Android系统的API版本一样，不同的JNI版本中定义的一些不同的JNI函数。</p>
-<h2 id="so加载"><a href="#so加载" class="headerlink" title="so加载"></a>so加载</h2><p> System.loadLibarary()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void loadLibrary(String libName) &#123;</span><br><span class="line">    Runtime.getRuntime().loadLibrary(libName, VMStack.getCallingClassLoader());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> loadlibrary()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">void loadLibrary(String libraryName, ClassLoader loader) &#123;</span><br><span class="line">        if (loader != null) &#123;</span><br><span class="line">            String filename = loader.findLibrary(libraryName);</span><br><span class="line">            if (filename == null) &#123;</span><br><span class="line">                throw new UnsatisfiedLinkError(&quot;Couldn&apos;t load &quot; + libraryName + &quot;: &quot; +</span><br><span class="line">                        &quot;findLibrary returned null&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            String error = nativeLoad(filename, loader);</span><br><span class="line">            if (error != null) &#123;</span><br><span class="line">                throw new UnsatisfiedLinkError(error);</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String filename = System.mapLibraryName(libraryName);</span><br><span class="line">        List&lt;String&gt; candidates = new ArrayList&lt;String&gt;();</span><br><span class="line">        String lastError = null;</span><br><span class="line">        for (String directory : mLibPaths) &#123;</span><br><span class="line">            String candidate = directory + filename;</span><br><span class="line">            candidates.add(candidate);</span><br><span class="line">            if (new File(candidate).exists()) &#123;</span><br><span class="line">                String error = nativeLoad(candidate, loader);</span><br><span class="line">                if (error == null) &#123;</span><br><span class="line">                    return; // We successfully loaded the library. Job done.</span><br><span class="line">                &#125;</span><br><span class="line">                lastError = error;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (lastError != null) &#123;</span><br><span class="line">            throw new UnsatisfiedLinkError(lastError);</span><br><span class="line">        &#125;</span><br><span class="line">        throw new UnsatisfiedLinkError(&quot;Library &quot; + libraryName + &quot; not found; tried &quot; + candidates);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.sina.com.cn/s/blog_4c0706560102vc6o.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_4c0706560102vc6o.html</a><br>loadLibrary -&gt; nativeLoad(即Dalvik_java_lang_Runtime_nativeLoad) -&gt; dvmLoadNativeCode -&gt; dlopen\dlsym</p>
-<p>最终通过dlopen函数完成的，只是本地库加载完后紧接着会查找库中是否有JNI_OnLoad函数，如果有会执行一下。</p>
-<p>dvmLoadNativeCode()这个函数还真的是有点复杂，那就挑那些跟我们的JNI比较紧密相关的逻辑来看吧。可以认为这个函数做了下面的这样一些事情：</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何读写LLVM-bitcode"><a href="#如何读写LLVM-bitcode" class="headerlink" title="如何读写LLVM bitcode"></a>如何读写LLVM bitcode</h1><p>我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。<br>存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb …</p>
+<p>将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。<br>为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件（称为bitcode，文件扩展名.bc），然后再写回来。</p>
+<p>首先，我们浏览一些高级LLVM术语：</p>
 <ul>
-<li>调用dlopen() 打开一个so文件，创建一个handle。</li>
-<li>调用dlsym()函数，查找到so文件中的JNI_OnLoad()这个函数的函数指针。</li>
-<li>执行上一步找到的那个JNI_OnLoad()函数。</li>
+<li>对于用户代码来说LLVM的主要抽象对象是Module。它是一个包含所有函数，全局变量，以及你或用户编写的代码指令的类。</li>
+<li>Bitcode文件实际上是LLVM Module的序列化，以便可以在一个不同的程序中重组。</li>
+<li>LLVM实验MemoryBuffer 对象来处理来自文件、标准输入或数组的数据</li>
 </ul>
-<p><a href="http://blog.csdn.net/dj0379/article/details/53350038" target="_blank" rel="noopener">http://blog.csdn.net/dj0379/article/details/53350038</a></p>
-<h3 id="注册函数"><a href="#注册函数" class="headerlink" title="注册函数"></a>注册函数</h3><p>先看JNI_OnLoad方法，这是注册native函数的地方。</p>
-<ul>
-<li>首先判断jni版本是不是JNI_VERSION_1_4</li>
-<li>FindClass方法找到我们对应生命native函数的类，返回一个jclass</li>
-<li>RegisterNatives 注册native函数，我这里用这个三个参数的方法，第一个表示对应jclass，第二个表示JNINativeMethod的数组，第三个，这个就是我们先前命名的宏。</li>
-</ul>
-<p>JNINativeMethod数组</p>
-<p>对应结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">     const char* name;//Java层native方法的名字</span><br><span class="line">     const char* signature;//Java层native方法的描述符</span><br><span class="line">     void* fnPtr;//对应JNI函数的指针</span><br><span class="line">&#125; JNINativeMethod;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JNINativeMethod nativeMethod[] = &#123;&#123;&quot;dynamicLog&quot;, &quot;()V&quot;, (void*)nativeDynamicLog&#125;,&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一个参数对应的native方法名</li>
-<li>第二个参数对应 native方法的描述，我们通过javap -s class文件路径来获取。</li>
-<li>第三个参数对应的是c++代码里对应的实现</li>
-</ul>
-<p>RegisterNatives函数</p>
-<ul>
-<li>第一个参数是Java层对应包含native方法的对象(这里就是AndroidJni对象)，通过调用JNIEnv对应的函数获取class对象(FindClass函数的参数为需要获取class对象的类描述符)</li>
-<li>第二个参数是JNINativeMethod结构体指针，这里的JNINativeMethod结构体是描述Java层native方法的，也就是之前定义的数组</li>
-<li>第三个参数为注册native方法的数量。一般会动态注册多个native方法，首先会定义一个JNINativeMethod数组，然后将该数组指针作为RegisterNative函数的参数传入</li>
-</ul>
-<p>描述符<br>对应smail语法</p>
-<p>JNIEnv<br><a href="http://blog.csdn.net/banketree/article/details/40535325" target="_blank" rel="noopener">http://blog.csdn.net/banketree/article/details/40535325</a></p>
-<h2 id="java和native之间的数据传递"><a href="#java和native之间的数据传递" class="headerlink" title="java和native之间的数据传递"></a>java和native之间的数据传递</h2><p><a href="http://blog.csdn.net/qinjuning/article/details/7607214" target="_blank" rel="noopener">http://blog.csdn.net/qinjuning/article/details/7607214</a></p>
+<p>以我的例子，我将使用LLVM C API - 一个比LLVM内核C++头文件更稳定的抽象。如果你希望使用多个版本的LLVM代码，那么C API非常有用，他比LLVM C++头文件更稳定。（另外，我将LLVM广泛用于我的工作，几乎每周都会有一些LLVM C++头文件被更改以破坏我们的代码。而C API从来不会。）</p>
+<p>这里，我将假设你已经启动了LLVM，构建完并安装了它。像这样执行一下简单的步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://git.llvm.org/git/llvm.git &lt;llvm dir&gt;</span><br><span class="line">cd &lt;llvm dir&gt;</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install ..</span><br><span class="line">cmake --build . --target install</span><br></pre></td></tr></table></figure>
+<p>以上步骤完成后，你将会得到一个安装在/build/install下的LLVM</p>
+<p>至此，对于一些小可执行文件我使用了CMake。CMake是目前为止结合LLVM的最简单的方法，LLVM也使用它作为自己的构建系统。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">project</span>(llvm_bc_parsing_example)</span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># option to allow a user to specify where an LLVM install is on the system</span></span><br><span class="line"><span class="keyword">set</span>(LLVM_INSTALL_DIR <span class="string">""</span> CACHE <span class="keyword">STRING</span> <span class="string">"An LLVM install directory."</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="string">"$&#123;LLVM_INSTALL_DIR&#125;"</span> <span class="keyword">STREQUAL</span> <span class="string">""</span>)</span><br><span class="line">  <span class="keyword">message</span>(FATAL_ERROR <span class="string">"LLVM_INSTALL_DIR not set! Set it to the location of an LLVM install."</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># fixup paths to only use the Linux convention</span></span><br><span class="line"><span class="keyword">string</span>(REPLACE <span class="string">"\\"</span> <span class="string">"/"</span> LLVM_INSTALL_DIR <span class="variable">$&#123;LLVM_INSTALL_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tell CMake where LLVM's module is</span></span><br><span class="line">list(APPEND CMAKE_MODULE_PATH <span class="variable">$&#123;LLVM_INSTALL_DIR&#125;</span>/lib/cmake/llvm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># include LLVM</span></span><br><span class="line"><span class="keyword">include</span>(LLVMConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(llvm_bc_parsing_example main.c)</span><br><span class="line"></span><br><span class="line">target_include_directories(llvm_bc_parsing_example PUBLIC <span class="variable">$&#123;LLVM_INCLUDE_DIRS&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(llvm_bc_parsing_example PUBLIC LLVMBitReader LLVMBitWriter)</span><br></pre></td></tr></table></figure>
+<p>所以现在我们已经完成了CMake的设置，我们可以使用现有的LLVM安装，现在我们可以开始使用我们的实际C代码了！<br>因此，要使用LLVM C API，主要需要一个头文件：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/Core.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>我们需要两个额外的头文件来执行bitcode的读写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/BitReader.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/BitWriter.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>现在我们开始我们主要实现的功能，假设使用2个命令行参数，第一个是输入文件，第二个是输出文件。如果一个接收到以‘-’为文件名的参数，这意味着从标准输入读取或向标准输出写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="number">3</span> != argc)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"Invalid command line!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> inputFilename = argv[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> outputFilename = argv[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+<p>所以首先我们扫描输入文件。我们将从其他输入或一个文件名得到一个LLVM内存缓冲对象：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">LLVMMemoryBufferRef memoryBuffer;</span><br><span class="line"></span><br><span class="line"><span class="comment">// check if we are to read our input file from stdin</span></span><br><span class="line"><span class="keyword">if</span> ((<span class="string">'-'</span> == inputFilename[<span class="number">0</span>]) &amp;&amp; (<span class="string">'\0'</span> == inputFilename[<span class="number">1</span>])) &#123;</span><br><span class="line">  <span class="keyword">char</span> *message;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMCreateMemoryBufferWithSTDIN(&amp;memoryBuffer, &amp;message)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s\n"</span>, message);</span><br><span class="line">    <span class="built_in">free</span>(message);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">char</span> *message;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMCreateMemoryBufferWithContentsOfFile(</span><br><span class="line">               inputFilename, &amp;memoryBuffer, &amp;message)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"%s\n"</span>, message);</span><br><span class="line">    <span class="built_in">free</span>(message);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行完这些代码后，memoryBuffer就可以读取我们的bitcode文件转为LLVM module。现在我们创建module</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// now create our module using the memory buffer</span></span><br><span class="line">LLVMModuleRef <span class="keyword">module</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span> != LLVMParseBitcode2(memoryBuffer, &amp;<span class="keyword">module</span>)) &#123;</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Invalid bitcode detected!\n"</span>);</span><br><span class="line">  LLVMDisposeMemoryBuffer(memoryBuffer);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// done with the memory buffer now, so dispose of it</span></span><br><span class="line">LLVMDisposeMemoryBuffer(memoryBuffer);</span><br></pre></td></tr></table></figure>
+<p>一旦我们得到module，我们不再需要memory buffer了，我们直接释放这部分内存。我们设法获取了一个LLVM bitcode文件，将其反序列化为一个LLVM module，之后就可以随你操作了。因此假设你已经使用LLVM module完成了所有操作了，并希望写回bitcode文件.</p>
+<p>方法和读取方法正交，我们寻找特殊文件名‘-’做相应处理：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check if we are to write our output file to stdout</span></span><br><span class="line"><span class="keyword">if</span> ((<span class="string">'-'</span> == outputFilename[<span class="number">0</span>]) &amp;&amp; (<span class="string">'\0'</span> == outputFilename[<span class="number">1</span>])) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMWriteBitcodeToFD(<span class="keyword">module</span>, STDOUT_FILENO, <span class="number">0</span>, <span class="number">0</span>)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Failed to write bitcode to stdout!\n"</span>);</span><br><span class="line">    LLVMDisposeModule(<span class="keyword">module</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMWriteBitcodeToFile(<span class="keyword">module</span>, outputFilename)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Failed to write bitcode to file!\n"</span>);</span><br><span class="line">    LLVMDisposeModule(<span class="keyword">module</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们需要对内存清理，删除module：<br><code>LLVMDisposeModule(module);</code></p>
+<p>我们现在就可以扫描并输出一个LLVM bitcode文件。<br><a href="https://github.com/sheredom/llvm_bc_parsing_example" target="_blank" rel="noopener">GitHub Example</a></p>
 
       
     </div>
@@ -428,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/25/PYCfileformat/" rel="next" title="PYC文件格式">
-                <i class="fa fa-chevron-left"></i> PYC文件格式
+              <a href="/2019/02/27/jdanalysis/" rel="next" title="京东“盗图”事件分析">
+                <i class="fa fa-chevron-left"></i> 京东“盗图”事件分析
               </a>
             
           </div>
@@ -438,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/29/AndroidManifest/" rel="prev" title="AndroidManifest.xml文件格式">
-                AndroidManifest.xml文件格式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/28/buildexample/" rel="prev" title="在源代码目录外编译clang例子">
+                在源代码目录外编译clang例子 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -596,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JNI简介"><span class="nav-number">1.</span> <span class="nav-text">JNI简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数注册"><span class="nav-number">1.1.</span> <span class="nav-text">函数注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态注册native函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">静态注册native函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态注册native函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">动态注册native函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#so加载"><span class="nav-number">1.2.</span> <span class="nav-text">so加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">注册函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java和native之间的数据传递"><span class="nav-number">1.3.</span> <span class="nav-text">java和native之间的数据传递</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#如何读写LLVM-bitcode"><span class="nav-number">1.</span> <span class="nav-text">如何读写LLVM bitcode</span></a></li></ol></div>
             
 
           </div>

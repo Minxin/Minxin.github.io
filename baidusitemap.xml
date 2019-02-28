@@ -4,6 +4,36 @@
 
     
   <url>
+    <loc>http://fancy-blogs.com/2019/02/27/RWBitcode/</loc>
+    <lastmod>2019-02-28T10:35:27.798Z</lastmod>
+    <data>
+        <display>
+        <title>如何读写LLVM bitcode</title>
+        <pubTime>2019-02-27T08:00:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://fancy-blogs.com/2019/02/28/buildexample/</loc>
+    <lastmod>2019-02-28T10:35:09.254Z</lastmod>
+    <data>
+        <display>
+        <title>在源代码目录外编译clang例子</title>
+        <pubTime>2019-02-28T08:00:00.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fancy-blogs.com/2019/02/27/jdanalysis/</loc>
     <lastmod>2019-02-27T02:45:38.425Z</lastmod>
     <data>
