@@ -81,20 +81,17 @@
 
 
 
-<meta name="description" content="NDK gdb插件——peda-armgdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？最近发现一款支持arm的插件，是peda改的，peda-arm. 安装流程从github上拉下来后，直接把文件夹复制过去。gdb的目录(MACOS)是：/Users/username/">
+<meta name="description" content="title:移植OLLVM混淆pass date:2019-03-22移植OLLVM混淆pass文件仅仅是学习混淆pass的编写，改动不是很大。将OLLVM的pass放进新版本（7.0.0 release）的LLVM源码下进行编译。OLLVM的pass目录：OLLVM/lib/Transforms/Obfuscation 控制流平坦化：Flattening.cpp虚假控制流：BogusCont">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NDK gdb插件——peda-arm">
-<meta property="og:url" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/index.html">
+<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:url" content="http://fancy-blogs.com/2019/03/21/rebuildpass/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="NDK gdb插件——peda-armgdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？最近发现一款支持arm的插件，是peda改的，peda-arm. 安装流程从github上拉下来后，直接把文件夹复制过去。gdb的目录(MACOS)是：/Users/username/">
+<meta property="og:description" content="title:移植OLLVM混淆pass date:2019-03-22移植OLLVM混淆pass文件仅仅是学习混淆pass的编写，改动不是很大。将OLLVM的pass放进新版本（7.0.0 release）的LLVM源码下进行编译。OLLVM的pass目录：OLLVM/lib/Transforms/Obfuscation 控制流平坦化：Flattening.cpp虚假控制流：BogusCont">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323283415621.jpg">
-<meta property="og:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323286476307.jpg">
-<meta property="og:updated_time" content="2019-02-25T03:37:25.379Z">
+<meta property="og:updated_time" content="2019-03-22T15:38:38.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NDK gdb插件——peda-arm">
-<meta name="twitter:description" content="NDK gdb插件——peda-armgdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？最近发现一款支持arm的插件，是peda改的，peda-arm. 安装流程从github上拉下来后，直接把文件夹复制过去。gdb的目录(MACOS)是：/Users/username/">
-<meta name="twitter:image" content="http://fancy-blogs.com/2018/07/23/androidgdbplus/15323283415621.jpg">
+<meta name="twitter:title" content="fancy&#39;s blog">
+<meta name="twitter:description" content="title:移植OLLVM混淆pass date:2019-03-22移植OLLVM混淆pass文件仅仅是学习混淆pass的编写，改动不是很大。将OLLVM的pass放进新版本（7.0.0 release）的LLVM源码下进行编译。OLLVM的pass目录：OLLVM/lib/Transforms/Obfuscation 控制流平坦化：Flattening.cpp虚假控制流：BogusCont">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/2018/07/23/androidgdbplus/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/2019/03/21/rebuildpass/"/>
 
 
 
 
 
-  <title>NDK gdb插件——peda-arm | fancy's blog</title>
+  <title> | fancy's blog</title>
   
 
 
@@ -277,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2018/07/23/androidgdbplus/">
+    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2019/03/21/rebuildpass/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fancy">
@@ -294,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NDK gdb插件——peda-arm</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -306,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:38:24+08:00">
-                2018-07-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-21T12:28:20+08:00">
+                2019-03-21
               </time>
             
 
@@ -325,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/23/androidgdbplus/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/23/androidgdbplus/" itemprop="commentsCount"></span>
+                <a href="/2019/03/21/rebuildpass/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/03/21/rebuildpass/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -360,15 +357,38 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="NDK-gdb插件——peda-arm"><a href="#NDK-gdb插件——peda-arm" class="headerlink" title="NDK gdb插件——peda-arm"></a>NDK gdb插件——peda-arm</h1><p>gdb调试时配合插件可以提高效率，Linux下gdb调试可以使用peda、gef等。在android调试里，使用gdbserver配合gdb可以远程调试，那有没有对应的插件呢？<br>最近发现一款支持arm的插件，是peda改的，<a href="https://github.com/alset0326/peda-arm" target="_blank" rel="noopener">peda-arm</a>.</p>
-<h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><p>从github上拉下来后，直接把文件夹复制过去。<br>gdb的目录(MACOS)是：<br><code>/Users/username/Library/Android/sdk/ndk-bundle/prebuilt/darwin-x86_64/bin</code><br>反正在ndk的目录下。<br>把clone下来的文件夹复制进去。<br><img src="/2018/07/23/androidgdbplus/15323283415621.jpg" alt="w100"></p>
-<p>修改初始化配置文件:<br><code>echo “source ./peda-arm/peda-arm.py” &gt;&gt; ./.gdbinit</code></p>
-<h2 id="启动调试"><a href="#启动调试" class="headerlink" title="启动调试"></a>启动调试</h2><p>把gdbserver上传到手机后：<br><code>gdbserver remote:port --attach targetpid</code></p>
-<p>本地端口转发<br><code>adb forward tcp:port tcp:port</code></p>
-<p>gdb调试<br><code>./gdb</code><br><code>target remote:port</code></p>
-<p><img src="/2018/07/23/androidgdbplus/15323286476307.jpg" alt="w100"></p>
-<p>这用就OK啦。</p>
-<p>Debug for fun～</p>
+        <script src="/assets/js/APlayer.min.js"> </script><hr>
+<p>title:移植OLLVM混淆pass</p>
+<h2 id="date-2019-03-22"><a href="#date-2019-03-22" class="headerlink" title="date:2019-03-22"></a>date:2019-03-22</h2><h1 id="移植OLLVM混淆pass"><a href="#移植OLLVM混淆pass" class="headerlink" title="移植OLLVM混淆pass"></a>移植OLLVM混淆pass</h1><h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><p>仅仅是学习混淆pass的编写，改动不是很大。将OLLVM的pass放进新版本（7.0.0 release）的LLVM源码下进行编译。<br>OLLVM的pass目录：<code>OLLVM/lib/Transforms/Obfuscation</code></p>
+<p>控制流平坦化：Flattening.cpp<br>虚假控制流：BogusControlFlow.cpp SplitBasicBlocks.cpp<br>指令替换：Substitution.cpp</p>
+<p>对应头文件目录：<code>OLLVM/include/llvm/Transforms/Obfuscation</code></p>
+<p>这里以分割基本块的pass为例，将<br>SplitBasicBlocks.cpp SplitBasicBlocks.h<br>Utils.cpp Utils.h<br>CryptoUtils.h(include/llvm/)<br>复制到对应目录。</p>
+<p>修改对应目录下的LLVMBuild.txt，subdirectories添加模块目录名称。修改对应目录下（Obfuscation目录下和Transforms目录下）的CMakeLists.txt，add_llvm_library添加模块名称和参与编译文件，add_dependencies添加模块名称。此时进行编译就可以看到build/lib目录下已经有libLLVMObfus.a（我把OLLVM里的Obfuscation改成了Obfus）。<br>但是此时运行opt，发现无<code>-split</code>参数。</p>
+<p>所以我们还需要修改IPO（Transforms/IPO），加入PassManager之后可以直接通过clang的参数使用pass了<br>PassManagerBuilder.cpp：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+<span class="number">45</span>      <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"llvm/Transforms/Obfus/Split.h"</span></span></span><br><span class="line">+<span class="number">158</span>     <span class="keyword">static</span> cl::opt&lt;<span class="keyword">bool</span>&gt; Split(<span class="string">"split"</span>, cl::init(<span class="literal">false</span>),cl::desc(<span class="string">"Enable basic block splitting"</span>));</span><br><span class="line">+<span class="number">433</span>     MPM.add(createSplitBasicBlock(Split));</span><br></pre></td></tr></table></figure>
+<p>IPO的LLVMBuild.txt：<br><code>+required_libraries=Obfus</code></p>
+<p>ok，此时编译完成后，opt参数列表里就有了<code>-split</code>。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>split PASS的实现：</p>
+<ul>
+<li>保存Function的所有Block；</li>
+<li>逐个处理Block，对非单一指令BB和不包含PHI指令的BB进行分割；</li>
+<li>生成乱序表；</li>
+<li>乱序处理Block中的指令；</li>
+<li><p>具体处理单个指令的方法：<br><code>*BasicBlock-&gt;splitBasicBlock(BasicBlock::iterator,*BasicBlock-&gt;getName()+&quot;.splist&quot;)</code><br>位于<code>OLLVM/lib/IR/BasicBlock.cpp</code></p>
+<blockquote>
+<p>在指定的指令处将一个基本块一分为二。注意所有在指定指令前的指令会作为原始基本块的一部分,一个无条件分支会被添加到新的BB，余下的指令会被移到新的BB，包括旧BB的终止符。这会使迭代器无效。<br>注意这只针对一下格式合格的BB（有头有尾），并且指定的指令不允许是指令列表的最后一个（会导致生成一个退化的BB，而且内部带终止符）。</p>
+</blockquote>
+</li>
+<li><p>新建一个BB，将指定指令移到新的BB，为新BB添加分支指令；</p>
+</li>
+<li>遍历新block的后继block，更新所有PHI节点信息，将原来从旧block出来的分支路径改为从新block出来。</li>
+</ul>
+<p>判断PHI节点：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (BasicBlock::iterator II = Successor-&gt;begin();</span><br><span class="line">         (PN = dyn_cast&lt;PHINode&gt;(II)); ++II) &#123;</span><br><span class="line">      <span class="keyword">int</span> IDX = PN-&gt;getBasicBlockIndex(<span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">while</span> (IDX != <span class="number">-1</span>) &#123;</span><br><span class="line">        PN-&gt;setIncomingBlock((<span class="keyword">unsigned</span>)IDX, New);</span><br><span class="line">        IDX = PN-&gt;getBasicBlockIndex(<span class="keyword">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里添加几条打印信息代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#++ <span class="number">88</span> </span><br><span class="line">errs()&lt;&lt;<span class="string">"This BB size: "</span>&lt;&lt;curr-&gt;size()&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">#++ <span class="number">114</span> </span><br><span class="line">errs()&lt;&lt;<span class="string">"To split instruction: "</span>&lt;&lt;*it&lt;&lt;<span class="string">"\n"</span>;   </span><br><span class="line">#++ <span class="number">125</span> </span><br><span class="line">errs()&lt;&lt;<span class="string">"After split: \n"</span>;</span><br><span class="line"><span class="keyword">for</span>(BasicBlock::iterator sptit = toSplit-&gt;begin();sptit!=toSplit-&gt;end();++sptit)&#123;</span><br><span class="line">    errs()&lt;&lt;<span class="string">"[+] "</span>&lt;&lt;*sptit&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line">errs()&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure>
+<p>打印出对BB的分割点。</p>
+<p>对比pass效果<br><code>./clang -save-temps -S -mllvm -split test.c -o test.s</code><br>拿到的是pass处理的汇编文件，和中间文件。<br>对test.bc-&gt;test.ll-&gt;test.s(得到未经过pass处理的汇编文件)，可自行对比（处理的BB会被添上“.split”）。</p>
 
       
     </div>
@@ -393,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/04/mtp2/" rel="next" title="腾讯游戏安全技术竞赛决赛第一题writeup">
-                <i class="fa fa-chevron-left"></i> 腾讯游戏安全技术竞赛决赛第一题writeup
+              <a href="/2019/02/28/buildexample/" rel="next" title="在源代码目录外编译clang例子">
+                <i class="fa fa-chevron-left"></i> 在源代码目录外编译clang例子
               </a>
             
           </div>
@@ -402,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/01/play20180801/" rel="prev" title="意">
-                意 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -561,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NDK-gdb插件——peda-arm"><span class="nav-number">1.</span> <span class="nav-text">NDK gdb插件——peda-arm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装流程"><span class="nav-number">1.1.</span> <span class="nav-text">安装流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动调试"><span class="nav-number">1.2.</span> <span class="nav-text">启动调试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#date-2019-03-22"><span class="nav-number">1.</span> <span class="nav-text">date:2019-03-22</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#移植OLLVM混淆pass"><span class="nav-number"></span> <span class="nav-text">移植OLLVM混淆pass</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">1.</span> <span class="nav-text">文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>

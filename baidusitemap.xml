@@ -4,8 +4,23 @@
 
     
   <url>
+    <loc>http://fancy-blogs.com/2019/03/21/rebuildpass/</loc>
+    <lastmod>2019-03-22T15:38:38.011Z</lastmod>
+    <data>
+        <display>
+        <title></title>
+        <pubTime>2019-03-21T04:28:20.983Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fancy-blogs.com/2019/02/27/RWBitcode/</loc>
-    <lastmod>2019-02-28T10:35:27.798Z</lastmod>
+    <lastmod>2019-03-22T02:19:37.390Z</lastmod>
     <data>
         <display>
         <title>如何读写LLVM bitcode</title>

@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
+<meta name="description" content="如何读写LLVM bitcode翻译转载 我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何读写LLVM bitcode">
 <meta property="og:url" content="http://fancy-blogs.com/2019/02/27/RWBitcode/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
+<meta property="og:description" content="如何读写LLVM bitcode翻译转载 我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-28T10:35:27.798Z">
+<meta property="og:updated_time" content="2019-03-22T02:19:37.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何读写LLVM bitcode">
-<meta name="twitter:description" content="如何读写LLVM bitcode我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件">
+<meta name="twitter:description" content="如何读写LLVM bitcode翻译转载 我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中">
 
 
 
@@ -357,7 +357,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何读写LLVM-bitcode"><a href="#如何读写LLVM-bitcode" class="headerlink" title="如何读写LLVM bitcode"></a>如何读写LLVM bitcode</h1><p>我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。<br>存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb …</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="如何读写LLVM-bitcode"><a href="#如何读写LLVM-bitcode" class="headerlink" title="如何读写LLVM bitcode"></a>如何读写LLVM bitcode</h1><p>翻译转载</p>
+<p>我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。<br>存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb …</p>
 <p>将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。<br>为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件（称为bitcode，文件扩展名.bc），然后再写回来。</p>
 <p>首先，我们浏览一些高级LLVM术语：</p>
 <ul>
@@ -510,7 +511,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
