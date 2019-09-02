@@ -4,8 +4,23 @@
 
     
   <url>
+    <loc>http://fancy-blogs.com/2019/09/02/SROP/</loc>
+    <lastmod>2019-09-02T08:31:21.109Z</lastmod>
+    <data>
+        <display>
+        <title>SROP</title>
+        <pubTime>2019-09-02T08:29:15.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://fancy-blogs.com/2019/03/22/rebuildpass/</loc>
-    <lastmod>2019-03-22T15:40:15.459Z</lastmod>
+    <lastmod>2019-03-24T08:57:39.347Z</lastmod>
     <data>
         <display>
         <title>移植OLLVM混淆pass</title>
