@@ -1,37 +1,1161 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fancy's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="腾讯游戏安全技术移动平台资格题writeup题目描述题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。 key相关 key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。将keystr以”#”间">
+<meta property="og:type" content="article">
+<meta property="og:title" content="腾讯游戏安全技术移动平台资格题writeup">
+<meta property="og:url" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/index.html">
+<meta property="og:site_name" content="fancy&#39;s blog">
+<meta property="og:description" content="腾讯游戏安全技术移动平台资格题writeup题目描述题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。 key相关 key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。将keystr以”#”间">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/success.jpg">
+<meta property="article:published_time" content="2018-04-22T17:36:08.000Z">
+<meta property="article:modified_time" content="2019-02-25T05:05:17.000Z">
+<meta property="article:author" content="fancy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/success.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://f4ncy.top/2018/04/23/mtp-mobile-1/"/>
+
+
+
+
+
+  <title>腾讯游戏安全技术移动平台资格题writeup | fancy's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fancy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-play">
+          <a href="/categories/play/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cogs"></i> <br />
+            
+            play
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yxizPRHEJekzdN3y2Unf','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2018/04/23/mtp-mobile-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fancy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">腾讯游戏安全技术移动平台资格题writeup</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T01:36:08+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/23/mtp-mobile-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/23/mtp-mobile-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="腾讯游戏安全技术移动平台资格题writeup"><a href="#腾讯游戏安全技术移动平台资格题writeup" class="headerlink" title="腾讯游戏安全技术移动平台资格题writeup"></a>腾讯游戏安全技术移动平台资格题writeup</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。<br>有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。</p>
+<h3 id="key相关"><a href="#key相关" class="headerlink" title="key相关"></a>key相关</h3><blockquote>
+<p>key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。<br>将keystr以”#”间隔，拆分，放入vector<br>sub_4864将keystr 拆分为8块，校验每块长度不为0<br>最后会对每块取值运算，要求每块4字节，所以结构是<code>****#****#****#****#****#****#****#****</code></p>
+</blockquote>
+<p>sub_496C函数传入keystr，生成5个int64，用于后面校验。</p>
+<p>生成规则脚本里有，不作详解。大概就是每次运算取vector中两个项中各一字节，参与指定运算。前两个还算有规律，后面就没什么规律了。关于这里的代码，似乎是经过混淆，循环被平坦化了。</p>
+<p>脚本是python的，所以对数据的类型处理不是很好，可能存在bug。好尴尬。</p>
+<h3 id="code相关"><a href="#code相关" class="headerlink" title="code相关"></a>code相关</h3><blockquote>
+<p>输入长度需要是偶数<br>长度需要是44（由生成数据的长度决定）<br>最后12字符确定()（由生产数据的最后9字节决定）<br>最后以”=”结束</p>
+</blockquote>
+<p>sub_7114函数传入codestr，生成一个vector，用于后面校验。</p>
+<p>每4字节生成3字节数据，根据字节在已知字符串<code>&quot;ZO6Kq79L&amp;CPWvNopzQfghDRSG@di*kAB8rsFewxlm+/u5a^2YtTJUVEn0$HI34y#=&quot;</code>中的位置来确定数。</p>
+<blockquote>
+<p>block[0]<del>block[1]-&gt;result[0]<br>block[1]</del>block[2]-&gt;result[1]<br>block[2]~block[3]-&gt;result[2]</p>
+</blockquote>
+<p>最后生成44/4*3=33字节数据</p>
+<blockquote>
+<p>v11[3] != 0x32303138</p>
+</blockquote>
+<p>决定生成的数据最后8字节，值为(int64)0x0000000032303138<br>由生成规则爆破（爆破代码在脚本注释中）得到“pKqE”、“NeZZ”、“ZZZ”。</p>
+<p>所以code最后12字节为“pKqENeZZZZZ=”</p>
+<h3 id="验证函数"><a href="#验证函数" class="headerlink" title="验证函数"></a>验证函数</h3><p>sub_5658传入key生成的5个int64数和code生成的前24字节数据。</p>
+<p>参数作为8个int64参与运算。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if ( ((a6 * a1 + a2) * a6 + a3) ^ a7 )        // ((S[0]*v18+v17)*S[0]+v16)==S[1]</span><br><span class="line">    return 0;</span><br><span class="line">  v8 = 0;</span><br><span class="line">  if ( (a2 - a4) * (a2 - a4) == 4 * a1 * (a6 * a4 + a3 - a7) &amp;&amp; a8 == a3 + (a5 * a1 + a2 - a4) * a5 )</span><br><span class="line">    v8 = 1;                                     // (v17-v15)*(v17-v15)==4*v18*(S[0]*v15+v14-S[1])</span><br><span class="line">                                                // S[2]==v16+(v14*v18+v17-v15)*v14</span><br></pre></td></tr></table></figure>
+
+<p>将code生成的数据当作未知数，整理数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=(4*CH18*CH18)</span><br><span class="line">b=(4*CH18*(CH17-CH15))</span><br><span class="line">c=((CH17-CH15)*(CH17-CH15))</span><br><span class="line"></span><br><span class="line">#b**2==4*a*c</span><br><span class="line">#4*CH18*(CH17-CH15)*4*CH18*(CH17-CH15)==4*4*CH18*CH18*(CH17-CH15)*(CH17-CH15)</span><br></pre></td></tr></table></figure>
+<p>可整理为一个二元一次方程。且delta=0，所以有唯一解。</p>
+<h2 id="注册机编写思路"><a href="#注册机编写思路" class="headerlink" title="注册机编写思路"></a>注册机编写思路</h2><p>要求由输入key来计算code，key可以生成5个int64，通过还原程序的计算过程，将5个数计算出来。此时验证函数中，把code的数据当作未知数，已有系数，由整理得到的方程解出S[0],再计算得出S[1],S[2]。</p>
+<blockquote>
+<p>S[0]，S[1]，S[2]分别数code生成的前24字节组成的3个int64</p>
+</blockquote>
+<p>得到code生成的数据后，反推code输入，已经知道了code的生成规则，和之前得到code的最后12个字节一样，爆破处理，每4字节生成3字节数据，那么就3字节3字节处理。</p>
+<p>每3字节得到4字节输入，24/3*4=32，加上已知的12字节，32+12=44，正好输入44字节。</p>
+<h3 id="注册机使用"><a href="#注册机使用" class="headerlink" title="注册机使用"></a>注册机使用</h3><p>脚本测试环境：Python 2.7.14<br>MYKEY设置成key，注意格式。<br>运行脚本即可，最后输出的结果即是code.</p>
+<p>几组跑出来的结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ab1D#2BCE#A41B#EA2A#B3CD#8A0A#AB31#0FF0</span><br><span class="line">dn57ZfZZZZK^wxgp$FhxiamNJlIRtD20pKqENeZZZZZ=</span><br><span class="line"></span><br><span class="line">1b1D#2BCE#141B#EA2A#13CD#8A0A#1B31#0FF0</span><br><span class="line">ynoJZZZZZZK^wFr#*kEHd#uT&amp;3YdEUsBpKqENeZZZZZ=</span><br><span class="line"></span><br><span class="line">AAAA#bbbb#1111#cccc#defa#3333#4317#98f1</span><br><span class="line">OEH46EZZZZZwJYDWiCe*v0Fd@Gqo5zR9pKqENeZZZZZ=</span><br></pre></td></tr></table></figure>
+
+<p>截图：<br><img src="/2018/04/23/mtp-mobile-1/success.jpg" alt="success-w400"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/08/GOTHOOK/" rel="next" title="GOT表hook">
+                <i class="fa fa-chevron-left"></i> GOT表hook
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/04/mtp2/" rel="prev" title="腾讯游戏安全技术竞赛决赛第一题writeup">
+                腾讯游戏安全技术竞赛决赛第一题writeup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.cnblogs.com/fancystar/" target="_blank" title="cnblog">
+                    
+                      <i class="fa fa-fw fa-globe"></i>cnblog</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/minxin" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E8%B5%84%E6%A0%BC%E9%A2%98writeup"><span class="nav-number">1.</span> <span class="nav-text">腾讯游戏安全技术移动平台资格题writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#key%E7%9B%B8%E5%85%B3"><span class="nav-number">1.1.1.</span> <span class="nav-text">key相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code%E7%9B%B8%E5%85%B3"><span class="nav-number">1.1.2.</span> <span class="nav-text">code相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">验证函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%BA%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">注册机编写思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%BA%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">注册机使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fancy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+  <span>Hosted by <a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+  <span>with <a target="_blank" rel="noopener" href="https://minxin.github.io" style="font-weight: bold">Github Pages</a>
+  </div>
+  
+
+
+
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Minxin',
+            repo: 'Minxin.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
+            
+                client_id: '039da8b1b27bc4e10d7f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
