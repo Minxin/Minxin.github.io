@@ -81,19 +81,28 @@
 
 
 
-<meta name="description" content="腾讯游戏安全技术移动平台资格题writeup题目描述题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。 key相关 key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。将keystr以”#”间">
+<meta name="description" content="title:TMF框架简介TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="腾讯游戏安全技术移动平台资格题writeup">
-<meta property="og:url" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/index.html">
+<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:url" content="https://f4ncy.top/2021/12/03/TMF/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="腾讯游戏安全技术移动平台资格题writeup题目描述题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。 key相关 key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。将keystr以”#”间">
+<meta property="og:description" content="title:TMF框架简介TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/success.jpg">
-<meta property="article:published_time" content="2018-04-22T17:36:08.000Z">
-<meta property="article:modified_time" content="2019-02-25T05:05:17.000Z">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/1ae2bb8d07769.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/1d0db6d533fa2.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/86e60ed75cc4d.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/4a236b0aee1ef.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/1fc887e304fc2.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/4709990a60e16.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/3754e4582a69a.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/969f66d6a84dd.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/474521ecba9b6.png">
+<meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/c5ce813a9025a.png">
+<meta property="article:published_time" content="2021-12-03T08:54:02.263Z">
+<meta property="article:modified_time" content="2021-12-08T06:19:01.720Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://f4ncy.top/2018/04/23/mtp-mobile-1/success.jpg">
+<meta name="twitter:image" content="http://150.158.143.160:8877/2021/12/05/1ae2bb8d07769.png">
 
 
 
@@ -123,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://f4ncy.top/2018/04/23/mtp-mobile-1/"/>
+  <link rel="canonical" href="https://f4ncy.top/2021/12/03/TMF/"/>
 
 
 
 
 
-  <title>腾讯游戏安全技术移动平台资格题writeup | fancy's blog</title>
+  <title> | fancy's blog</title>
   
 
 
@@ -276,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2018/04/23/mtp-mobile-1/">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2021/12/03/TMF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -293,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">腾讯游戏安全技术移动平台资格题writeup</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -305,8 +314,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T01:36:08+08:00">
-                2018-04-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-12-03T16:54:02+08:00">
+                2021-12-03
               </time>
             
 
@@ -324,8 +333,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/23/mtp-mobile-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/23/mtp-mobile-1/" itemprop="commentsCount"></span>
+                <a href="/2021/12/03/TMF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2021/12/03/TMF/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -359,45 +368,76 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="腾讯游戏安全技术移动平台资格题writeup"><a href="#腾讯游戏安全技术移动平台资格题writeup" class="headerlink" title="腾讯游戏安全技术移动平台资格题writeup"></a>腾讯游戏安全技术移动平台资格题writeup</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>题目要求输入key和code，匹配则会显示“success！”，否则显示“fail！”。<br>有standard和advance两个版本，advance比standard多一个函数，这里时间原因只做到了standard版本，最近每周都有ctf。</p>
-<h3 id="key相关"><a href="#key相关" class="headerlink" title="key相关"></a>key相关</h3><blockquote>
-<p>key只能是数字，字母a(A)～f(F)，如果是小写，会被转为大写。<br>将keystr以”#”间隔，拆分，放入vector<br>sub_4864将keystr 拆分为8块，校验每块长度不为0<br>最后会对每块取值运算，要求每块4字节，所以结构是<code>****#****#****#****#****#****#****#****</code></p>
-</blockquote>
-<p>sub_496C函数传入keystr，生成5个int64，用于后面校验。</p>
-<p>生成规则脚本里有，不作详解。大概就是每次运算取vector中两个项中各一字节，参与指定运算。前两个还算有规律，后面就没什么规律了。关于这里的代码，似乎是经过混淆，循环被平坦化了。</p>
-<p>脚本是python的，所以对数据的类型处理不是很好，可能存在bug。好尴尬。</p>
-<h3 id="code相关"><a href="#code相关" class="headerlink" title="code相关"></a>code相关</h3><blockquote>
-<p>输入长度需要是偶数<br>长度需要是44（由生成数据的长度决定）<br>最后12字符确定()（由生产数据的最后9字节决定）<br>最后以”=”结束</p>
-</blockquote>
-<p>sub_7114函数传入codestr，生成一个vector，用于后面校验。</p>
-<p>每4字节生成3字节数据，根据字节在已知字符串<code>&quot;ZO6Kq79L&amp;CPWvNopzQfghDRSG@di*kAB8rsFewxlm+/u5a^2YtTJUVEn0$HI34y#=&quot;</code>中的位置来确定数。</p>
-<blockquote>
-<p>block[0]<del>block[1]-&gt;result[0]<br>block[1]</del>block[2]-&gt;result[1]<br>block[2]~block[3]-&gt;result[2]</p>
-</blockquote>
-<p>最后生成44/4*3=33字节数据</p>
-<blockquote>
-<p>v11[3] != 0x32303138</p>
-</blockquote>
-<p>决定生成的数据最后8字节，值为(int64)0x0000000032303138<br>由生成规则爆破（爆破代码在脚本注释中）得到“pKqE”、“NeZZ”、“ZZZ”。</p>
-<p>所以code最后12字节为“pKqENeZZZZZ=”</p>
-<h3 id="验证函数"><a href="#验证函数" class="headerlink" title="验证函数"></a>验证函数</h3><p>sub_5658传入key生成的5个int64数和code生成的前24字节数据。</p>
-<p>参数作为8个int64参与运算。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if ( ((a6 * a1 + a2) * a6 + a3) ^ a7 )        // ((S[0]*v18+v17)*S[0]+v16)==S[1]</span><br><span class="line">    return 0;</span><br><span class="line">  v8 = 0;</span><br><span class="line">  if ( (a2 - a4) * (a2 - a4) == 4 * a1 * (a6 * a4 + a3 - a7) &amp;&amp; a8 == a3 + (a5 * a1 + a2 - a4) * a5 )</span><br><span class="line">    v8 = 1;                                     // (v17-v15)*(v17-v15)==4*v18*(S[0]*v15+v14-S[1])</span><br><span class="line">                                                // S[2]==v16+(v14*v18+v17-v15)*v14</span><br></pre></td></tr></table></figure>
+        <script src="/assets/js/APlayer.min.js"> </script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><hr>
+<h2 id="title-TMF框架简介"><a href="#title-TMF框架简介" class="headerlink" title="title:TMF框架简介"></a>title:TMF框架简介</h2><h1 id="TMF"><a href="#TMF" class="headerlink" title="TMF"></a>TMF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>网关服务+开发框架</p>
+<p>客户端 ———HTTP/TCP———&gt;网关———HTTP/RPC———&gt; 服务器</p>
+<p>客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP/RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。</p>
+<h2 id="请求路径"><a href="#请求路径" class="headerlink" title="请求路径"></a>请求路径</h2><p>原生路径：<br>sharkinit-&gt;xxfunc-(sharkUtil)-&gt;sendshark<br>一般会对shark进行封装，例如LoginActivity-&gt;SharkUtil.request(“login.do”)-&gt;Shark.sendshark</p>
+<p><img src="http://150.158.143.160:8877/2021/12/05/1ae2bb8d07769.png" alt="login|600"><br><img src="http://150.158.143.160:8877/2021/12/05/1d0db6d533fa2.png" alt="util|600"><br><img src="http://150.158.143.160:8877/2021/12/05/86e60ed75cc4d.png" alt="sendshark|600"></p>
+<p>H5路径<br>xx.js（$rpcDo）→app.js-&gt;TMFJSBridge.js→ITMFWebView-&gt;BaseTMFWeb-&gt;findjsapi-&gt;xxjsapi-&gt;sendshark-&gt;oncallback</p>
+<p>js请求通过TMFJSBridge调用webview中注册的js接口，webview初始化时会将已实现的JsApi接口类和接口名称关联（Map），所以js中通过接口名即可调用java层函数<br><img src="http://150.158.143.160:8877/2021/12/05/4a236b0aee1ef.png" alt="findjsapi|600"><br>实现JsApi接口<br><img src="http://150.158.143.160:8877/2021/12/05/1fc887e304fc2.png" alt="jsapi|600"><br><img src="http://150.158.143.160:8877/2021/12/05/4709990a60e16.png" alt="apiname|400"><br><img src="http://150.158.143.160:8877/2021/12/05/3754e4582a69a.png" alt="jsname|600"></p>
+<h2 id="Shark"><a href="#Shark" class="headerlink" title="Shark"></a>Shark</h2><p>鲨鱼皮作为网关组件，其包含了数据格式处理、加解密、通讯</p>
+<ul>
+<li>初始化Shark</li>
+<li>获取配置</li>
+<li>Build</li>
+<li>Start</li>
+</ul>
+<p> Shark初始化需要获取程序Context，一般为Application:<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Shark.setAppContext(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure></p>
+<p>Shark需要从TMFconfig配置中获取应用ID、协议类型、网关等信息。<br>创建一个Shark实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Shark shark = SharkFactory.builder(context)</span><br><span class="line">    .logEnable(IS_LOG_ENABLE)</span><br><span class="line">	.serverType(SERVER_TYPE)</span><br><span class="line">	.sharkPkg(sharkPkg).instanceName(instanceName)</span><br><span class="line">	.sharkOutlet(sharkOutlet)</span><br><span class="line">	.serviceFactory(serviceFactory)</span><br><span class="line">	.withTcpChannel(withTcpChannel)</span><br><span class="line">	.build();</span><br></pre></td></tr></table></figure>
 
-<p>将code生成的数据当作未知数，整理数据：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=(4*CH18*CH18)</span><br><span class="line">b=(4*CH18*(CH17-CH15))</span><br><span class="line">c=((CH17-CH15)*(CH17-CH15))</span><br><span class="line"></span><br><span class="line">#b**2==4*a*c</span><br><span class="line">#4*CH18*(CH17-CH15)*4*CH18*(CH17-CH15)==4*4*CH18*CH18*(CH17-CH15)*(CH17-CH15)</span><br></pre></td></tr></table></figure>
-<p>可整理为一个二元一次方程。且delta=0，所以有唯一解。</p>
-<h2 id="注册机编写思路"><a href="#注册机编写思路" class="headerlink" title="注册机编写思路"></a>注册机编写思路</h2><p>要求由输入key来计算code，key可以生成5个int64，通过还原程序的计算过程，将5个数计算出来。此时验证函数中，把code的数据当作未知数，已有系数，由整理得到的方程解出S[0],再计算得出S[1],S[2]。</p>
-<blockquote>
-<p>S[0]，S[1]，S[2]分别数code生成的前24字节组成的3个int64</p>
-</blockquote>
-<p>得到code生成的数据后，反推code输入，已经知道了code的生成规则，和之前得到code的最后12个字节一样，爆破处理，每4字节生成3字节数据，那么就3字节3字节处理。</p>
-<p>每3字节得到4字节输入，24/3*4=32，加上已知的12字节，32+12=44，正好输入44字节。</p>
-<h3 id="注册机使用"><a href="#注册机使用" class="headerlink" title="注册机使用"></a>注册机使用</h3><p>脚本测试环境：Python 2.7.14<br>MYKEY设置成key，注意格式。<br>运行脚本即可，最后输出的结果即是code.</p>
-<p>几组跑出来的结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ab1D#2BCE#A41B#EA2A#B3CD#8A0A#AB31#0FF0</span><br><span class="line">dn57ZfZZZZK^wxgp$FhxiamNJlIRtD20pKqENeZZZZZ=</span><br><span class="line"></span><br><span class="line">1b1D#2BCE#141B#EA2A#13CD#8A0A#1B31#0FF0</span><br><span class="line">ynoJZZZZZZK^wFr#*kEHd#uT&amp;3YdEUsBpKqENeZZZZZ=</span><br><span class="line"></span><br><span class="line">AAAA#bbbb#1111#cccc#defa#3333#4317#98f1</span><br><span class="line">OEH46EZZZZZwJYDWiCe*v0Fd@Gqo5zR9pKqENeZZZZZ=</span><br></pre></td></tr></table></figure>
+<p>最后启动shark:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shark.start(autoStartTcpChannel)</span><br></pre></td></tr></table></figure>
 
-<p>截图：<br><img src="/2018/04/23/mtp-mobile-1/success.jpg" alt="success-w400"></p>
+
+<p>关键函数：<br>serviceFactory<br>设置线程池和加解密算法，需要实现一个IServiceFactory接口，框架提供默认的SM2和SM4：<br><img src="http://150.158.143.160:8877/2021/12/05/969f66d6a84dd.png" alt="serviceFactory"></p>
+<p> sendShark<br>两个参数SharkHttpEntity、 ISharkCallBack2<br>SharkHttpEntity：是封装的请求或响应结构，sendShark中对应参数为请求包对象<br>ISharkCallBack2：网络请求回调接口，接口需要实现onFinish，最后一个参数也为SharkHttpEntity，则是应答包对象<br><img src="http://150.158.143.160:8877/2021/12/05/474521ecba9b6.png" alt="sendshark"><br>SharkHttpEntity继承自JceStruct</p>
+<p>SharkHttpEntity结构：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>params</td>
+<td>SashimiHeader对象，header参数集合</td>
+</tr>
+<tr>
+<td>data</td>
+<td>请求body</td>
+</tr>
+</tbody></table>
+<p>编写请求参数的自吐脚步建议从SharkHttpEntity初始化处入手，shark的加解密接口由于参数已经是SharkHttpEntity结构的byte数组，不好处理。开发为了便利，一般会对SharkHttpEntity进行封装，封装类的入参往往都是String，参数格式一般为json或url格式，容易打印和处理。<br>应答参数的自吐脚步从ISharkCallBack2的回调函数onFinish中进行回溯，对已经将SharkHttpEntity.data处理成String处进行hook。</p>
+<h2 id="通讯过程"><a href="#通讯过程" class="headerlink" title="通讯过程"></a>通讯过程</h2><p><img src="http://150.158.143.160:8877/2021/12/05/c5ce813a9025a.png" alt="network"></p>
+<ol>
+<li> 终端随机生成一个密钥randomKey;</li>
+<li> 用服务器的SM2公钥对randomKey做非对称加密得到secret，并用randomKey 对业务数据做 SM4 对称加密，然后发送给后台;</li>
+<li> 后台用对应的SM2私钥对secret解密得到randomKey，并为其分配一个标识 sessionId，存储 sessionId 和 randomKey 的映射关系;并用 randomKey 对业务数据做 SM4 对称解密，返回的业务数据也用 randomKey 做 SM4 加 密，将 sessionId 和业务数据一起返回给终端;</li>
+<li> 终端收到响应后，后续每次请求都带上该sessionId，并用randomKey数据 进行 SM4 加密;</li>
+<li> 后台收到请求后，根据sissionId找到randomKey，用randomKey对数据进 行 SM4 解密;</li>
+<li> 回包数据也是用randomKey进行SM4加密。</li>
+</ol>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><ol>
+<li>加密算法<blockquote>
+<p>64字节SM2、128位SM4，安全</p>
+</blockquote>
+</li>
+<li>通讯安全<blockquote>
+<p>密钥协商阶段，密钥传输使用非对称加密；数据传输过程中仅能获取到sessionid和密文，未携带任何密钥信息；sessionid具有时效性；</p>
+</blockquote>
+</li>
+<li>完整性<blockquote>
+<p>说是可以在网关到后台直接配置验签服务，客户端没有；</p>
+</blockquote>
+</li>
+<li>抗抵赖<blockquote>
+<p>不支持，需要自行添加数字签名。</p>
+</blockquote>
+</li>
+</ol>
 
       
     </div>
@@ -422,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/08/GOTHOOK/" rel="next" title="GOT表hook">
-                <i class="fa fa-chevron-left"></i> GOT表hook
+              <a href="/2019/10/31/Dth11/" rel="next" title="Dth11温湿度传感器">
+                <i class="fa fa-chevron-left"></i> Dth11温湿度传感器
               </a>
             
           </div>
@@ -431,10 +471,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/04/mtp2/" rel="prev" title="腾讯游戏安全技术竞赛决赛第一题writeup">
-                腾讯游戏安全技术竞赛决赛第一题writeup <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -586,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%8F%B0%E8%B5%84%E6%A0%BC%E9%A2%98writeup"><span class="nav-number">1.</span> <span class="nav-text">腾讯游戏安全技术移动平台资格题writeup</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#key%E7%9B%B8%E5%85%B3"><span class="nav-number">1.1.1.</span> <span class="nav-text">key相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#code%E7%9B%B8%E5%85%B3"><span class="nav-number">1.1.2.</span> <span class="nav-text">code相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">验证函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%BA%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">注册机编写思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%9C%BA%E4%BD%BF%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">注册机使用</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-TMF%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">title:TMF框架简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TMF"><span class="nav-number"></span> <span class="nav-text">TMF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84"><span class="nav-number">2.</span> <span class="nav-text">请求路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shark"><span class="nav-number">3.</span> <span class="nav-text">Shark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%AE%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">通讯过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">安全性</span></a></li></ol></div>
             
 
           </div>
