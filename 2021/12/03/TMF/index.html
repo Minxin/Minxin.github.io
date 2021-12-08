@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="title:TMF框架简介TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc">
+<meta name="description" content="TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc-(sharkUtil)-&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:title" content="TMF框架简介">
 <meta property="og:url" content="https://f4ncy.top/2021/12/03/TMF/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="title:TMF框架简介TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc">
+<meta property="og:description" content="TMF简介网关服务+开发框架 客户端 ———HTTP&#x2F;TCP———&gt;网关———HTTP&#x2F;RPC———&gt; 服务器 客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP&#x2F;RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。 请求路径原生路径：sharkinit-&gt;xxfunc-(sharkUtil)-&amp;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/1ae2bb8d07769.png">
 <meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/1d0db6d533fa2.png">
@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/474521ecba9b6.png">
 <meta property="og:image" content="http://150.158.143.160:8877/2021/12/05/c5ce813a9025a.png">
 <meta property="article:published_time" content="2021-12-03T08:54:02.263Z">
-<meta property="article:modified_time" content="2021-12-08T06:19:01.720Z">
+<meta property="article:modified_time" content="2021-12-08T06:34:02.000Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://150.158.143.160:8877/2021/12/05/1ae2bb8d07769.png">
@@ -138,7 +138,7 @@
 
 
 
-  <title> | fancy's blog</title>
+  <title>TMF框架简介 | fancy's blog</title>
   
 
 
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">TMF框架简介</h1>
         
 
         <div class="post-meta">
@@ -368,8 +368,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><hr>
-<h2 id="title-TMF框架简介"><a href="#title-TMF框架简介" class="headerlink" title="title:TMF框架简介"></a>title:TMF框架简介</h2><h1 id="TMF"><a href="#TMF" class="headerlink" title="TMF"></a>TMF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>网关服务+开发框架</p>
+        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="TMF"><a href="#TMF" class="headerlink" title="TMF"></a>TMF</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>网关服务+开发框架</p>
 <p>客户端 ———HTTP/TCP———&gt;网关———HTTP/RPC———&gt; 服务器</p>
 <p>客户端会将请求数据发送到网关，网关解析到数据后会根据该URL配置项中的HTTP/RPC将数据转发到对应的业务服务器;然后业务服务器处理完成后将数据返回给网关，网关再将数据返回给客户端。</p>
 <h2 id="请求路径"><a href="#请求路径" class="headerlink" title="请求路径"></a>请求路径</h2><p>原生路径：<br>sharkinit-&gt;xxfunc-(sharkUtil)-&gt;sendshark<br>一般会对shark进行封装，例如LoginActivity-&gt;SharkUtil.request(“login.do”)-&gt;Shark.sendshark</p>
@@ -622,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-TMF%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">title:TMF框架简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TMF"><span class="nav-number"></span> <span class="nav-text">TMF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84"><span class="nav-number">2.</span> <span class="nav-text">请求路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shark"><span class="nav-number">3.</span> <span class="nav-text">Shark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%AE%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">通讯过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">安全性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TMF"><span class="nav-number">1.</span> <span class="nav-text">TMF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84"><span class="nav-number">1.2.</span> <span class="nav-text">请求路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shark"><span class="nav-number">1.3.</span> <span class="nav-text">Shark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%AE%AF%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">通讯过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">安全性</span></a></li></ol></li></ol></div>
             
 
           </div>
