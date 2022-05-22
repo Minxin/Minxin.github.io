@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fancy's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="MISC:SPY_DOG题目的逻辑是 提供狗的图片，需要处理图片，根据已知模型生成可以欺骗该模型，识别为猫的图片，这是一个对抗神经网络的白盒攻击任务。 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010420283&#x2F;article&#x2F;details&#x2F;83685140?depth_1-utm_source&#x3D;distribute.pc_relevant.none-task-blog-BlogCom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MRCTF">
+<meta property="og:url" content="https://f4ncy.top/2022/05/05/MRCTF/index.html">
+<meta property="og:site_name" content="fancy&#39;s blog">
+<meta property="og:description" content="MISC:SPY_DOG题目的逻辑是 提供狗的图片，需要处理图片，根据已知模型生成可以欺骗该模型，识别为猫的图片，这是一个对抗神经网络的白盒攻击任务。 https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010420283&#x2F;article&#x2F;details&#x2F;83685140?depth_1-utm_source&#x3D;distribute.pc_relevant.none-task-blog-BlogCom">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://docimg6.docs.qq.com/image/2xYPw8XXIXhE6YhlFLNsfA.png?w=926&h=184">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/vKmb0RXwoViLwzmXGjTZ_A.png?w=670&h=176">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/XtFgfrpcakjelIAzjiLQdA.png?w=1280&h=543.030303030303">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/AsZkKtkRbaaGubqXDKcqNA.png?w=803&h=456">
+<meta property="og:image" content="https://docimg4.docs.qq.com/image/XhGSw_617h8LRg9itFwW7w.png?w=576&h=67">
+<meta property="og:image" content="https://docimg4.docs.qq.com/image/ReyKrrM8GcYyQ1LK1tRoow.png?w=770&h=148">
+<meta property="og:image" content="https://docimg3.docs.qq.com/image/y3hJZV7Q0mmdODBHusVYSw.png?w=1280&h=167.3846153846154">
+<meta property="og:image" content="https://docimg1.docs.qq.com/image/HQVjTQaim9QFdjTivw0kSg.png?w=1112&h=284">
+<meta property="og:image" content="https://docimg3.docs.qq.com/image/fU8RBxVWZxZbbJH2ILR9aQ.png?w=656&h=288">
+<meta property="og:image" content="https://docimg2.docs.qq.com/image/YokVW5GaS-2Khs6h6QIJHg.png?w=330&h=518">
+<meta property="og:image" content="https://docimg8.docs.qq.com/image/2ER3ZAGfjTMxav0dFBM01g.png?w=954&h=526">
+<meta property="article:published_time" content="2022-05-05T12:21:45.000Z">
+<meta property="article:modified_time" content="2022-05-22T03:11:40.625Z">
+<meta property="article:author" content="fancy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://docimg6.docs.qq.com/image/2xYPw8XXIXhE6YhlFLNsfA.png?w=926&h=184">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://f4ncy.top/2022/05/05/MRCTF/"/>
+
+
+
+
+
+  <title>MRCTF | fancy's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fancy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-play">
+          <a href="/categories/play/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cogs"></i> <br />
+            
+            play
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yxizPRHEJekzdN3y2Unf','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2022/05/05/MRCTF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fancy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MRCTF</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-05T20:21:45+08:00">
+                2022-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/05/05/MRCTF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/05/05/MRCTF/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><h2 id="MISC-SPY-DOG"><a href="#MISC-SPY-DOG" class="headerlink" title="MISC:SPY_DOG"></a>MISC:SPY_DOG</h2><p>题目的逻辑是</p>
+<p>提供狗的图片，需要处理图片，根据已知模型生成可以欺骗该模型，识别为猫的图片，这是一个对抗神经网络的白盒攻击任务。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010420283/article/details/83685140?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5">https://blog.csdn.net/u010420283/article/details/83685140?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-5</a></p>
+<p>另外附带要求，生成伪造图片需要保证预测为cat的分值大于0.99，像素差值小于10。</p>
+<p>这里介绍的是通过梯度下降的方式生成样本进行迭代，使用的是keras库。</p>
+<p>通过模型可视化输出查看：</p>
+<p>输入层（Input）：输入为128<em>128</em>3大小图像矩阵。</p>
+<p>卷积层（Conv1）：32个126*126大小的卷积核。</p>
+<p>Pooling层（Pool1）：Max Pooling窗口大小为2×2。</p>
+<p>卷积层（Conv2）：32个63*63大小的卷积核。</p>
+<p>Pooling层（Pool2）：Max Pooling窗口大小为2×2。</p>
+<p>卷积层（Conv3）：64个30*30大小的卷积核。</p>
+<p>Pooling层（Pool2）：Max Pooling窗口大小为2×2。</p>
+<p>flatten层：一维化展开。</p>
+<p>FC层（dense）:将展开的25088的map整合成512的map</p>
+<p>输出层\FC层（dense_1）（output）:将512的map整合成2的map，即输出2个分类。</p>
+<p>我们了解到这是一个4层的卷积神经网络模型，我们需要关注的是输入层和输出层，输入层是一个对128<em>128</em>3（长、宽、颜色通道）的图像处理层，输出层为输出2个神经节点（即是否为猫）：</p>
+<p><img src="https://docimg6.docs.qq.com/image/2xYPw8XXIXhE6YhlFLNsfA.png?w=926&h=184" alt="img"><br>                                                                                。。。</p>
+<p><img src="https://docimg1.docs.qq.com/image/vKmb0RXwoViLwzmXGjTZ_A.png?w=670&h=176" alt="img">        </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> mod</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.applications <span class="keyword">import</span> inception_v3</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> plot_model</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> hashlib,random</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> image_utils</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">tf.compat.v1.disable_eager_execution()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checkMask</span>(<span class="params">model, img</span>):</span></span><br><span class="line">    predict = model.predict(img)</span><br><span class="line">    <span class="keyword">return</span> predict[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Loading......&quot;</span>)</span><br><span class="line">model = load_model(<span class="string">&quot;./simplenn.model&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;You are a spy from the country of dog, try your best to get flag from cats.&quot;</span>)</span><br><span class="line"><span class="comment">#plot_model(model, to_file=&#x27;./model.png&#x27;, show_shapes=True)</span></span><br><span class="line">layer_1 = K.function([model.layers[<span class="number">0</span>].<span class="built_in">input</span>], [model.layers[-<span class="number">1</span>].output])  <span class="comment"># 第一个 model.layers[0],不修改,表示输入数据；第二个model.layers[you wanted],修改为你需要输出的层数的编号</span></span><br><span class="line"><span class="comment"># img = image_utils.load_img(&quot;./another.bmp&quot;, target_size=(128, 128))</span></span><br><span class="line"><span class="comment"># img_tensor = image_utils.img_to_array(img)</span></span><br><span class="line"><span class="comment"># img_tensor /= 255.</span></span><br><span class="line"><span class="comment"># img_tensor -= 0.5</span></span><br><span class="line"><span class="comment"># img_tensor *= 2.</span></span><br><span class="line"><span class="comment"># img_tensor = np.expand_dims(img_tensor, axis=0)</span></span><br><span class="line">img = cv2.imread(<span class="string">&quot;./another.bmp&quot;</span>)</span><br><span class="line">img = cv2.resize(img, (<span class="number">128</span>, <span class="number">128</span>))</span><br><span class="line">img_tensor = np.expand_dims(img, axis=<span class="number">0</span>)</span><br><span class="line">img_tensor = img_tensor.astype(np.float32)</span><br><span class="line">img_tensor /= <span class="number">255.</span></span><br><span class="line"><span class="comment"># img = cv2.imread(&quot;./another.bmp&quot;)</span></span><br><span class="line"><span class="comment"># img = cv2.resize(img, (128, 128))</span></span><br><span class="line"><span class="comment"># img_tensor = np.expand_dims(img, axis=0)</span></span><br><span class="line"><span class="comment"># img_tensor = img_tensor.astype(np.float32)</span></span><br><span class="line"><span class="comment"># img_tensor /= 255.</span></span><br><span class="line">f1 = layer_1([img_tensor])[<span class="number">0</span>]  <span class="comment"># 只修改inpu_image,[:1]代表一张图片</span></span><br><span class="line"><span class="comment"># 第一层卷积后的特征图展示，输出是（样本个数，特征图尺寸长，特征图尺寸宽，特征图个数）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dog:&quot;</span>,f1[:,<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;cat:&quot;</span>,f1[:,<span class="number">1</span>])       <span class="comment"># 样本个数，特征图尺寸长，特征图尺寸宽，特征图个数</span></span><br><span class="line"><span class="comment">#for _ in range(32):</span></span><br><span class="line">    <span class="comment"># show_img = f1[:, :, :, _]         # 样本个数，特征图尺寸长，特征图尺寸宽，特征图个数</span></span><br><span class="line">    <span class="comment"># print(&#x27;show_img&#x27;,show_img.shape)    # show_img (1, 22, 22)</span></span><br><span class="line">    <span class="comment"># show_img.shape = [126, 126]           # 跟show_img的形状一直</span></span><br><span class="line">    <span class="comment"># plt.subplot(4, 8, _ + 1)</span></span><br><span class="line">    <span class="comment"># plt.imshow(show_img, cmap=&#x27;gray&#x27;)</span></span><br><span class="line">    <span class="comment"># plt.axis(&#x27;off&#x27;)</span></span><br><span class="line"><span class="comment">#plt.show()</span></span><br><span class="line">max_change_above = img_tensor + <span class="number">0.039</span></span><br><span class="line">max_change_below = img_tensor - <span class="number">0.039</span></span><br><span class="line"><span class="comment"># Load pre-trained image recognition model</span></span><br><span class="line"><span class="comment">#model = inception_v3.InceptionV3()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Grab a reference to the first and last layer of the neural net</span></span><br><span class="line"><span class="comment"># print(&quot;model.layers:&quot;)</span></span><br><span class="line"><span class="comment"># print(model.layers)</span></span><br><span class="line">model_input_layer = model.layers[<span class="number">0</span>].<span class="built_in">input</span></span><br><span class="line">model_output_layer = model.layers[-<span class="number">1</span>].output</span><br><span class="line"><span class="comment"># print(&quot;model.layers[-1].output:&quot;)</span></span><br><span class="line"><span class="comment"># print(type(model_output_layer))</span></span><br><span class="line"><span class="comment"># sess = tf.compat.v1.InteractiveSession()</span></span><br><span class="line"><span class="comment"># sess.run(tf.compat.v1.global_variables_initializer())</span></span><br><span class="line"><span class="comment"># print(type(model_output_layer[0, 0].eval()))</span></span><br><span class="line"><span class="comment"># print(model_output_layer[0, 0].eval())</span></span><br><span class="line"><span class="comment"># print(model_output_layer[0, 1].eval())</span></span><br><span class="line">cost_function = model_output_layer[<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">gradient_function = K.gradients(cost_function, model_input_layer)[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#gradient_function= K.GradientTape(cost_function, model_input_layer)[0]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Choose an ImageNet object to fake</span></span><br><span class="line"><span class="comment"># The list of classes is available here: https://gist.github.com/ageitgey/4e1342c10a71981d0b491e1b8227328b</span></span><br><span class="line"><span class="comment"># Class #859 is &quot;toaster&quot;</span></span><br><span class="line"><span class="comment"># object_type_to_fake = 859</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Load the image to hack</span></span><br><span class="line"><span class="comment"># img = image.load_img(&quot;cat.png&quot;, target_size=(299, 299))</span></span><br><span class="line"><span class="comment"># original_image = image.img_to_array(img)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Scale the image so all pixel intensities are between [-1, 1] as the model expects</span></span><br><span class="line"><span class="comment"># original_image /= 255.</span></span><br><span class="line"><span class="comment"># original_image -= 0.5</span></span><br><span class="line"><span class="comment"># original_image *= 2.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># # Add a 4th dimension for batch size (as Keras expects)</span></span><br><span class="line"><span class="comment"># original_image = np.expand_dims(original_image, axis=0)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Pre-calculate the maximum change we will allow to the image</span></span><br><span class="line"><span class="comment"># We&#x27;ll make sure our hacked image never goes past this so it doesn&#x27;t look funny.</span></span><br><span class="line"><span class="comment"># A larger number produces an image faster but risks more distortion.</span></span><br><span class="line"><span class="comment"># max_change_above = original_image + 0.01</span></span><br><span class="line"><span class="comment"># max_change_below = original_image - 0.01</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the input image to hack on</span></span><br><span class="line"><span class="comment">#hacked_image = np.copy(original_image)</span></span><br><span class="line">hacked_image = np.copy(img_tensor)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># How much to update the hacked image in each iteration</span></span><br><span class="line">learning_rate = <span class="number">0.1</span></span><br><span class="line"><span class="comment"># Define the cost function.</span></span><br><span class="line"><span class="comment"># Our &#x27;cost&#x27; will be the likelihood out image is the target class according to the pre-trained model</span></span><br><span class="line"><span class="comment">#cost_function = model_output_layer[0, object_type_to_fake]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># We&#x27;ll ask Keras to calculate the gradient based on the input image and the currently predicted class</span></span><br><span class="line"><span class="comment"># In this case, referring to &quot;model_input_layer&quot; will give us back image we are hacking.</span></span><br><span class="line"><span class="comment">#gradient_function = K.gradients(cost_function, model_input_layer)[0]</span></span><br><span class="line"><span class="comment"># Create a Keras function that we can call to calculate the current cost and gradient</span></span><br><span class="line">grab_cost_and_gradients_from_model = K.function([model_input_layer, K.learning_phase()], [cost_function, gradient_function])</span><br><span class="line">cost = <span class="number">0.0</span></span><br><span class="line"><span class="comment"># In a loop, keep adjusting the hacked image slightly so that it tricks the model more and more</span></span><br><span class="line"><span class="comment"># until it gets to at least 80% confidence</span></span><br><span class="line"><span class="keyword">while</span> cost &lt; <span class="number">0.9994</span>:</span><br><span class="line">    <span class="comment"># Check how close the image is to our target class and grab the gradients we</span></span><br><span class="line">    <span class="comment"># can use to push it one more step in that direction.</span></span><br><span class="line">    <span class="comment"># Note: It&#x27;s really important to pass in &#x27;0&#x27; for the Keras learning mode here!</span></span><br><span class="line">    <span class="comment"># Keras layers behave differently in prediction vs. train modes!</span></span><br><span class="line">    cost,gradients = grab_cost_and_gradients_from_model([hacked_image, <span class="number">0</span>])</span><br><span class="line">    <span class="comment"># Move the hacked image one step further towards fooling the model</span></span><br><span class="line">    hacked_image += gradients * learning_rate</span><br><span class="line">    <span class="comment"># Ensure that the image doesn&#x27;t ever change too much to either look funny or to become an invalid image</span></span><br><span class="line">    hacked_image = np.clip(hacked_image, max_change_below, max_change_above)</span><br><span class="line">    <span class="comment">#hacked_image = np.clip(hacked_image, -1.0, 1.0)</span></span><br><span class="line">    img = hacked_image[<span class="number">0</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Model&#x27;s predicted likelihood that the image is a cat: &#123;:.8&#125;%&quot;</span>.<span class="built_in">format</span>(cost * <span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># De-scale the image&#x27;s pixels from [-1, 1] back to the [0, 255] range</span></span><br><span class="line">img = hacked_image[<span class="number">0</span>]</span><br><span class="line">img *= <span class="number">255.</span></span><br><span class="line"></span><br><span class="line">cv2.imwrite(<span class="string">&quot;hacked-image2.bmp&quot;</span>,img)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Save the hacked image!</span></span><br><span class="line"><span class="comment"># im = Image.fromarray(img.astype(np.uint8))</span></span><br><span class="line"><span class="comment"># im.save(&quot;hacked-image.bmp&quot;)</span></span><br><span class="line"></span><br><span class="line">filename=<span class="string">&quot;./hacked-image2.bmp&quot;</span></span><br><span class="line">score = <span class="number">0</span></span><br><span class="line">img = cv2.imread(filename)</span><br><span class="line">img = cv2.resize(img, (<span class="number">128</span>, <span class="number">128</span>))</span><br><span class="line">img_tensor = np.expand_dims(img, axis=<span class="number">0</span>)</span><br><span class="line">img_tensor = img_tensor.astype(np.float32)</span><br><span class="line">img_tensor /= <span class="number">255.</span></span><br><span class="line">score=checkMask(model,img_tensor)</span><br><span class="line">cost,gradients = grab_cost_and_gradients_from_model([img_tensor, <span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;finaly cost:&quot;</span>,cost)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;finaly score:&quot;</span>,score)</span><br></pre></td></tr></table></figure>
+
+<p>将图片base64传上即可：<br><img src="https://docimg1.docs.qq.com/image/XtFgfrpcakjelIAzjiLQdA.png?w=1280&h=543.030303030303" alt="img">        </p>
+<h2 id="RE-CICADA"><a href="#RE-CICADA" class="headerlink" title="RE:CICADA"></a>RE:CICADA</h2><p>SMC的题，dicada.exe会解密一个PE文件，验证逻辑在这个PE文件中，分析处理逻辑，流程是输入32字节key经过一个很长处理后,根据返回值是否为true来判断我们的输入是否正确，目前使用angr跑了出来.<br>![img](<a target="_blank" rel="noopener" href="https://docimg4.docs.qq.com/image/n90Nv0VIE8viQ610zs3u9Q.png?w=1100&amp;h=510#pic_center">https://docimg4.docs.qq.com/image/n90Nv0VIE8viQ610zs3u9Q.png?w=1100&amp;h=510#pic_center</a> align=”middle”)<br><img src="https://docimg1.docs.qq.com/image/AsZkKtkRbaaGubqXDKcqNA.png?w=803&h=456" alt="img" style="zoom:80%;" align="middle"><br>![img](<a target="_blank" rel="noopener" href="https://docimg6.docs.qq.com/image/vE0Hhn72A1i3BQdGlomQlg.png?w=1038&amp;h=547">https://docimg6.docs.qq.com/image/vE0Hhn72A1i3BQdGlomQlg.png?w=1038&amp;h=547</a> align=”middle” )        </p>
+<p>angr脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> angr</span><br><span class="line"></span><br><span class="line">p = angr.Project(<span class="string">&#x27;./sub.exe&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># good = (0x18002536A)</span></span><br><span class="line"><span class="comment"># bad = (0x180025339)</span></span><br><span class="line">good = (<span class="number">0x18000BD6D</span>)</span><br><span class="line">bad = (<span class="number">0x18000BD79</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start = <span class="number">0x18000bd43</span></span><br><span class="line"><span class="comment">#state = p.factory.entry_state()</span></span><br><span class="line">state = p.factory.blank_state(addr=start)</span><br><span class="line">state_rsp=state.regs.rsp</span><br><span class="line"><span class="built_in">print</span>(state_rsp)<span class="comment">#0x7ffffffffff0000</span></span><br><span class="line">state.regs.rcx=state_rsp+<span class="number">0x38</span></span><br><span class="line">state.regs.rdx=state.solver.BVS(<span class="string">&quot;lastbyte&quot;</span>,<span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span>(state.regs.rcx)</span><br><span class="line">flag=state.solver.BVS(<span class="string">&quot;flag&quot;</span>,<span class="number">16</span>*<span class="number">8</span>)</span><br><span class="line">state.memory.store(state_rsp+<span class="number">0x38</span>,flag,endless=p.arch.memory_endness)</span><br><span class="line">simulation = p.factory.simgr(state)</span><br><span class="line">simulation.explore(find=good, avoid=bad)</span><br><span class="line"><span class="keyword">if</span> simulation.found:</span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br><span class="line">    solution_state = simulation.found[<span class="number">0</span>]</span><br><span class="line">    hexflag=solution_state.solver.<span class="built_in">eval</span>(flag,cast_to=<span class="built_in">bytes</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join([<span class="string">&#x27;%02x&#x27;</span> % b <span class="keyword">for</span> b <span class="keyword">in</span> hexflag]))</span><br><span class="line">    <span class="comment"># for i in range(3):</span></span><br><span class="line">    <span class="comment">#     print (solution_state.posix.dumps(i))</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">&quot;Could not find the solution&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://docimg4.docs.qq.com/image/XhGSw_617h8LRg9itFwW7w.png?w=576&h=67" alt="img"></p>
+<h2 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h2><p>参考：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ctfiot.com/37681.htmlhttp://www.ctfiot.com/37681.html">http://www.ctfiot.com/37681.htmlhttp://www.ctfiot.com/37681.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ctfiot.com/38677.htmlhttp://www.ctfiot.com/38677.html">http://www.ctfiot.com/38677.htmlhttp://www.ctfiot.com/38677.html</a></p>
+<p>查看文件，PNF-9010R.img镜像文件被加密，我们需要分析S34MLxx固件获取密钥及加密逻辑。      <img src="https://docimg4.docs.qq.com/image/ReyKrrM8GcYyQ1LK1tRoow.png?w=770&h=148" alt="img"> </p>
+<p><strong>Nand Flash</strong></p>
+<p>NandFlash有特定的存储结构，可分为plane，block以及page。以Spansion S34ML0*为例，其由2快plane组成，每块plane由1024 block组成，每块block由64 page组成，每page有(2048 + 128)=2176字节。其中128字节为OOB区，用作校验和坏块管理，具体管理方式可参考该flash的datasheet。</p>
+<blockquote>
+<p>内部ECC对于主要区域的每528字节（x8）和备用区域的每16字节（x8）提供了9位检测码和8位校正码。[…] 在PROGRAM操作过程中，在页面被写入NAND Flash阵列之前，设备会在缓存寄存器中的2k页面上计算ECC代码。ECC代码被存储在页面的备用区域。 在读操作中，页面数据从阵列中被读到缓存寄存器中，在那里ECC代码被计算出来，并与从阵列中读取的ECC代码值进行比较。如果检测出1-8位的错误，将通过高速缓存寄存器进行纠正。只有经过纠正的数据，才会在I/O总线上输出。<br>通过编程器提取该flash固件，可得文件大小285,212,672字节=0x11000000字节=2(plane)*(1024block)*64(page)*2176(byte)，恰好符合datasheet描述。但需要注意的是，此时binwalk并不能有效识别该固件的组成及提取其中的文件系统。这是由于坏块以及OOB的存在，因此固件分析的第一步是筛选坏块并去除OOB区.<br>坏块筛选规则：the 1st byte in the spare area of the 1st or 2nd or last page does not contain FFh is a Bad block.<br>OOB去除，可去除每隔2048字节的128字节校验值。</p>
+</blockquote>
+<p>然而，经过上述操作后，binwalk仍不能正确提取识别。</p>
+<p>初次经过人工分析，所有全0字节内存页中，有如下现象：页起始偏移1040字节的14字节有数据；OOB区的前两字节为FF，后14字节数据为全0。不经让人怀疑是上下两部分的数据区和校验区发生了调换。而事实也却是如此，具体需要了解yaffs2在(2k+128) NandFlash的存储结构以及uboot烧写的yaffs过程[1 2 3]。</p>
+<p>NAND闪存是以内存页为单位进行编程和读取的。一个内存页由2048字节的可用存储空间和128字节的OOB组成，后者用于存储纠错代码和坏块管理的标志，也就是说，页面的总长度为2176字节。不过，对于擦除操作来说，则是以块为单位进行的。根据Micron公司的文档，对于这个闪存部分，一个块由64页组成，总共有128KB的可用数据。该闪存由两个面组成，每个面包含1024个块，因此： 2 planes * 1024 blocks/plane * 64 pages/block * (2048 + 128) bytes/page = 285,212,672</p>
+<p>尝试每隔2048字节移除128字节，发现得到的固件文件仍然无法正常提取，分析发现oob的3-16字节是有用的：</p>
+<p><img src="https://docimg3.docs.qq.com/image/y3hJZV7Q0mmdODBHusVYSw.png?w=1280&h=167.3846153846154" alt="img">        </p>
+<p>另外，发现每个page偏倚0x410处存在14字节无意义<br><img src="https://docimg1.docs.qq.com/image/HQVjTQaim9QFdjTivw0kSg.png?w=1112&h=284" alt="img">        oob的格式与datasheet上介绍的不同。</p>
+<p>删除修正后的oob：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">a=<span class="built_in">open</span>(<span class="string">r&#x27;S34ML02G200BHI00@BGA63_948.BIN&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">unOOBBin=<span class="built_in">open</span>(<span class="string">&#x27;unoob2.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">data=a.read()</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line">filesize=<span class="built_in">len</span>(data)</span><br><span class="line"><span class="keyword">while</span>(i&lt;filesize):</span><br><span class="line">    unOOBBin.write(data[i:i+<span class="number">0x410</span>])</span><br><span class="line">    unOOBBin.write(data[i+<span class="number">0x410</span>+<span class="number">14</span>:i+<span class="number">0x800</span>])</span><br><span class="line">    unOOBBin.write(data[i+<span class="number">0x800</span>+<span class="number">2</span>:i+<span class="number">0x800</span>+<span class="number">2</span>+<span class="number">14</span>])</span><br><span class="line">    i=i+<span class="number">2048</span>+<span class="number">128</span></span><br><span class="line">a=<span class="built_in">open</span>(<span class="string">r&#x27;unoob2.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">b=<span class="built_in">open</span>(<span class="string">r&#x27;extractELF.sh&#x27;</span>,<span class="string">&#x27;w+&#x27;</span>) <span class="comment">#shell脚本</span></span><br></pre></td></tr></table></figure>
+
+<p>再次使用binwalk尝试提取，发现分离出的ext2可以正常读取了：</p>
+<p><img src="https://docimg3.docs.qq.com/image/fU8RBxVWZxZbbJH2ILR9aQ.png?w=656&h=288" alt="img">       <img src="https://docimg2.docs.qq.com/image/YokVW5GaS-2Khs6h6QIJHg.png?w=330&h=518" alt="img">   </p>
+<p>搜索特征字符串获取到解密逻辑（ext2文件系统中得到的magic_update中的加密是针对另一型号设备的，后来发现针对题目给的镜像文件所属型号的加密是在固件中的单独提取的mainServer ELF文件中）：</p>
+<p>openssl enc -in PNF-9010R.img -aes-256-cbc -d -k STWPNF-9010R -out PNF-9010R-dec.img</p>
+<p>对解密后的img解压即可看到flag。</p>
+<p><img src="https://docimg8.docs.qq.com/image/2ER3ZAGfjTMxav0dFBM01g.png?w=954&h=526" alt="img"> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/12/03/TMF/" rel="next" title="TMF框架简介">
+                <i class="fa fa-chevron-left"></i> TMF框架简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.cnblogs.com/fancystar/" target="_blank" title="cnblog">
+                    
+                      <i class="fa fa-fw fa-globe"></i>cnblog</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/minxin" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MISC-SPY-DOG"><span class="nav-number">1.</span> <span class="nav-text">MISC:SPY_DOG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RE-CICADA"><span class="nav-number">2.</span> <span class="nav-text">RE:CICADA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoT"><span class="nav-number">3.</span> <span class="nav-text">IoT</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fancy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+  <span>Hosted by <a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+  <span>with <a target="_blank" rel="noopener" href="https://minxin.github.io" style="font-weight: bold">Github Pages</a>
+  </div>
+  
+
+
+
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Minxin',
+            repo: 'Minxin.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
+            
+                client_id: '039da8b1b27bc4e10d7f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
