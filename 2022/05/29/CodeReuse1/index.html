@@ -81,11 +81,15 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="fancy&#39;s blog">
-<meta property="og:url" content="https://f4ncy.top/archives/2017/index.html">
+<meta name="description" content="代码重用及RPC思路这里讨论的代码重用算是狭义意义上的黑盒或灰盒代码重用，如对编译后文件中具体的一个函数、一个类进行利用，这里涉及两种情况：  可以分离出目标代码所在文件的，在不加固情况下可以拿到dex或so文件的，在加固情况下通过脱壳可以还原出目标代码，且目标代码依赖类也被还原出来； 无法分离出目标代码的，一般就是加固应用。  对于第一种情况，最理想的情况就是通过直接扣出代码进行重用，但是对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CodeReuse1">
+<meta property="og:url" content="https://f4ncy.top/2022/05/29/CodeReuse1/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
+<meta property="og:description" content="代码重用及RPC思路这里讨论的代码重用算是狭义意义上的黑盒或灰盒代码重用，如对编译后文件中具体的一个函数、一个类进行利用，这里涉及两种情况：  可以分离出目标代码所在文件的，在不加固情况下可以拿到dex或so文件的，在加固情况下通过脱壳可以还原出目标代码，且目标代码依赖类也被还原出来； 无法分离出目标代码的，一般就是加固应用。  对于第一种情况，最理想的情况就是通过直接扣出代码进行重用，但是对">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-29T12:32:55.000Z">
+<meta property="article:modified_time" content="2022-05-29T12:42:02.957Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://f4ncy.top/archives/2017/"/>
+  <link rel="canonical" href="https://f4ncy.top/2022/05/29/CodeReuse1/"/>
 
 
 
 
 
-  <title>Archive | fancy's blog</title>
+  <title>CodeReuse1 | fancy's blog</title>
   
 
 
@@ -142,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,223 +260,191 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-      
-      <!--
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 38 posts in total. Keep on posting.
-      </span>
-      -->
 
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2022/05/29/CodeReuse1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fancy's blog">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">CodeReuse1</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-05-29T20:32:55+08:00">
+                2022-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2022/05/29/CodeReuse1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2022/05/29/CodeReuse1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
 
         
+        </div>
+      </header>
+    
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/AndroidManifest/" itemprop="url">
-              
-                <span itemprop="name">AndroidManifest.xml文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T00:39:41+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/28/JNI-introduce/" itemprop="url">
-              
-                <span itemprop="name">JNI 简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-28T02:35:48+08:00"
-              content="2017-12-28" >
-          12-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="代码重用及RPC思路"><a href="#代码重用及RPC思路" class="headerlink" title="代码重用及RPC思路"></a>代码重用及RPC思路</h1><p>这里讨论的代码重用算是狭义意义上的黑盒或灰盒代码重用，如对编译后文件中具体的一个函数、一个类进行利用，这里涉及两种情况：</p>
+<ol>
+<li>可以分离出目标代码所在文件的，在不加固情况下可以拿到dex或so文件的，在加固情况下通过脱壳可以还原出目标代码，且目标代码依赖类也被还原出来；</li>
+<li>无法分离出目标代码的，一般就是加固应用。</li>
+</ol>
+<p>对于第一种情况，最理想的情况就是通过直接扣出代码进行重用，但是对于代码量过大或反编译效果不太理想的情况，就需要在运行时进行重用，思路是自己写app加载dex或so进行反射调用；<br>对于第二种情况，只能在运行时重用，且无法剥离原应用，只能通过hook解决，这里重点介绍xposed和frida两种工具的操作方式：</p>
+<h2 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h2><p> 代码重用主要解决的是获取到方法所在类的实例，利用实例进行方法调用，需要实例的方式有：</p>
+<ol>
+<li>通过Java.use(‘xxx’).method.implementation实现对具体方法hook时获取this对象来保存目标对象实例，尚不清楚Java.retain(this)和直接获取this有啥区别；</li>
+<li>通过Java.choose来搜索当前堆中已有的目标类对象实例再对其保存；</li>
+<li>对于构造函数参数简单的类可以通过调用&amp;new创建一个实例。</li>
+</ol>
+<p>之前帮一位大佬搞一个app的时候因为需要将app的方法rpc，吹一波大佬写的burp插件：<a target="_blank" rel="noopener" href="https://github.com/mr-m0nst3r/Burpy">https://github.com/mr-m0nst3r/Burpy</a></p>
+<p> rpc：<br> 用大佬的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exported</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	rpc.exports = &#123;</span><br><span class="line">		<span class="attr">Decrypt</span>: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;Calling Decrypt function:&quot;</span>);</span><br><span class="line">			<span class="keyword">var</span> res = <span class="literal">null</span>;</span><br><span class="line">			Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">				res = sm4Instance.g(key, data);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;key&quot;</span>, key, <span class="string">&quot;data&quot;</span>, data);</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&quot;dec res:&quot;</span>, res);</span><br><span class="line">			&#125;);</span><br><span class="line">			<span class="keyword">return</span> res ? res : <span class="string">&quot;failed to decrypt&quot;</span>;</span><br><span class="line">		&#125;,</span><br><span class="line">		...</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-        
-        
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Burpy</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">		self.rpc = self._load_rpc()</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">_load_rpc</span>(<span class="params">self</span>):</span></span><br><span class="line">		source = <span class="string">&quot;&quot;</span></span><br><span class="line">		<span class="keyword">with</span> codecs.<span class="built_in">open</span>(<span class="string">r&quot;hook.js&quot;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">      source = f.read()</span><br><span class="line">    script = self.session.create_script(source)</span><br><span class="line">    script.load()</span><br><span class="line">    <span class="keyword">return</span> script.exports</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">decrypt</span>(<span class="params">self,header,body</span>):</span></span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;decrypting&quot;</span>)</span><br><span class="line">		ret0 = self.rpc.decres(url, body)</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&quot;decry result:&quot;</span>, ret0)</span><br><span class="line">		<span class="keyword">return</span> header, ret0</span><br></pre></td></tr></table></figure>
 
-        
+<p> 本机与注入进程间的通讯是使用frida提供的rpc.exports，burp与本地python进程间的通讯大佬用的是pyro。</p>
+<h2 id="xposed"><a href="#xposed" class="headerlink" title="xposed"></a>xposed</h2><p> xposed的重用方式与frida总体类似：</p>
+<ol>
+<li>通过XposedHelpers.findAndHookMethod(…)在对具体方法hook时获取methodHookParam.this对象来保存目标对象实例；</li>
+<li>通过分析代码寻找赋值为目标类实例对象的类成员变量来反射获取；</li>
+<li>对于构造函数参数简单的类可以通过调用newInstance创建一个实例。</li>
+</ol>
+<p>rpc:</p>
+<p> 这里介绍一种使用广播进行rpc的方法，注册一个调用目标函数的广播后，通过adb命令触发这个广播来实现rpc，所以本机和App进程通讯是通过终端io，这并不理想，如果后续找到更好的通讯方式再做分享。<br> 首先我们写一个广播，包括接收参数，参数处理，并调用目标函数。动态注册该广播：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyReiceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">      String msg_b64=intent.getStringExtra(<span class="string">&quot;msg&quot;</span>);</span><br><span class="line">      String type=intent.getStringExtra(<span class="string">&quot;type&quot;</span>);</span><br><span class="line">      String url=intent.getStringExtra(<span class="string">&quot;url&quot;</span>);</span><br><span class="line">      Class CryptoUtil= XposedHelpers.findClass(<span class="string">&quot;com.xxx.EncryptUtils.SM4&quot;</span>,loadPackageParam.classLoader);</span><br><span class="line">      Class&lt;?&gt; PEJniLib = XposedHelpers.findClass(<span class="string">&quot;com.xxx.EncryptUtils.PEJniLib&quot;</span>,loadPackageParam.classLoader);</span><br><span class="line">      <span class="comment">//target func is static</span></span><br><span class="line">      <span class="keyword">if</span>(type.equals(<span class="string">&quot;0&quot;</span>))&#123;</span><br><span class="line">        String msg = <span class="keyword">new</span> String(Base64.decode(msg_b64.getBytes(), Base64.DEFAULT));</span><br><span class="line">        String result=(String)XposedHelpers.callStaticMethod(CryptoUtil,<span class="string">&quot;h&quot;</span>,msg,key);</span><br><span class="line">        XposedBridge.log(<span class="string">&quot;invoke SM4encrypt:&quot;</span>+result);</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type.equals(<span class="string">&quot;1&quot;</span>))&#123;<span class="comment">//target func is direct</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Object PEJniLib_=PEJniLib.newInstance();</span><br><span class="line">            String result = (String) XposedHelpers.callMethod(PEJniLib_, <span class="string">&quot;a&quot;</span>, msg, key);</span><br><span class="line">            XposedBridge.log(<span class="string">&quot;invoke getNativeValue:&quot;</span> + result);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">intentFilter = <span class="keyword">new</span> IntentFilter();</span><br><span class="line">intentFilter.addAction(<span class="string">&quot;com.fancy.tohook.cipher&quot;</span>);</span><br><span class="line">MyReiceiver myBroadcastReceiver = <span class="keyword">new</span> MyReiceiver();</span><br><span class="line"><span class="keyword">if</span>(ct==<span class="keyword">null</span>)&#123;</span><br><span class="line">    XposedBridge.log(<span class="string">&quot;context is null&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">//ct is the application context</span></span><br><span class="line">    ct.registerReceiver(myBroadcastReceiver, intentFilter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<p>使用am命令指定该action发送广播：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am broadcast  -a com.fancy.tohook.cipher --include-stopped-packages --es type &quot;0&quot; --es msg &quot;2Jpg7LWBDy8TeZNy2KBWnjDDebA5kgNKWGQ3SzJfseXjViquEhKMAAQlI3smiQqfmsID2FuZ3OvUp0laB8DOY3UOxZdBsCyBIqzXhhlZ1+uCv/iBSQX5yfgRyxjtgXQwCq/ZmAkZ2SPvY3r2Q/mfBUmHvMgpAQJAGTlessJCXBnJfjT3R/1950ToS0w1xpXnIEYb7kMMF4SnqQNQ76BGWaLAvKfHc2O3B6a7YtmHoLbH8+Cl8h3TLi6zl9/YiGDdJGOn3ikijF2blKzjo5PjWzEf+imb8EJ9hq+D9C0qWAPfPwjxAT73GKgqKJR7lBjzqJ+pBg0uel8ud7geDVJ4G7s5wStZVVFpmW4EWplNG06ln8SWwj+v1t8Vo3hxGMIzqJSiWk3P1Fkt/y8Q7GaB9E5iv4rv5JLc6OpSqmEC74A744VF9kcL36LnVTwp7j04PtDdZzrD7i8qRZzX2sxG30QH/wDhu7fQSekkLzcVB1mDaxJzKi1JUBn8Aykseio/muzc4qiNb5VURBu5WsIT+SQpY0YVtKV2sBLJlQC7bj4Lo3KPrcvbklgg8EYPh0OhSHY2FozeKCR/ZLVngpqcL7nGJ7EsBJnxVjJO1F59pDc=&quot; --es key &quot;1234567890123456&quot;</span><br></pre></td></tr></table></figure>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/25/PYCfileformat/" itemprop="url">
-              
-                <span itemprop="name">PYC文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-25T16:48:19+08:00"
-              content="2017-12-25" >
-          12-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<p>使用<code>adb logcat -d -s xxx_tag</code>获取目标函数返回内容。</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>对脚本语言或部分依赖虚拟机的语言的代码文件反编译可以得到比较理想的伪代码，并且代码量小、耦合度低的目标代码才能通过将其分离出来，正向开发的方式对其重用，这是很理想的场景；大部分的目标往往需要通过hook来实现目标代码重用，而这需要依赖于目标代码文件具备对应的可执行环境并且真正运行起来，可执行环境包括对应的硬件设备，所在的操作系统平台，甚至是某个版本，比如需要一台运行最新安卓系统的手机；能够运行起来还需要保证可执行文件所依赖的资源完整，比如一个apk包。</p>
+<p>再延伸开去就涉及到虚拟机和模拟器的讨论，放到下篇讨论吧。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/23/android%20shell/" itemprop="url">
-              
-                <span itemprop="name">android加壳思路</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-23T03:02:38+08:00"
-              content="2017-12-23" >
-          12-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/22/dexformat/" itemprop="url">
-              
-                <span itemprop="name">dex文件格式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-22T13:53:38+08:00"
-              content="2017-12-22" >
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/05/05/MRCTF/" rel="next" title="MRCTF">
+                <i class="fa fa-chevron-left"></i> MRCTF
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -480,6 +452,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -500,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -574,6 +566,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8D%E7%94%A8%E5%8F%8ARPC%E6%80%9D%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">代码重用及RPC思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#frida"><span class="nav-number">1.1.</span> <span class="nav-text">frida</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xposed"><span class="nav-number">1.2.</span> <span class="nav-text">xposed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95"><span class="nav-number">1.3.</span> <span class="nav-text">扩展</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -718,6 +726,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -764,6 +776,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Minxin',
+            repo: 'Minxin.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
+            
+                client_id: '039da8b1b27bc4e10d7f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
