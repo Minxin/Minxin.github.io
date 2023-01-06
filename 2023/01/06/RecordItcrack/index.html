@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="如何读写LLVM bitcode翻译转载 我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的">
+<meta name="description" content="Record It（ARM&amp;X86）crack项目需要录屏，找了一下商店录屏软件，基本都是下载免费，但完整功能均需要内购。 下载了Record It，版本1.7.6(2022072000)校验逻辑很简单，就不放过程了，修改“-[IAPWindow didPay]”函数返回值为1即可： x86_64: 0x10005852E    0F BE 04 07 ⇒ 66 B8 01 00 mo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何读写LLVM bitcode">
-<meta property="og:url" content="https://f4ncy.top/2019/02/27/RWBitcode/index.html">
+<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:url" content="https://f4ncy.top/2023/01/06/RecordItcrack/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="如何读写LLVM bitcode翻译转载 我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb … 将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的">
+<meta property="og:description" content="Record It（ARM&amp;X86）crack项目需要录屏，找了一下商店录屏软件，基本都是下载免费，但完整功能均需要内购。 下载了Record It，版本1.7.6(2022072000)校验逻辑很简单，就不放过程了，修改“-[IAPWindow didPay]”函数返回值为1即可： x86_64: 0x10005852E    0F BE 04 07 ⇒ 66 B8 01 00 mo">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-02-27T08:00:00.000Z">
-<meta property="article:modified_time" content="2019-03-22T02:19:37.000Z">
+<meta property="article:published_time" content="2023-01-05T22:15:06.000Z">
+<meta property="article:modified_time" content="2023-01-06T06:19:54.332Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="https://f4ncy.top/2019/02/27/RWBitcode/"/>
+  <link rel="canonical" href="https://f4ncy.top/2023/01/06/RecordItcrack/"/>
 
 
 
 
 
-  <title>如何读写LLVM bitcode | fancy's blog</title>
+  <title> | fancy's blog</title>
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2019/02/27/RWBitcode/">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2023/01/06/RecordItcrack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">如何读写LLVM bitcode</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T16:00:00+08:00">
-                2019-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-01-06T06:15:06+08:00">
+                2023-01-06
               </time>
             
 
@@ -322,8 +322,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/27/RWBitcode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/02/27/RWBitcode/" itemprop="commentsCount"></span>
+                <a href="/2023/01/06/RecordItcrack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2023/01/06/RecordItcrack/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,42 +357,19 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="如何读写LLVM-bitcode"><a href="#如何读写LLVM-bitcode" class="headerlink" title="如何读写LLVM bitcode"></a>如何读写LLVM bitcode</h1><p>翻译转载</p>
-<p>我已经阅读了社交媒体上的多篇帖子，现在抱怨LLVM有多可怕。<br>存储库太大以至于无法获得有用的信息，每天经常有数百次提交，邮件列表几乎不可能跟踪，现在可执行的可执行文件高达40Mb …</p>
-<p>将那些花絮放在一边 - 一旦你掌握了这头巨兽，LLVM就非常容易使用了。<br>为了帮助人们使用LLVM，我想我会把你会用LLVM做的琐碎的操作示例放在一起 - 解析一个LLVM的中间表示文件（称为bitcode，文件扩展名.bc），然后再写回来。</p>
-<p>首先，我们浏览一些高级LLVM术语：</p>
-<ul>
-<li>对于用户代码来说LLVM的主要抽象对象是Module。它是一个包含所有函数，全局变量，以及你或用户编写的代码指令的类。</li>
-<li>Bitcode文件实际上是LLVM Module的序列化，以便可以在一个不同的程序中重组。</li>
-<li>LLVM实验MemoryBuffer 对象来处理来自文件、标准输入或数组的数据</li>
-</ul>
-<p>以我的例子，我将使用LLVM C API - 一个比LLVM内核C++头文件更稳定的抽象。如果你希望使用多个版本的LLVM代码，那么C API非常有用，他比LLVM C++头文件更稳定。（另外，我将LLVM广泛用于我的工作，几乎每周都会有一些LLVM C++头文件被更改以破坏我们的代码。而C API从来不会。）</p>
-<p>这里，我将假设你已经启动了LLVM，构建完并安装了它。像这样执行一下简单的步骤：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://git.llvm.org/git/llvm.git &lt;llvm dir&gt;</span><br><span class="line">cd &lt;llvm dir&gt;</span><br><span class="line">mkdir build</span><br><span class="line">cd build</span><br><span class="line">cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=install ..</span><br><span class="line">cmake --build . --target install</span><br></pre></td></tr></table></figure>
-<p>以上步骤完成后，你将会得到一个安装在/build/install下的LLVM</p>
-<p>至此，对于一些小可执行文件我使用了CMake。CMake是目前为止结合LLVM的最简单的方法，LLVM也使用它作为自己的构建系统。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">project</span>(llvm_bc_parsing_example)</span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.4</span>.<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># option to allow a user to specify where an LLVM install is on the system</span></span><br><span class="line"><span class="keyword">set</span>(LLVM_INSTALL_DIR <span class="string">&quot;&quot;</span> CACHE <span class="keyword">STRING</span> <span class="string">&quot;An LLVM install directory.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;$&#123;LLVM_INSTALL_DIR&#125;&quot;</span> <span class="keyword">STREQUAL</span> <span class="string">&quot;&quot;</span>)</span><br><span class="line">  <span class="keyword">message</span>(FATAL_ERROR <span class="string">&quot;LLVM_INSTALL_DIR not set! Set it to the location of an LLVM install.&quot;</span>)</span><br><span class="line"><span class="keyword">endif</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># fixup paths to only use the Linux convention</span></span><br><span class="line"><span class="keyword">string</span>(REPLACE <span class="string">&quot;\\&quot;</span> <span class="string">&quot;/&quot;</span> LLVM_INSTALL_DIR <span class="variable">$&#123;LLVM_INSTALL_DIR&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tell CMake where LLVM&#x27;s module is</span></span><br><span class="line"><span class="keyword">list</span>(APPEND CMAKE_MODULE_PATH <span class="variable">$&#123;LLVM_INSTALL_DIR&#125;</span>/lib/cmake/llvm)</span><br><span class="line"></span><br><span class="line"><span class="comment"># include LLVM</span></span><br><span class="line"><span class="keyword">include</span>(LLVMConfig)</span><br><span class="line"></span><br><span class="line"><span class="keyword">add_executable</span>(llvm_bc_parsing_example main.c)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_include_directories</span>(llvm_bc_parsing_example PUBLIC <span class="variable">$&#123;LLVM_INCLUDE_DIRS&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">target_link_libraries</span>(llvm_bc_parsing_example PUBLIC LLVMBitReader LLVMBitWriter)</span><br></pre></td></tr></table></figure>
-<p>所以现在我们已经完成了CMake的设置，我们可以使用现有的LLVM安装，现在我们可以开始使用我们的实际C代码了！<br>因此，要使用LLVM C API，主要需要一个头文件：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/Core.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="Record-It（ARM-amp-X86）crack"><a href="#Record-It（ARM-amp-X86）crack" class="headerlink" title="Record It（ARM&amp;X86）crack"></a>Record It（ARM&amp;X86）crack</h1><p>项目需要录屏，找了一下商店录屏软件，基本都是下载免费，但完整功能均需要内购。</p>
+<p>下载了Record It，版本1.7.6(2022072000)校验逻辑很简单，就不放过程了，修改“-[IAPWindow didPay]”函数返回值为1即可：</p>
+<p>x86_64:</p>
+<p>0x10005852E    0F BE 04 07 ⇒ 66 B8 01 00</p>
+<p>movsx eax, byte ptr [rdi + rax] ⇒ mov ax, 1</p>
+<p>ARM</p>
+<p>0x10004F650    00 68 68 38 ⇒ 20 00 80 52</p>
+<p>ldrb w0, [x0, x8] ⇒ mov w0, #1</p>
+<p>patch重新签名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xattr -r -d com.apple.quarantine /Applications/Record\ It.app </span><br><span class="line"></span><br><span class="line">codesign -f -s - --deep /Applications/Record\ It.app</span><br></pre></td></tr></table></figure>
 
-<p>我们需要两个额外的头文件来执行bitcode的读写：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/BitReader.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;llvm-c/BitWriter.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<p>现在我们开始我们主要实现的功能，假设使用2个命令行参数，第一个是输入文件，第二个是输出文件。如果一个接收到以‘-’为文件名的参数，这意味着从标准输入读取或向标准输出写：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="number">3</span> != argc)&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">&quot;Invalid command line!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> inputFilename = argv[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> outputFilename = argv[<span class="number">2</span>];</span><br></pre></td></tr></table></figure>
 
-<p>所以首先我们扫描输入文件。我们将从其他输入或一个文件名得到一个LLVM内存缓冲对象：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">LLVMMemoryBufferRef memoryBuffer;</span><br><span class="line"></span><br><span class="line"><span class="comment">// check if we are to read our input file from stdin</span></span><br><span class="line"><span class="keyword">if</span> ((<span class="string">&#x27;-&#x27;</span> == inputFilename[<span class="number">0</span>]) &amp;&amp; (<span class="string">&#x27;\0&#x27;</span> == inputFilename[<span class="number">1</span>])) &#123;</span><br><span class="line">  <span class="keyword">char</span> *message;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMCreateMemoryBufferWithSTDIN(&amp;memoryBuffer, &amp;message)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s\n&quot;</span>, message);</span><br><span class="line">    <span class="built_in">free</span>(message);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">char</span> *message;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMCreateMemoryBufferWithContentsOfFile(</span><br><span class="line">               inputFilename, &amp;memoryBuffer, &amp;message)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;%s\n&quot;</span>, message);</span><br><span class="line">    <span class="built_in">free</span>(message);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行完这些代码后，memoryBuffer就可以读取我们的bitcode文件转为LLVM module。现在我们创建module</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// now create our module using the memory buffer</span></span><br><span class="line">LLVMModuleRef <span class="keyword">module</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span> != LLVMParseBitcode2(memoryBuffer, &amp;<span class="keyword">module</span>)) &#123;</span><br><span class="line">  <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Invalid bitcode detected!\n&quot;</span>);</span><br><span class="line">  LLVMDisposeMemoryBuffer(memoryBuffer);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// done with the memory buffer now, so dispose of it</span></span><br><span class="line">LLVMDisposeMemoryBuffer(memoryBuffer);</span><br></pre></td></tr></table></figure>
-
-<p>一旦我们得到module，我们不再需要memory buffer了，我们直接释放这部分内存。我们设法获取了一个LLVM bitcode文件，将其反序列化为一个LLVM module，之后就可以随你操作了。因此假设你已经使用LLVM module完成了所有操作了，并希望写回bitcode文件.</p>
-<p>方法和读取方法正交，我们寻找特殊文件名‘-’做相应处理：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// check if we are to write our output file to stdout</span></span><br><span class="line"><span class="keyword">if</span> ((<span class="string">&#x27;-&#x27;</span> == outputFilename[<span class="number">0</span>]) &amp;&amp; (<span class="string">&#x27;\0&#x27;</span> == outputFilename[<span class="number">1</span>])) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMWriteBitcodeToFD(<span class="keyword">module</span>, STDOUT_FILENO, <span class="number">0</span>, <span class="number">0</span>)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Failed to write bitcode to stdout!\n&quot;</span>);</span><br><span class="line">    LLVMDisposeModule(<span class="keyword">module</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="number">0</span> != LLVMWriteBitcodeToFile(<span class="keyword">module</span>, outputFilename)) &#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Failed to write bitcode to file!\n&quot;</span>);</span><br><span class="line">    LLVMDisposeModule(<span class="keyword">module</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后我们需要对内存清理，删除module：<br><code>LLVMDisposeModule(module);</code></p>
-<p>我们现在就可以扫描并输出一个LLVM bitcode文件。<br><a target="_blank" rel="noopener" href="https://github.com/sheredom/llvm_bc_parsing_example">GitHub Example</a></p>
 
       
     </div>
@@ -417,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/27/jdanalysis/" rel="next" title="京东“盗图”事件分析">
-                <i class="fa fa-chevron-left"></i> 京东“盗图”事件分析
+              <a href="/2022/12/06/Downie4crack/" rel="next" title="Downie 4(免Patch激活)">
+                <i class="fa fa-chevron-left"></i> Downie 4(免Patch激活)
               </a>
             
           </div>
@@ -426,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/28/buildexample/" rel="prev" title="在源代码目录外编译clang例子">
-                在源代码目录外编译clang例子 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -581,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AF%BB%E5%86%99LLVM-bitcode"><span class="nav-number">1.</span> <span class="nav-text">如何读写LLVM bitcode</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Record-It%EF%BC%88ARM-amp-X86%EF%BC%89crack"><span class="nav-number">1.</span> <span class="nav-text">Record It（ARM&amp;X86）crack</span></a></li></ol></div>
             
 
           </div>
