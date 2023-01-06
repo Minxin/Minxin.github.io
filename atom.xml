@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://f4ncy.top/"/>
-  <updated>2023-01-06T06:19:54.332Z</updated>
+  <updated>2023-01-06T06:27:35.991Z</updated>
   <id>https://f4ncy.top/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>Record It（ARM&amp;X86）crack</title>
     <link href="https://f4ncy.top/2023/01/06/RecordItcrack/"/>
     <id>https://f4ncy.top/2023/01/06/RecordItcrack/</id>
     <published>2023-01-05T22:15:06.000Z</published>
-    <updated>2023-01-06T06:19:54.332Z</updated>
+    <updated>2023-01-06T06:27:35.991Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="Record-It（ARM-amp-X86）crack"><a href="#Record-It（ARM-amp-X86）crack" class="headerlink" title="Record It（ARM&amp;X86）crack"></a>Record It（ARM&amp;X86）crack</h1><p>项目需要录屏，找了一下商店录屏软件，基本都是下载免费，但完整功能均需要内购。</p><p>下载了Record It，版本1.7.6(2022072000)校验逻辑很简单，就不放过程了，修改“-[IAPWindow didPay]”函数返回值为1即可：</p><p>x86_64:</p><p>0x10005852E    0F BE 04 07 ⇒ 66 B8 01 00</p><p>movsx eax, byte ptr [rdi + rax] ⇒ mov ax, 1</p><p>ARM</p><p>0x10004F650    00 68 68 38 ⇒ 20 00 80 52</p><p>ldrb w0, [x0, x8] ⇒ mov w0, #1</p><p>patch重新签名：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xattr -r -d com.apple.quarantine /Applications/Record\ It.app </span><br><span class="line"></span><br><span class="line">codesign -f -s - --deep /Applications/Record\ It.app</span><br></pre></td></tr></table></figure>]]></content>
     
