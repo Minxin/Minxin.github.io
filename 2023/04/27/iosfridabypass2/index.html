@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="fancy's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="某银行iOS frida检测（例二）  某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:url" content="https://f4ncy.top/2023/04/27/iosfridabypass2/index.html">
+<meta property="og:site_name" content="fancy&#39;s blog">
+<meta property="og:description" content="某银行iOS frida检测（例二）  某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%201.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%202.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%203.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%204.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%205.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%206.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%207.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%208.png">
+<meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%209.png">
+<meta property="article:published_time" content="2023-04-26T22:54:34.000Z">
+<meta property="article:modified_time" content="2023-04-27T07:01:17.993Z">
+<meta property="article:author" content="fancy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://f4ncy.top/2023/04/27/iosfridabypass2/"/>
+
+
+
+
+
+  <title> | fancy's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">fancy's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-play">
+          <a href="/categories/play/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cogs"></i> <br />
+            
+            play
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'yxizPRHEJekzdN3y2Unf','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://f4ncy.top/2023/04/27/iosfridabypass2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fancy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-04-27T06:54:34+08:00">
+                2023-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2023/04/27/iosfridabypass2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2023/04/27/iosfridabypass2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><hr>
+<p>某银行iOS frida检测（例二）</p>
+<hr>
+<h1 id="某银行iOS-frida检测（例二）"><a href="#某银行iOS-frida检测（例二）" class="headerlink" title="某银行iOS frida检测（例二）"></a>某银行iOS frida检测（例二）</h1><p>搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。</p>
+<p>检测时机较早，对main函数进行hook，发现仍然没执行。</p>
+<p>main函数执行前的流程：</p>
+<p><strong>1. 程序执行从_dyld_star开始</strong></p>
+<ul>
+<li>1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。</li>
+<li>1.2. 调用dyld::_main方法进入macho文件的主程序。</li>
+</ul>
+<p><strong>2. 配置一些环境变量</strong></p>
+<ul>
+<li>2.1. 设置的环境变量方便我们打印出更多的信息。</li>
+<li>2.1. 调用getHostInfo()来获取machO头部获取当前运行架构的信息。</li>
+</ul>
+<p><strong>3. 实例化主程序,即macho可执行文件</strong></p>
+<p><strong>4. 加载共享缓存库</strong></p>
+<p><strong>5. 插入动态缓存库</strong></p>
+<p><strong>6. 链接主程序</strong></p>
+<p><strong>7. 初始化函数</strong></p>
+<ul>
+<li>7.1. 经过一系列的初始化函数最终调用notifSingle函数。</li>
+<li>7.2. 此回调是被运行时_objc_init初始化时赋值的一个函数load_images</li>
+<li>7.3. load_images里面执行call_load_methods函数，循环调用所用类以及分类的load方法。</li>
+<li>7.4. doModInitFunctions函数，内部会调用全局C++对象的构造函数，即_ _ attribute_ _((constructor))这样的函数。</li>
+</ul>
+<p><strong>8. 返回主程序的入口函数，开始进入主程序的main（）函数</strong></p>
+<p>关于初始化过程：</p>
+<p><a target="_blank" rel="noopener" href="https://tenloy.github.io/2021/10/21/dyld-objc.htm">https://tenloy.github.io/2021/10/21/dyld-objc.htm</a></p>
+<p>涉及到两个段：</p>
+<p>__objc_nlclslist（+ load方法）</p>
+<p>__mod_init_func（init 方法）</p>
+<p>查看hook __objc_nlclslist段中各个类的load函数</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled.png" alt="Untitled"></p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%201.png" alt="Untitled"></p>
+<p>只发现在Sciapodous类的load函数中有可疑函数</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%202.png" alt="Untitled"></p>
+<p>基本都是MsgRbKVPGCrUcJUf类的初始化行为，之后分析得知MsgRbKVPGCrUcJUf就是用于风险检测的类，-[MsgRbKVPGCrUcJUf FZyLGPttEmkjUXIg:]函数中存在对特征文件的检测。但是这些函数只是对标志位的设置，并无主动退出行为。</p>
+<p>再在__mod_init_func段中找</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%203.png" alt="Untitled"></p>
+<p>通过对各个init函数hook，在onEnter和onLeave中打log，通过闪退时的日志输出可以找到是哪个函数执行后导致的闪退。</p>
+<p>最后发现是InitFunc_27：</p>
+<p>MsgRbKVPGCrUcJUf类应该是一个用于风险监测的类，InitFunc_27开头通过获取MsgRbKVPGCrUcJUf中的开关属性（在Sciapodous + load 中设置）判断是否进入监测分支，sub_101013C80函数是判断以下文件是否存在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">__const:00000001012991D8                                         ; sub_101013C80+28↑o ...</span><br><span class="line">__const:00000001012991D8                                         ; <span class="string">&quot;/usr/bin/ssh&quot;</span></span><br><span class="line">__const:00000001012991E0                 DCQ aPrivateVarLibA_0   ; <span class="string">&quot;/private/var/lib/apt&quot;</span></span><br><span class="line">__const:00000001012991E8                 DCQ aPrivateVarLibC     ; <span class="string">&quot;/private/var/lib/cydia&quot;</span></span><br><span class="line">__const:00000001012991F0                 DCQ aPrivateVarTmpC     ; <span class="string">&quot;/private/var/tmp/cydia.log&quot;</span></span><br><span class="line">__const:00000001012991F8                 DCQ aPrivateEtcApt      ; <span class="string">&quot;/private/etc/apt&quot;</span></span><br><span class="line">__const:0000000101299200                 DCQ aPrivateEtcSshS     ; <span class="string">&quot;/private/etc/ssh/sshd_config&quot;</span></span><br><span class="line">__const:0000000101299208                 DCQ aUsrLibexecSftp     ; <span class="string">&quot;/usr/libexec/sftp-server&quot;</span></span><br><span class="line">__const:0000000101299210                 DCQ aUsrLibexecCydi_0   ; <span class="string">&quot;/usr/libexec/cydia/&quot;</span></span><br><span class="line">__const:0000000101299218                 DCQ aUsrSbinFridaSe     ; <span class="string">&quot;/usr/sbin/frida-server&quot;</span></span><br><span class="line">__const:0000000101299220                 DCQ aUsrLocalBinCyc     ; <span class="string">&quot;/usr/local/bin/cycript&quot;</span></span><br><span class="line">__const:0000000101299228                 DCQ aUsrLibLibcycri     ; <span class="string">&quot;/usr/lib/libcycript.dylib&quot;</span></span><br><span class="line">__const:0000000101299230                 DCQ aUsrLibSubstrat     ; <span class="string">&quot;/usr/lib/substrate&quot;</span></span><br><span class="line">__const:0000000101299238                 DCQ aApplicationsCy_0   ; <span class="string">&quot;/Applications/Cydia.app&quot;</span></span><br><span class="line">__const:0000000101299240                 DCQ aVarLibCydia        ; <span class="string">&quot;/var/lib/cydia&quot;</span></span><br><span class="line">__const:0000000101299248                 DCQ aVarCacheApt        ; <span class="string">&quot;/var/cache/apt&quot;</span></span><br><span class="line">__const:0000000101299250                 DCQ aVarLibApt          ; <span class="string">&quot;/var/lib/apt&quot;</span></span><br><span class="line">__const:0000000101299258                 DCQ aLibraryMobiles     ; <span class="string">&quot;/Library/MobileSubstrate/MobileSubstrat&quot;</span>...</span><br><span class="line">__const:0000000101299260                 DCQ aBinBash            ; <span class="string">&quot;/bin/bash&quot;</span></span><br><span class="line">__const:0000000101299268                 DCQ aBinSh              ; <span class="string">&quot;/bin/sh&quot;</span></span><br><span class="line">__const:0000000101299270                 DCQ aUsrSbinSshd        ; <span class="string">&quot;/usr/sbin/sshd&quot;</span></span><br><span class="line">__const:0000000101299278                 DCQ aUsrLibexecSshK     ; <span class="string">&quot;/usr/libexec/ssh-keysign&quot;</span></span><br><span class="line">__const:0000000101299280                 DCQ aEtcApt             ; <span class="string">&quot;/etc/apt&quot;</span></span><br><span class="line">__const:0000000101299288                 DCQ aEtcSshSshdConf     ; <span class="string">&quot;/etc/ssh/sshd_config&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>sub_101006B80函数进行如下检测：</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%204.png" alt="Untitled"></p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%205.png" alt="Untitled"></p>
+<p>判断传入的函数名的函数头是否被修改为跳转指令（是否被hook）</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%206.png" alt="Untitled"></p>
+<p>sub_101006FEC函数是对方法Swizzling Hook的检测。</p>
+<p>对以下函数分别使用sub_101006B80和sub_101006FEC函数进行frida hook和Swizzling Hook的检测：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">v18 = NSStringFromSelector(<span class="string">&quot;nkGUHXJzuioWfEml&quot;</span>);</span><br><span class="line">v59 = objc_retainAutoreleasedReturnValue(v18);</span><br><span class="line">v60[0] = (__int64)v59;</span><br><span class="line">v19 = NSStringFromSelector(<span class="string">&quot;FZyLGPttEmkjUXIg:&quot;</span>);</span><br><span class="line">v58 = objc_retainAutoreleasedReturnValue(v19);</span><br><span class="line">v60[1] = (__int64)v58;</span><br><span class="line">v20 = NSStringFromSelector(<span class="string">&quot;OYwDyZUfXCNXiOuv&quot;</span>);</span><br><span class="line">v57 = objc_retainAutoreleasedReturnValue(v20);</span><br><span class="line">v60[2] = (__int64)v57;</span><br><span class="line">v21 = NSStringFromSelector(<span class="string">&quot;oCJCZGmYYtmdhspo&quot;</span>);</span><br><span class="line">v56 = objc_retainAutoreleasedReturnValue(v21);</span><br><span class="line">v60[3] = (__int64)v56;</span><br><span class="line">v22 = NSStringFromSelector(<span class="string">&quot;EujUBbCTRLuXCRqu&quot;</span>);</span><br><span class="line">v55 = objc_retainAutoreleasedReturnValue(v22);</span><br><span class="line">v60[4] = (__int64)v55;</span><br><span class="line">v23 = NSStringFromSelector(<span class="string">&quot;VXyTlyycVmvcUQXP&quot;</span>);</span><br><span class="line">v54 = objc_retainAutoreleasedReturnValue(v23);</span><br><span class="line">v60[5] = (__int64)v54;</span><br><span class="line">v24 = NSStringFromSelector(<span class="string">&quot;IHECuOYOxebNvDDH&quot;</span>);</span><br><span class="line">v25 = objc_retainAutoreleasedReturnValue(v24);</span><br><span class="line">v60[6] = (__int64)v25;</span><br><span class="line">v26 = NSStringFromSelector(<span class="string">&quot;cMEtWZwNDrxuizwJ&quot;</span>);</span><br><span class="line">v27 = objc_retainAutoreleasedReturnValue(v26);</span><br><span class="line">v60[7] = (__int64)v27;</span><br><span class="line">v28 = NSStringFromSelector(<span class="string">&quot;yuVnaUTHTXIAtPAG&quot;</span>);</span><br><span class="line">v29 = objc_retainAutoreleasedReturnValue(v28);</span><br><span class="line">v60[8] = (__int64)v29;</span><br><span class="line">v30 = NSStringFromSelector(<span class="string">&quot;wnosSMcuAlAibwoo&quot;</span>);</span><br><span class="line">v31 = objc_retainAutoreleasedReturnValue(v30);</span><br><span class="line">v60[9] = (__int64)v31;</span><br><span class="line">v32 = NSStringFromSelector(<span class="string">&quot;PqyDnmKPYthqfJbi&quot;</span>);</span><br><span class="line">v33 = objc_retainAutoreleasedReturnValue(v32);</span><br><span class="line">v60[10] = (__int64)v33;</span><br><span class="line">v34 = NSStringFromSelector(<span class="string">&quot;pyPCPVcvgUNZLlJv&quot;</span>);</span><br><span class="line">v35 = objc_retainAutoreleasedReturnValue(v34);</span><br><span class="line">v60[11] = (__int64)v35;</span><br><span class="line">v36 = NSStringFromSelector(<span class="string">&quot;ZAPICCvNifItLLFY&quot;</span>);</span><br><span class="line">v37 = objc_retainAutoreleasedReturnValue(v36);</span><br><span class="line">v60[12] = (__int64)v37;</span><br><span class="line">v38 = NSStringFromSelector(<span class="string">&quot;aKThUCDFaNPXSLuc&quot;</span>);</span><br><span class="line">v39 = objc_retainAutoreleasedReturnValue(v38);</span><br></pre></td></tr></table></figure>
+
+<p>绕过InitFunc_27函数后发现仍然闪退，继续分析发现InitFunc_28中存在对InitFunc_27是否被hook的检测：</p>
+<p>（sub_101006E08函数和sub_101006B80的检测方式相同）</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%207.png" alt="Untitled"></p>
+<p>InitFunc_29中存在对InitFunc_28是否被hook的检测：</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%208.png" alt="Untitled"></p>
+<p>InitFunc_30中存在对sub_100FF8E64和sub_101001764函数是否被hook的检测：</p>
+<p>（sub_100FF8E64函数是检测27042端口是否占用，sub_101001764对frida文件检测）</p>
+<p><img src="/2023/04/27/iosfridabypass2/Untitled%209.png" alt="Untitled"></p>
+<p>InitFunc_31中同样是使用sub_101006E08和sub_101006FEC对指定的函数进行hook检测；</p>
+<p>InitFunc_32延迟执行sub_100FFC0FC和sub_100FFC208，其中包含一些对标志位的判断；</p>
+<p>InitFunc_33延迟执行sub_100FFC3EC，同样是使用sub_101006E08和sub_101006FEC对指定的函数（DTRpcOperation、DTURLRequestOperation）进行hook检测。</p>
+<p>绕过以上函数后发现仍然闪退，关闭frida后仍然闪退，应该是越狱检测，越狱检测不再赘述，使用插件绕过越狱检测后运行正常。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/02/14/SecurteDetection01/" rel="next" title="合规安全检测点经验分享">
+                <i class="fa fa-chevron-left"></i> 合规安全检测点经验分享
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/04/27/iosfridabypass1/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="http://www.cnblogs.com/fancystar/" target="_blank" title="cnblog">
+                    
+                      <i class="fa fa-fw fa-globe"></i>cnblog</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/minxin" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%90%E9%93%B6%E8%A1%8CiOS-frida%E6%A3%80%E6%B5%8B%EF%BC%88%E4%BE%8B%E4%BA%8C%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">某银行iOS frida检测（例二）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fancy</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+  <span>Hosted by <a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+  <span>with <a target="_blank" rel="noopener" href="https://minxin.github.io" style="font-weight: bold">Github Pages</a>
+  </div>
+  
+
+
+
+<span class="post-meta-divider">|</span>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'Minxin',
+            repo: 'Minxin.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '2a525de65b1bdae205d75ccbea5147ce3d40d3cf',
+            
+                client_id: '039da8b1b27bc4e10d7f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
