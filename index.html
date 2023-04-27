@@ -291,7 +291,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2023/04/27/iosfridabypass1/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2023/04/27/iosfridabypass1/" itemprop="url">某银行iOS frida检测（例一）</a></h1>
         
 
         <div class="post-meta">
@@ -344,10 +344,9 @@
       
         
           
-            
-某银行iOS frida检测（例一）
+            某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动/usr/sbin/frida-server文件或修改文件名，均可正常启动，应该是有对“/usr/sbin/frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：
 
-某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动/usr/sbin/frida-server文件或修改文件名，均可正常启动，应该是有对“/usr/sbin/frida-server”固定路径文件名的
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -423,7 +422,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2023/04/27/iosfridabypass2/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2023/04/27/iosfridabypass2/" itemprop="url">某银行iOS frida检测（例二）</a></h1>
         
 
         <div class="post-meta">
@@ -476,15 +475,12 @@
       
         
           
-            
-某银行iOS frida检测（例二）
-
-某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。
+            某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。
 检测时机较早，对main函数进行hook，发现仍然没执行。
 main函数执行前的流程：
 1. 程序执行从_dyld_star开始
 
-1.1. 读
+1.1. 读取macho文件信息，设置虚拟地址偏移量，
           ...
           <!--noindex-->
           <div class="post-button text-center">

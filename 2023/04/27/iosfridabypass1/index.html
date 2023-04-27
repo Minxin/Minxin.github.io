@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="某银行iOS frida检测（例一）  某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动&#x2F;usr&#x2F;sbin&#x2F;frida-server文件或修改文件名，均可正常启动，应该是有对“&#x2F;usr&#x2F;sbin&#x2F;frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：  hook修改返回值，启动仍然闪退。字符串可能是动态生成的，">
+<meta name="description" content="某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动&#x2F;usr&#x2F;sbin&#x2F;frida-server文件或修改文件名，均可正常启动，应该是有对“&#x2F;usr&#x2F;sbin&#x2F;frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：  hook修改返回值，启动仍然闪退。字符串可能是动态生成的，要么拼接，要么解密。没有确定目标的搜索效率">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:title" content="某银行iOS frida检测（例一）">
 <meta property="og:url" content="https://f4ncy.top/2023/04/27/iosfridabypass1/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="某银行iOS frida检测（例一）  某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动&#x2F;usr&#x2F;sbin&#x2F;frida-server文件或修改文件名，均可正常启动，应该是有对“&#x2F;usr&#x2F;sbin&#x2F;frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：  hook修改返回值，启动仍然闪退。字符串可能是动态生成的，">
+<meta property="og:description" content="某银行iOS frida检测（例一）某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动&#x2F;usr&#x2F;sbin&#x2F;frida-server文件或修改文件名，均可正常启动，应该是有对“&#x2F;usr&#x2F;sbin&#x2F;frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：  hook修改返回值，启动仍然闪退。字符串可能是动态生成的，要么拼接，要么解密。没有确定目标的搜索效率">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass1/Untitled.png">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass1/Untitled%201.png">
@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass1/Untitled%205.png">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass1/Untitled%206.png">
 <meta property="article:published_time" content="2023-04-26T22:58:06.000Z">
-<meta property="article:modified_time" content="2023-04-27T07:00:46.295Z">
+<meta property="article:modified_time" content="2023-04-27T07:05:28.525Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://f4ncy.top/2023/04/27/iosfridabypass1/Untitled.png">
@@ -135,7 +135,7 @@
 
 
 
-  <title> | fancy's blog</title>
+  <title>某银行iOS frida检测（例一） | fancy's blog</title>
   
 
 
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">某银行iOS frida检测（例一）</h1>
         
 
         <div class="post-meta">
@@ -365,10 +365,7 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><hr>
-<p>某银行iOS frida检测（例一）</p>
-<hr>
-<h1 id="某银行iOS-frida检测（例一）"><a href="#某银行iOS-frida检测（例一）" class="headerlink" title="某银行iOS frida检测（例一）"></a>某银行iOS frida检测（例一）</h1><p>某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动/usr/sbin/frida-server文件或修改文件名，均可正常启动，应该是有对“/usr/sbin/frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：</p>
+        <script src="/assets/js/APlayer.min.js"> </script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><h1 id="某银行iOS-frida检测（例一）"><a href="#某银行iOS-frida检测（例一）" class="headerlink" title="某银行iOS frida检测（例一）"></a>某银行iOS frida检测（例一）</h1><p>某银行iOS版本，现象是在安装frida的设备中运行时闪退，通过移动/usr/sbin/frida-server文件或修改文件名，均可正常启动，应该是有对“/usr/sbin/frida-server”固定路径文件名的检查，搜索字符串会发现有如下函数使用：</p>
 <p><img src="/2023/04/27/iosfridabypass1/Untitled.png" alt="Untitled"></p>
 <p>hook修改返回值，启动仍然闪退。字符串可能是动态生成的，要么拼接，要么解密。没有确定目标的搜索效率太低。看一下有没有崩溃信息：</p>
 <p><img src="/2023/04/27/iosfridabypass1/Untitled%201.png" alt="Untitled"></p>
@@ -436,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2023/04/27/iosfridabypass2/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2023/04/27/iosfridabypass2/" rel="next" title="某银行iOS frida检测（例二）">
+                <i class="fa fa-chevron-left"></i> 某银行iOS frida检测（例二）
               </a>
             
           </div>

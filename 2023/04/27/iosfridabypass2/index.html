@@ -81,12 +81,12 @@
 
 
 
-<meta name="description" content="某银行iOS frida检测（例二）  某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入">
+<meta name="description" content="某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入macho文件的主程序。  2. 配置一些">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fancy&#39;s blog">
+<meta property="og:title" content="某银行iOS frida检测（例二）">
 <meta property="og:url" content="https://f4ncy.top/2023/04/27/iosfridabypass2/index.html">
 <meta property="og:site_name" content="fancy&#39;s blog">
-<meta property="og:description" content="某银行iOS frida检测（例二）  某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入">
+<meta property="og:description" content="某银行iOS frida检测（例二）搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。 检测时机较早，对main函数进行hook，发现仍然没执行。 main函数执行前的流程： 1. 程序执行从_dyld_star开始  1.1. 读取macho文件信息，设置虚拟地址偏移量，用于重定向。 1.2. 调用dyld::_main方法进入macho文件的主程序。  2. 配置一些">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled.png">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%201.png">
@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%208.png">
 <meta property="og:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled%209.png">
 <meta property="article:published_time" content="2023-04-26T22:54:34.000Z">
-<meta property="article:modified_time" content="2023-04-27T07:01:17.993Z">
+<meta property="article:modified_time" content="2023-04-27T07:05:36.868Z">
 <meta property="article:author" content="fancy">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://f4ncy.top/2023/04/27/iosfridabypass2/Untitled.png">
@@ -138,7 +138,7 @@
 
 
 
-  <title> | fancy's blog</title>
+  <title>某银行iOS frida检测（例二） | fancy's blog</title>
   
 
 
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">某银行iOS frida检测（例二）</h1>
         
 
         <div class="post-meta">
@@ -368,10 +368,7 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><hr>
-<p>某银行iOS frida检测（例二）</p>
-<hr>
-<h1 id="某银行iOS-frida检测（例二）"><a href="#某银行iOS-frida检测（例二）" class="headerlink" title="某银行iOS frida检测（例二）"></a>某银行iOS frida检测（例二）</h1><p>搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"> </script><h1 id="某银行iOS-frida检测（例二）"><a href="#某银行iOS-frida检测（例二）" class="headerlink" title="某银行iOS frida检测（例二）"></a>某银行iOS frida检测（例二）</h1><p>搜索frida等特征关键词后对相关函数进行hook，发现并未调用即闪退。</p>
 <p>检测时机较早，对main函数进行hook，发现仍然没执行。</p>
 <p>main函数执行前的流程：</p>
 <p><strong>1. 程序执行从_dyld_star开始</strong></p>
@@ -469,8 +466,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2023/04/27/iosfridabypass1/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2023/04/27/iosfridabypass1/" rel="prev" title="某银行iOS frida检测（例一）">
+                某银行iOS frida检测（例一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
